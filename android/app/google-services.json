@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "134312652161",
+    "project_id": "hatonet-hcn",
+    "storage_bucket": "hatonet-hcn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134312652161:android:8b235ef675f6699fb20c80",
+        "android_client_info": {
+          "package_name": "com.example.hatonet_hcn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134312652161-8127s1a6nca5e7ti33f5v40jjeutif7f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEVEz4Ir0hkhHXurcYbSIC0V4Zu7oMIQ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134312652161-8127s1a6nca5e7ti33f5v40jjeutif7f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
