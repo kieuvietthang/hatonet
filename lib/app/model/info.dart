@@ -2,26 +2,23 @@ import 'package:equatable/equatable.dart';
 
 class Info extends Equatable {
   final String phone;
-  final String name;
-  final String skype;
+  final String companyName;
+  final String abbreviations;
   final String tax;
   final String email;
-  final String address;
-  final String introduce;
-  final String bankName;
+  final String hotline;
   final String password;
   bool? isDone;
   bool? isDeleted;
 
   Info(
-      {required this.phone,
-      required this.name,
-      required this.skype,
+      {
+        required this.phone,
+      required this.companyName,
+      required this.abbreviations,
       required this.tax,
+      required this.hotline,
       required this.email,
-      required this.address,
-      required this.introduce,
-      required this.bankName,
       required this.password,
       this.isDone,
       this.isDeleted}) {
@@ -31,26 +28,22 @@ class Info extends Equatable {
 
   Info copyWith({
     String? phone,
-    String? name,
-    String? skype,
+    String? companyName,
+    String? abbreviations,
     String? tax,
+    String? hotline,
     String? email,
-    String? address,
-    String? introduce,
-    String? bankName,
     String? password,
     bool? isDone,
     bool? isDeleted,
   }) {
     return Info(
       phone: phone ?? this.phone,
-      name: name ?? this.name,
-      skype: skype ?? this.skype,
+      companyName: companyName ?? this.companyName,
+      abbreviations: abbreviations ?? this.abbreviations,
       tax: tax ?? this.tax,
+      hotline: hotline ?? this.hotline,
       email: email ?? this.email,
-      address: address ?? this.address,
-      introduce: introduce ?? this.introduce,
-      bankName: bankName ?? this.bankName,
       password: password ?? this.password,
       isDone: isDone ?? this.isDone,
       isDeleted: isDeleted ?? this.isDeleted,
@@ -60,13 +53,11 @@ class Info extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'phone': phone,
-      'name': name,
-      'skype': skype,
+      'companyName': companyName,
+      'abbreviations': abbreviations,
       'tax': tax,
+      'hotline': hotline,
       'email': email,
-      'address': address,
-      'introduce': introduce,
-      'bankName': bankName,
       'password': password,
       'isDone': isDone,
       'isDeleted': isDeleted,
@@ -76,13 +67,11 @@ class Info extends Equatable {
   factory Info.fromMap(Map<String, dynamic> map) {
     return Info(
       phone: map['phone'] ?? '',
-      name: map['name'] ?? '',
-      skype: map['skype'] ?? '',
+      companyName: map['companyName'] ?? '',
+      abbreviations: map['abbreviations'] ?? '',
       tax: map['tax'] ?? '',
+      hotline: map['hotline'] ?? '',
       email: map['email'] ?? '',
-      address: map['address'] ?? '',
-      introduce: map['introduce'] ?? '',
-      bankName: map['bankName'] ?? '',
       password: map['password'] ?? '',
       isDone: map['isDone'],
       isDeleted: map['isDeleted'],
@@ -91,5 +80,5 @@ class Info extends Equatable {
 
   @override
   List<Object?> get props =>
-      [phone, name, skype, tax, email, address, introduce,bankName,password, isDone, isDeleted];
+      [phone, companyName, abbreviations, tax, hotline,email,password, isDone, isDeleted];
 }

@@ -3,7 +3,6 @@ import 'package:hatonet_hcn/app/blocs/bloc/infos_event.dart';
 import 'package:hatonet_hcn/app/blocs/bloc/infos_state.dart';
 import 'package:hatonet_hcn/app/model/info.dart';
 
-
 class InfosBloc extends Bloc<InfosEvent, InfosState> {
   InfosBloc() : super(const InfosState()) {
     on<AddInfo>(_onAddTask);
@@ -13,9 +12,11 @@ class InfosBloc extends Bloc<InfosEvent, InfosState> {
 
   void _onAddTask(AddInfo event, Emitter<InfosState> emit) {
     final state = this.state;
-    emit(InfosState(
-      allInfos: List.from(state.allInfos)..add(event.info),
-    ));
+    emit(
+      InfosState(
+        allInfos: List.from(state.allInfos)..add(event.info),
+      ),
+    );
   }
 
   void _onUpdateTask(UpdateInfo event, Emitter<InfosState> emit) {
@@ -24,20 +25,17 @@ class InfosBloc extends Bloc<InfosEvent, InfosState> {
     final int index = state.allInfos.indexOf(task);
     List<Info> allInfos = List.from(state.allInfos)..remove(task);
     task.isDone == false
-        ? allInfos.insert(index,task.copyWith(isDone: true))
-        : allInfos.insert(index,task.copyWith(isDone: false));
+        ? allInfos.insert(index, task.copyWith(isDone: true))
+        : allInfos.insert(index, task.copyWith(isDone: false));
 
     emit(InfosState(allInfos: allInfos));
   }
 
   void _onDeleteTask(DeleteInfo event, Emitter<InfosState> emit) {
     final state = this.state;
-    emit(
-        InfosState(
-          allInfos: List.from(state.allInfos)..remove(event.info),
-        )
-    );
-
+    emit(InfosState(
+      allInfos: List.from(state.allInfos)..remove(event.info),
+    ));
   }
 
   @override

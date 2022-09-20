@@ -10,7 +10,6 @@ import 'package:hatonet_hcn/app/utils/next_screen.dart';
 import 'package:hatonet_hcn/app/utils/snack_bar.dart';
 import 'package:hatonet_hcn/app/view/home/bottom/bottom_bar.dart';
 import 'package:hatonet_hcn/app/view/home/forgot_password/forgot_password_page.dart';
-import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
@@ -27,6 +26,8 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+
 
   Future signIn() async {
     showDialog(
@@ -59,8 +60,13 @@ class _SignInPageState extends State<SignInPage> {
   final RoundedLoadingButtonController facebookController =
       RoundedLoadingButtonController();
 
+  final formKey = GlobalKey<FormState>();
+  String name = '';
+
+
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
         key: _scaffoldkey,
@@ -115,7 +121,15 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 20, right: 20),
-                          child: TextField(
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty ||
+                                  !RegExp(r'^[a-z A-Z]+$').hasMatch(value!)) {
+                                return 'Enter correct name';
+                              } else {
+                                return null;
+                              }
+                            },
                             cursorColor: Color(0xFFFF6116),
                             controller: _emailController,
                             keyboardType: TextInputType.text,
@@ -141,7 +155,16 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(left: 20, right: 20),
-                          child: TextField(
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value!.isEmpty ||
+                                  !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                      .hasMatch(value!)) {
+                                return 'Enter correct phone number';
+                              } else {
+                                return null;
+                              }
+                            },
                             cursorColor: Color(0xFFFF6116),
                             controller: _passwordController,
                             keyboardType: TextInputType.multiline,
@@ -183,6 +206,7 @@ class _SignInPageState extends State<SignInPage> {
                           child: GestureDetector(
                             onTap: () {
                               signIn();
+
                             },
                             child: Container(
                               decoration: BoxDecoration(

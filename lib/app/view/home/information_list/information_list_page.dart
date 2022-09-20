@@ -78,13 +78,13 @@ class InformationListPage extends StatelessWidget {
                                             color: Colors.black.withOpacity(0.5),
                                             fontWeight: FontWeight.normal),
                                       ),
-                                      Text(
-                                        info.name,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.black.withOpacity(0.5),
-                                            fontWeight: FontWeight.normal),
-                                      ),
+                                      // Text(
+                                      //   info.name,
+                                      //   style: TextStyle(
+                                      //       fontSize: 12,
+                                      //       color: Colors.black.withOpacity(0.5),
+                                      //       fontWeight: FontWeight.normal),
+                                      // ),
                                       Text(
                                         '........',
                                         style: TextStyle(

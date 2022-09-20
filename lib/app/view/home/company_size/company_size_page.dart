@@ -2,12 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hatonet_hcn/app/model/info.dart';
 
 class CompanySizePage extends StatefulWidget {
 
 
 
-  CompanySizePage({Key? key}) : super(key: key);
+  CompanySizePage({Key? key,required this.infosList}) : super(key: key);
+
+  final List<Info> infosList;
 
   @override
   State<CompanySizePage> createState() => _CompanySizePageState();

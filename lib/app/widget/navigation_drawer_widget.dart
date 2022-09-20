@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hatonet_hcn/app/model/info.dart';
 import 'package:hatonet_hcn/app/view/home/accountt/account_pagee.dart';
 import 'package:hatonet_hcn/app/view/home/dashboard/dashboard_page.dart';
 import 'package:hatonet_hcn/app/view/home/details/details_page.dart';
@@ -91,9 +92,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   });
                   Navigator.of(context).push(
                     CustomPageRoute(
-                        child: DashBoardPage(),
-                        direction: AxisDirection.left
-                    ),
+                        child: DashBoardPage(), direction: AxisDirection.left),
                   );
                 },
                 child: Row(
@@ -190,7 +189,9 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               height: 20,
             ),
             Padding(
-              padding: EdgeInsets.only(left: 15,),
+              padding: EdgeInsets.only(
+                left: 15,
+              ),
               child: Row(
                 children: [
                   Expanded(
@@ -324,8 +325,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   Navigator.of(context).push(
                     CustomPageRoute(
                         child: ServicePackPage(),
-                        direction: AxisDirection.down
-                    ),
+                        direction: AxisDirection.down),
                   );
                 },
                 child: Row(
@@ -374,9 +374,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
 
                   Navigator.of(context).push(
                     CustomPageRoute(
-                        child: AccountPagee(),
-                        direction: AxisDirection.down
-                    ),
+                        child: AccountPagee(), direction: AxisDirection.down),
                   );
                 },
                 child: Row(
@@ -462,12 +460,20 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                     _hasBeenTextcustomer = !_hasBeenTextcustomer;
                   });
 
-                Navigator.of(context).push(
-                  CustomPageRoute(
-                      child: DetailsPage(),
-                      direction: AxisDirection.left
-                  ),
-                );
+                  Navigator.of(context).push(
+                    CustomPageRoute(
+                        child: DetailsPage(
+                          info: Info(
+                              tax: '',
+                              email: '',
+                              password: '',
+                              hotline: '',
+                              abbreviations: '',
+                              phone: '',
+                              companyName: ''),
+                        ),
+                        direction: AxisDirection.left),
+                  );
                 },
                 child: Row(
                   children: [

@@ -4,21 +4,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hatonet_hcn/app/model/info.dart';
 import 'package:hatonet_hcn/app/view/sign_in/sign_in_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 
-class DetailsPage extends StatefulWidget {
-  const DetailsPage({Key? key}) : super(key: key);
+class DetailsPage extends StatelessWidget {
 
-  @override
-  State<DetailsPage> createState() => _DetailsPageState();
-}
+  Info info;
+  DetailsPage({Key? key, required this.info}) : super(key: key);
 
-class _DetailsPageState extends State<DetailsPage> {
-  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -111,7 +109,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Công ty cổ phần giải pháp Hachinet',
+                         //'Công ty cổ phần giải pháp Hachinet',
+                        info.companyName,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.normal,
@@ -120,7 +119,8 @@ class _DetailsPageState extends State<DetailsPage> {
                       Row(
                         children: [
                           Text(
-                            'Hachinet',
+                            // 'Hachinet',
+                            info.abbreviations,
                             style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.normal,
@@ -135,7 +135,8 @@ class _DetailsPageState extends State<DetailsPage> {
                             ),
                           ),
                           Text(
-                            '1900',
+                            // '1900',
+                            info.tax,
                             style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.normal,
@@ -451,7 +452,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     width: 5,
                   ),
                   Text(
-                    '0942389599',
+                    // '0942389599',
+                    info.hotline,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.normal,
@@ -534,7 +536,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     width: 5,
                   ),
                   Text(
-                    'bboydaisy@gmail.com',
+                    // 'bboydaisy@gmail.com',
+                    info.email,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.normal,
@@ -560,7 +563,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     width: 5,
                   ),
                   Text(
-                    '0523611885',
+                    // '0523611885',
+                    info.phone,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.normal,

@@ -4,8 +4,14 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hatonet_hcn/app/blocs/bloc/infos_bloc.dart';
+import 'package:hatonet_hcn/app/model/info.dart';
 import 'package:hatonet_hcn/app/view/home/background/backgroud_image.dart';
+import 'package:hatonet_hcn/app/view/home/details/details_page.dart';
 import 'package:hatonet_hcn/app/view/home/notification/notification_page.dart';
+import 'package:provider/provider.dart';
+
+import '../../../blocs/bloc/infos_event.dart';
 
 class AccountPagee extends StatefulWidget {
   const AccountPagee({Key? key}) : super(key: key);
@@ -68,6 +74,15 @@ class _CompanyInformationState extends State<CompanyInformation>
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
+
+    TextEditingController _phoneController = TextEditingController();
+    TextEditingController _companyNameController = TextEditingController();
+    TextEditingController _abbreviationsController = TextEditingController();
+    TextEditingController _taxController = TextEditingController();
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _hotlineController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
+
     return DefaultTabController(
       length: 3,
       child: Column(
@@ -80,8 +95,11 @@ class _CompanyInformationState extends State<CompanyInformation>
               Expanded(
                 flex: 1,
                 child: InkWell(
-                  onTap: (){
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>NotificationPage()));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NotificationPage()));
                   },
                   child: Padding(
                     padding: EdgeInsets.only(left: 20),
@@ -123,9 +141,7 @@ class _CompanyInformationState extends State<CompanyInformation>
           Text(
             'NỀN TẢNG KẾT NỐI NHÂN SỰ ONSITE SỐ 1',
             style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Colors.black),
+                fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           SizedBox(
             height: 70,
@@ -228,7 +244,7 @@ class _CompanyInformationState extends State<CompanyInformation>
                                       padding: EdgeInsets.only(
                                           left: 10, right: 5, top: 10),
                                       child: TextField(
-                                        //    controller: phoneController,
+                                        controller: _companyNameController,
                                         keyboardType: TextInputType.text,
                                         maxLines: 1,
                                         decoration: InputDecoration(
@@ -247,7 +263,7 @@ class _CompanyInformationState extends State<CompanyInformation>
                                       padding: EdgeInsets.only(
                                           left: 10, right: 10, top: 10),
                                       child: TextField(
-                                        //    controller: phoneController,
+                                        controller: _abbreviationsController,
                                         keyboardType: TextInputType.text,
                                         maxLines: 1,
                                         decoration: InputDecoration(
@@ -270,7 +286,7 @@ class _CompanyInformationState extends State<CompanyInformation>
                                       padding: EdgeInsets.only(
                                           left: 10, right: 5, top: 10),
                                       child: TextField(
-                                        //    controller: phoneController,
+                                        controller: _taxController,
                                         keyboardType: TextInputType.number,
                                         maxLines: 1,
                                         decoration: InputDecoration(
@@ -342,6 +358,7 @@ class _CompanyInformationState extends State<CompanyInformation>
                                 padding: EdgeInsets.only(
                                     left: 10, right: 10, top: 10),
                                 child: TextField(
+                                  controller: _emailController,
                                   keyboardType: TextInputType.text,
                                   maxLines: 1,
                                   decoration: InputDecoration(
@@ -372,7 +389,7 @@ class _CompanyInformationState extends State<CompanyInformation>
                                 padding: EdgeInsets.only(
                                     left: 10, right: 10, top: 10),
                                 child: TextField(
-                                  //    controller: phoneController,
+                                  controller: _hotlineController,
                                   keyboardType: TextInputType.text,
                                   maxLines: 1,
                                   decoration: InputDecoration(
@@ -404,14 +421,14 @@ class _CompanyInformationState extends State<CompanyInformation>
                                         name: 'Outsourcing',
                                         value: "value2",
                                         toolTipMsg:
-                                        "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
                                     DropDownValueModel(
                                         name: 'Solution', value: "value3"),
                                     DropDownValueModel(
                                         name: 'Consultant',
                                         value: "value4",
                                         toolTipMsg:
-                                        "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
                                     DropDownValueModel(
                                         name: 'Service', value: "value5"),
                                     DropDownValueModel(
@@ -506,14 +523,14 @@ class _CompanyInformationState extends State<CompanyInformation>
                                         name: 'Hồ Chí Minh',
                                         value: "value2",
                                         toolTipMsg:
-                                        "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
                                     DropDownValueModel(
                                         name: 'Vĩnh Phúc', value: "value3"),
                                     DropDownValueModel(
                                         name: 'Ninh Bình',
                                         value: "value4",
                                         toolTipMsg:
-                                        "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                                            "DropDownButton is a widget that we can use to select one unique value from a set of values"),
                                     DropDownValueModel(
                                         name: 'Cà Mau', value: "value5"),
                                     DropDownValueModel(
@@ -562,221 +579,188 @@ class _CompanyInformationState extends State<CompanyInformation>
                                               BorderRadius.circular(5))),
                                 ),
                               ),
-
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 10, right: 10),
-                                child: GestureDetector(
-                                  onTap: () {},
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: Color(0xFFFF6116),
-                                        borderRadius: BorderRadius.circular(4)),
-                                    height: 45,
-                                    width: double.infinity,
-                                    child: Center(
-                                      child: Text(
-                                        'Cập nhật',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              )
                             ],
                           ),
                         ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10, top: 10),
-                              child: TextField(
-                                keyboardType: TextInputType.multiline,
-                                maxLines: 1,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(13),
-                                  labelText: 'Mật khẩu hiện tại',
-                                  labelStyle: TextStyle(fontSize: 12),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(Icons.remove_red_eye),
-                                    onPressed: () {
-                                      setState(() {
-                                        _secureText = !_secureText;
-                                      });
-                                    },
-                                  ),
-                                ),
-                                obscureText: _secureText,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10, top: 10),
-                              child: TextField(
-                                keyboardType: TextInputType.multiline,
-                                maxLines: 1,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(13),
-                                  labelText: 'Mật khẩu mới',
-                                  labelStyle: TextStyle(fontSize: 12),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(Icons.remove_red_eye),
-                                    onPressed: () {
-                                      setState(() {
-                                        _secureNewPass = !_secureNewPass;
-                                      });
-                                    },
-                                  ),
-                                ),
-                                obscureText: _secureNewPass,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10, top: 10),
-                              child: TextField(
-                                keyboardType: TextInputType.multiline,
-                                maxLines: 1,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.all(13),
-                                  labelText: 'Nhập lại mật khẩu',
-                                  labelStyle: TextStyle(fontSize: 12),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(Icons.remove_red_eye),
-                                    onPressed: () {
-                                      setState(() {
-                                        _secureRetypePass =
-                                            !_secureRetypePass;
-                                      });
-                                    },
-                                  ),
-                                ),
-                                obscureText: _secureRetypePass,
-                              ),
-                            ),
-                            Spacer(),
-                            Padding(
-                              padding: EdgeInsets.only(left: 10, right: 10),
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Color(0xFFFF6116),
-                                      borderRadius: BorderRadius.circular(4)),
-                                  height: 45,
-                                  width: double.infinity,
-                                  child: Center(
-                                    child: Text(
-                                      'Cập nhật',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
+                        SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: TextField(
+                                  keyboardType: TextInputType.multiline,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(13),
+                                    labelText: 'Mật khẩu hiện tại',
+                                    labelStyle: TextStyle(fontSize: 12),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(Icons.remove_red_eye),
+                                      onPressed: () {
+                                        setState(() {
+                                          _secureText = !_secureText;
+                                        });
+                                      },
                                     ),
                                   ),
+                                  obscureText: _secureText,
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            )
-                          ],
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: TextField(
+                                  keyboardType: TextInputType.multiline,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(13),
+                                    labelText: 'Mật khẩu mới',
+                                    labelStyle: TextStyle(fontSize: 12),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(Icons.remove_red_eye),
+                                      onPressed: () {
+                                        setState(() {
+                                          _secureNewPass = !_secureNewPass;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  obscureText: _secureNewPass,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: TextField(
+                                  controller: _passwordController,
+                                  keyboardType: TextInputType.multiline,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.all(13),
+                                    labelText: 'Nhập lại mật khẩu',
+                                    labelStyle: TextStyle(fontSize: 12),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(Icons.remove_red_eye),
+                                      onPressed: () {
+                                        setState(() {
+                                          _secureRetypePass = !_secureRetypePass;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  obscureText: _secureRetypePass,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10, top: 10),
-                              child: TextField(
-                                keyboardType: TextInputType.text,
-                                maxLines: 1,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(13),
-                                    labelText: 'Người liên hệ',
-                                    labelStyle: TextStyle(fontSize: 12),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5))),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10, top: 10),
-                              child: TextField(
-                                keyboardType: TextInputType.text,
-                                maxLines: 1,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(13),
-                                    labelText: 'Số điện thoại',
-                                    labelStyle: TextStyle(fontSize: 12),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5))),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: 10, right: 10, top: 10),
-                              child: TextField(
-                                keyboardType: TextInputType.text,
-                                maxLines: 1,
-                                decoration: InputDecoration(
-                                    contentPadding: EdgeInsets.all(13),
-                                    labelText: 'Email liên hệ',
-                                    labelStyle: TextStyle(fontSize: 12),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(5))),
-                              ),
-                            ),
-                            Spacer(),
-                            Padding(
-                              padding: EdgeInsets.only(left: 10, right: 10),
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Color(0xFFFF6116),
-                                      borderRadius: BorderRadius.circular(4)),
-                                  height: 45,
-                                  width: double.infinity,
-                                  child: Center(
-                                    child: Text(
-                                      'Cập nhật',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
+                        SingleChildScrollView(
+                          physics: BouncingScrollPhysics(),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: TextField(
+                                  keyboardType: TextInputType.text,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(13),
+                                      labelText: 'Người liên hệ',
+                                      labelStyle: TextStyle(fontSize: 12),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            )
-                          ],
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: TextField(
+                                  controller: _phoneController,
+                                  keyboardType: TextInputType.text,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(13),
+                                      labelText: 'Số điện thoại',
+                                      labelStyle: TextStyle(fontSize: 12),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                child: TextField(
+                                  keyboardType: TextInputType.text,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.all(13),
+                                      labelText: 'Email liên hệ',
+                                      labelStyle: TextStyle(fontSize: 12),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5))),
+                                ),
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => DetailsPage(
+                              info: Info(
+                                abbreviations: _abbreviationsController.text,
+                                password: _passwordController.text,
+                                tax: _taxController.text,
+                                email: _emailController.text,
+                                companyName: _companyNameController.text,
+                                phone: _phoneController.text,
+                                hotline: _hotlineController.text,
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Color(0xFFFF6116),
+                            borderRadius: BorderRadius.circular(4)),
+                        height: 45,
+                        width: double.infinity,
+                        child: Center(
+                          child: Text(
+                            'Cập nhật',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                 ],
               ),
