@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_final_fields, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/view/home/home/home_page.dart';
@@ -82,7 +83,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
                 color: Color(0xFFE65C00),
               ),
               icon: SvgPicture.asset(
-                    'assets/icons/ic_bells.svg',
+                'assets/icons/ic_bells.svg',
                 width: 24,
               ),
               label: "Thông báo",
@@ -94,7 +95,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
                 color: Color(0xFFE65C00),
               ),
               icon: SvgPicture.asset(
-                    'assets/icons/ic_bars.svg',
+                'assets/icons/ic_bars.svg',
                 width: 20,
               ),
               label: "Khác",

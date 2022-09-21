@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -587,8 +588,8 @@ class _CompanyInformationState extends State<CompanyInformation>
                           child: Column(
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10, top: 10),
                                 child: TextField(
                                   keyboardType: TextInputType.multiline,
                                   maxLines: 1,
@@ -612,8 +613,8 @@ class _CompanyInformationState extends State<CompanyInformation>
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10, top: 10),
                                 child: TextField(
                                   keyboardType: TextInputType.multiline,
                                   maxLines: 1,
@@ -637,8 +638,8 @@ class _CompanyInformationState extends State<CompanyInformation>
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10, top: 10),
                                 child: TextField(
                                   controller: _passwordController,
                                   keyboardType: TextInputType.multiline,
@@ -654,7 +655,8 @@ class _CompanyInformationState extends State<CompanyInformation>
                                       icon: Icon(Icons.remove_red_eye),
                                       onPressed: () {
                                         setState(() {
-                                          _secureRetypePass = !_secureRetypePass;
+                                          _secureRetypePass =
+                                              !_secureRetypePass;
                                         });
                                       },
                                     ),
@@ -670,8 +672,8 @@ class _CompanyInformationState extends State<CompanyInformation>
                           child: Column(
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10, top: 10),
                                 child: TextField(
                                   keyboardType: TextInputType.text,
                                   maxLines: 1,
@@ -685,8 +687,8 @@ class _CompanyInformationState extends State<CompanyInformation>
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10, top: 10),
                                 child: TextField(
                                   controller: _phoneController,
                                   keyboardType: TextInputType.text,
@@ -701,8 +703,8 @@ class _CompanyInformationState extends State<CompanyInformation>
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsets.only(left: 10, right: 10, top: 10),
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10, top: 10),
                                 child: TextField(
                                   keyboardType: TextInputType.text,
                                   maxLines: 1,

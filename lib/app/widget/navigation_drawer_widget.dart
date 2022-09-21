@@ -460,9 +460,13 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                     _hasBeenTextcustomer = !_hasBeenTextcustomer;
                   });
 
+                  // setState(() {
+                  //   _hasBeencustomer = !_hasBeencustomer;
+                  //   _hasBeenTextcustomer = !_hasBeenTextcustomer;
+                  // });
                   Navigator.of(context).push(
                     CustomPageRoute(
-                        child: DetailsPage(
+                        child:  DetailsPage(
                           info: Info(
                               tax: '',
                               email: '',
@@ -471,9 +475,9 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                               abbreviations: '',
                               phone: '',
                               companyName: ''),
-                        ),
-                        direction: AxisDirection.left),
+                        ), direction: AxisDirection.left),
                   );
+
                 },
                 child: Row(
                   children: [

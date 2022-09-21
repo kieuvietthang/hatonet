@@ -6,7 +6,6 @@ import 'package:hatonet_hcn/app/utils/next_screen.dart';
 import 'package:hatonet_hcn/app/view/sign_in/sign_in_page.dart';
 import 'package:provider/provider.dart';
 
-
 class HomeGoogleSignIn extends StatefulWidget {
   const HomeGoogleSignIn({Key? key}) : super(key: key);
 
@@ -15,7 +14,6 @@ class HomeGoogleSignIn extends StatefulWidget {
 }
 
 class _HomeGoogleSignInState extends State<HomeGoogleSignIn> {
-
   Future getData() async {
     final sp = context.read<SignInProvider>();
     sp.getDataFromSharedPreferences();
@@ -30,71 +28,53 @@ class _HomeGoogleSignInState extends State<HomeGoogleSignIn> {
   @override
   Widget build(BuildContext context) {
     final sp = context.read<SignInProvider>();
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: NetworkImage('${sp.imageUrl}'),
-                radius: 50,
+    return Column(
+      children: [
+        PopupMenu(
+          menulist: [
+            PopupMenuItem(
+              child: ListTile(
+                title: Text('Thông tin'),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                'Welcome ${sp.name}',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                '${sp.email}',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                '${sp.uid}',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("PROVIDER:"),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    '${sp.provider}'.toUpperCase(),
-                    style: TextStyle(color: Colors.red),
-                  ),
-                ],
-              ),
+            ),
+            PopupMenuItem(
+              child:
               ElevatedButton(
                 onPressed: () {
                   sp.userSignOut();
-                  nextScreenReplace(context, SignInPage(showRegisterPage: (){}));
+                  nextScreenReplace(context, SignInPage(showRegisterPage: () {}));
                 },
                 child: Text(
                   'SIGNOUT',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-            ],
+            ),
+          ],
+          icon: CircleAvatar(
+            backgroundColor: Colors.blue,
+            backgroundImage: NetworkImage('${sp.imageUrl}'),
+            radius: 15,
           ),
         ),
-      ),
+
+      ],
+    );
+  }
+}
+
+class PopupMenu extends StatelessWidget {
+  final List<PopupMenuEntry> menulist;
+  final Widget? icon;
+
+  PopupMenu({Key? key, required this.menulist, this.icon}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+      itemBuilder: ((context) => menulist),
+      icon: icon,
     );
   }
 }

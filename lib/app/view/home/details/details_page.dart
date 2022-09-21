@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +9,43 @@ import 'package:hatonet_hcn/app/model/info.dart';
 import 'package:hatonet_hcn/app/view/sign_in/sign_in_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 
-class DetailsPage extends StatelessWidget {
-
+class DetailsPage extends StatefulWidget {
   Info info;
+
   DetailsPage({Key? key, required this.info}) : super(key: key);
 
+  @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  final user = FirebaseAuth.instance.currentUser!;
+
+  List<String> docIDs = [];
+
+  @override
+  void initState() {
+    getDocId();
+    super.initState();
+  }
+
+  Future getDocId() async {
+    await FirebaseFirestore.instance
+        .collection('user')
+        .orderBy('age', descending: false)
+        .get()
+        .then(
+          (snapshot) => snapshot.docs.forEach(
+            (document) {
+              print(document.reference);
+              docIDs.add(document.reference.id);
+            },
+          ),
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -34,7 +63,7 @@ class DetailsPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left: 10, top: 5),
                       child: GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           Navigator.pop(context);
                         },
                         child: SvgPicture.asset(
@@ -109,8 +138,8 @@ class DetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                         //'Công ty cổ phần giải pháp Hachinet',
-                        info.companyName,
+                        //'Công ty cổ phần giải pháp Hachinet',
+                        widget.info.companyName,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.normal,
@@ -120,7 +149,7 @@ class DetailsPage extends StatelessWidget {
                         children: [
                           Text(
                             // 'Hachinet',
-                            info.abbreviations,
+                            widget.info.abbreviations,
                             style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.normal,
@@ -136,7 +165,7 @@ class DetailsPage extends StatelessWidget {
                           ),
                           Text(
                             // '1900',
-                            info.tax,
+                            widget.info.tax,
                             style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.normal,
@@ -453,7 +482,7 @@ class DetailsPage extends StatelessWidget {
                   ),
                   Text(
                     // '0942389599',
-                    info.hotline,
+                    widget.info.hotline,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.normal,
@@ -537,7 +566,7 @@ class DetailsPage extends StatelessWidget {
                   ),
                   Text(
                     // 'bboydaisy@gmail.com',
-                    info.email,
+                    widget.info.email,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.normal,
@@ -564,7 +593,7 @@ class DetailsPage extends StatelessWidget {
                   ),
                   Text(
                     // '0523611885',
-                    info.phone,
+                    widget.info.phone,
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.normal,
@@ -607,13 +636,16 @@ class DetailsPage extends StatelessWidget {
                           CupertinoDialogAction(
                             isDestructiveAction: true,
                             onPressed: () {
-                              Navigator.of(context).push(
-                                CustomPageRoute(
-                                    child: SignInPage(
-                                      showRegisterPage: () {},
-                                    ),
-                                    direction: AxisDirection.right),
-                              );
+                              // Navigator.of(context).push(
+                              //   CustomPageRoute(
+                              //       child: SignInPage(
+                              //         showRegisterPage: () {},
+                              //       ),
+                              //       direction: AxisDirection.right),
+                              // );
+
+                               FirebaseAuth.instance.signOut();
+
                             },
                             child: const Text('roài'),
                           ),

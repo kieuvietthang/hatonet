@@ -31,6 +31,8 @@ dependencies:
     sdk: flutter
 
 
+  # shimmer
+  shimmer: ^2.0.0
 
   # drawer
   flutter_slider_drawer: ^2.1.1

@@ -402,13 +402,14 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                       );
                 }
-                Navigator.of(context).pop();
+
               },
             );
           }
         },
       );
     }
+    Navigator.of(context).pop();
     // internet provider should
   }
 

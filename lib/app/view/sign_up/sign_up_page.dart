@@ -33,14 +33,8 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
-  var _companyErr = 'Không được bỏ trống';
-  var _companyInvalid = false;
-
-  var _emailErr = 'Không được bỏ trống';
-  var _emailInvalid = false;
-
-  var _passErr = 'Không được bỏ trống';
-  var _passInvalid = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final formKey = GlobalKey<FormState>();
 
   bool _secureText = true;
   bool _secureText1 = true;
@@ -58,6 +52,11 @@ class _SignUpPageState extends State<SignUpPage> {
           _contactnameController.text.trim(),
           _phoneController.text.trim(),
           _emailController.text.trim());
+    }else{
+      if(formKey.currentState!.validate()){
+        final snackbar = SnackBar(content: Text('Submitting form'));
+        _scaffoldKey.currentState!.showSnackBar(snackbar);
+      }
     }
     Navigator.of(context).pop();
   }
@@ -152,7 +151,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   keyboardType: TextInputType.text,
                   maxLines: 1,
                   decoration: InputDecoration(
-                      errorText: _companyInvalid ? _companyErr : null,
+
                       contentPadding: EdgeInsets.all(13),
                       labelText: 'Tên công ty',
                       labelStyle: TextStyle(fontSize: 14),
@@ -165,12 +164,20 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
-                child: TextField(
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[a-z A-Z]+$').hasMatch(value!)) {
+                      return 'Enter correct name';
+                    } else {
+                      return null;
+                    }
+                  },
                   controller: _contactnameController,
                   keyboardType: TextInputType.text,
                   maxLines: 1,
                   decoration: InputDecoration(
-                      errorText: _companyInvalid ? _companyErr : null,
+
                       contentPadding: EdgeInsets.all(13),
                       labelText: 'Tên liên hệ',
                       labelStyle: TextStyle(fontSize: 14),
@@ -183,12 +190,21 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20),
-                child: TextField(
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                            .hasMatch(value!)) {
+                      return 'Enter correct phone number';
+                    } else {
+                      return null;
+                    }
+                  },
                   controller: _phoneController,
                   keyboardType: TextInputType.text,
                   maxLines: 1,
                   decoration: InputDecoration(
-                      errorText: _companyInvalid ? _companyErr : null,
+
                       contentPadding: EdgeInsets.all(13),
                       labelText: 'Số điện thoại',
                       labelStyle: TextStyle(fontSize: 14),
@@ -198,12 +214,22 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: TextField(
+                child: TextFormField(
+                  validator: (value) {
+                    //a.aaba@aa1a_a.com
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                            .hasMatch(value!)) {
+                      return 'Enter correct email';
+                    } else {
+                      return null;
+                    }
+                  },
                   controller: _emailController,
                   keyboardType: TextInputType.text,
                   maxLines: 1,
                   decoration: InputDecoration(
-                      errorText: _emailInvalid ? _emailErr : null,
+
                       contentPadding: EdgeInsets.all(13),
                       labelText: 'Email',
                       labelStyle: TextStyle(fontSize: 14),
@@ -213,12 +239,12 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: TextField(
+                child: TextFormField(
                   controller: _passwordController,
                   keyboardType: TextInputType.multiline,
                   maxLines: 1,
                   decoration: InputDecoration(
-                    errorText: _passInvalid ? _passErr : null,
+
                     contentPadding: EdgeInsets.all(13),
                     labelText: 'Mật khẩu',
                     labelStyle: TextStyle(fontSize: 14),
