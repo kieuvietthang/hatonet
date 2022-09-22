@@ -336,7 +336,10 @@ class _ItemServicePackState extends State<ItemServicePack> {
                     child: Container(
                       height: 40,
                       width: 100,
-                      child: FlatButton(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                            textStyle: TextStyle(fontSize: 20),backgroundColor: Color(0xFFD9D3D3),
+                        ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -347,7 +350,6 @@ class _ItemServicePackState extends State<ItemServicePack> {
                             color: Color(0xFF00BE41),
                           ),
                         ),
-                        color: Color(0xFFD9D3D3),
                       ),
                     ),
                   ),
@@ -363,7 +365,10 @@ class _ItemServicePackState extends State<ItemServicePack> {
                     child: Container(
                       height: 40,
                       width: 150,
-                      child: FlatButton(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          textStyle: TextStyle(fontSize: 20),backgroundColor: Color(0xFFD9D3D3),
+                        ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -374,7 +379,6 @@ class _ItemServicePackState extends State<ItemServicePack> {
                             color: Color(0xFF00BE41),
                           ),
                         ),
-                        color: Color(0xFFD9D3D3),
                       ),
                     ),
                   ),

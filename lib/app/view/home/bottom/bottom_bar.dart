@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/view/home/home/home_page.dart';
 import 'package:hatonet_hcn/app/view/home/job/job_page.dart';
+import 'package:hatonet_hcn/app/view/home/list_job_page/list_job_page.dart';
 import 'package:hatonet_hcn/app/view/home/notification/notification_page.dart';
 import 'package:hatonet_hcn/app/widget/navigation_drawer_widget.dart';
 
@@ -20,7 +21,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
   GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    JobPage(),
+    ListJobPage(),
     NotificationPage(),
   ];
 

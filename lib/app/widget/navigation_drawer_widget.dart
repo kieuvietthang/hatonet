@@ -78,12 +78,12 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.only(left: 5),
+              padding:EdgeInsets.only(left: 5),
               height: 40,
-              child: FlatButton(
-                color: _hasBeenDashboard
-                    ? Color(0xFFFF6116).withOpacity(0.5)
-                    : Color(0xFF1F1F1F),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 20),backgroundColor: _hasBeenDashboard ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
+                ),
                 onPressed: () {
                   setState(() {
                     _hasBeenDashboard = !_hasBeenDashboard;
@@ -128,10 +128,10 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
             Container(
               padding: EdgeInsets.only(left: 5),
               height: 40,
-              child: FlatButton(
-                color: _hasBeenJob
-                    ? Color(0xFFFF6116).withOpacity(0.5)
-                    : Color(0xFF1F1F1F),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 20),backgroundColor: _hasBeenJob ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
+                ),
                 onPressed: () {
                   setState(() {
                     _hasBeenJob = !_hasBeenJob;
@@ -311,10 +311,10 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
             Container(
               padding: EdgeInsets.only(left: 5),
               height: 40,
-              child: FlatButton(
-                color: _hasBeenServicePack
-                    ? Color(0xFFFF6116).withOpacity(0.5)
-                    : Color(0xFF1F1F1F),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 20),backgroundColor:_hasBeenServicePack ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
+                ),
                 onPressed: () {
                   setState(() {
                     _hasBeenServicePack = !_hasBeenServicePack;
@@ -362,10 +362,10 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
             Container(
               padding: EdgeInsets.only(left: 5),
               height: 40,
-              child: FlatButton(
-                color: _hasBeenAccount
-                    ? Color(0xFFFF6116).withOpacity(0.5)
-                    : Color(0xFF1F1F1F),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 20),backgroundColor: _hasBeenAccount ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
+                ),
                 onPressed: () {
                   setState(() {
                     _hasBeenAccount = !_hasBeenAccount;
@@ -411,10 +411,9 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
             Container(
               padding: EdgeInsets.only(left: 5),
               height: 40,
-              child: FlatButton(
-                color: _hasBeencustomer
-                    ? Color(0xFFFF6116).withOpacity(0.5)
-                    : Color(0xFF1F1F1F),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 20),backgroundColor: _hasBeencustomer ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),),
                 onPressed: () {
                   setState(() {
                     _hasBeencustomer = !_hasBeencustomer;
@@ -453,15 +452,15 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
             Container(
               padding: EdgeInsets.only(left: 5),
               height: 40,
-              child: FlatButton(
-                // color: _hasBeencustomer
-                //     ? Color(0xFFFF6116).withOpacity(0.5)
-                //     : Color(0xFF1F1F1F),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 20),backgroundColor:  _hasBeencustomer ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
+                ),
                 onPressed: () {
-                  // setState(() {
-                  //   _hasBeencustomer = !_hasBeencustomer;
-                  //   _hasBeenTextcustomer = !_hasBeenTextcustomer;
-                  // });
+                  setState(() {
+                    _hasBeencustomer = !_hasBeencustomer;
+                    _hasBeenTextcustomer = !_hasBeenTextcustomer;
+                  });
 
                 Navigator.of(context).push(
                   CustomPageRoute(

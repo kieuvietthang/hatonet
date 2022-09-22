@@ -66,8 +66,7 @@ class _DetailsPageState extends State<DetailsPage> {
               ],
             ),
             SizedBox(
-              height: 25,
-            ),
+              height: 25,),
             //Công việc
             Padding(
               padding: EdgeInsets.only(left: 10, right: 10),
