@@ -478,6 +478,17 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                         ), direction: AxisDirection.left),
                   );
 
+                  setState(() {
+                    _hasBeencustomer = !_hasBeencustomer;
+                    _hasBeenTextcustomer = !_hasBeenTextcustomer;
+                  });
+
+                Navigator.of(context).push(
+                  CustomPageRoute(
+                      child: DetailsPage(),
+                      direction: AxisDirection.left
+                  ),
+                );
                 },
                 child: Row(
                   children: [

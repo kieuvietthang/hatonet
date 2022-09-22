@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             scaffoldBackgroundColor: Color(0xFFE65C00),
           ),
-         // home: UploadJobPage(),
-         home: OnBoarding(),
+          home: HelloPage()
+        // home: OnBoarding(),
       ),
     );
   }
