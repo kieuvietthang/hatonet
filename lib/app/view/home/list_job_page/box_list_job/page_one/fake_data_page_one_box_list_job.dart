@@ -1,6 +1,6 @@
-import 'package:hatonet_hcn/app/model/list_job_page.dart';
-final FAKE_LIST_JOB = [
-  ListJob(
+import 'package:hatonet_hcn/app/model/list_box_item_job.dart';
+final FAKE_BOX_LIST_JOB = [
+  ListItemBoxJob(
     company: ' Devwork JSC',
     status: ' Chưa nộp hồ sơ',
     money: '50 - 80',
@@ -15,7 +15,7 @@ final FAKE_LIST_JOB = [
     firtskillname: 'Icons.access_time_outlined',
     skillname: 'Fullstack',
   ),
-  ListJob(
+  ListItemBoxJob(
     checkimage:'' ,
     company: ' Hachinet JSC',
     status: ' Đã nộp hồ sơ',
@@ -30,7 +30,7 @@ final FAKE_LIST_JOB = [
     firtskillname: '',
     skillname: 'Fullstack',
   ),
-  ListJob(
+  ListItemBoxJob(
     checkimage:'' ,
     time: '',
     company: ' Devwork JSC',
@@ -45,7 +45,7 @@ final FAKE_LIST_JOB = [
     firtskillname: '',
     skillname: 'Fullstack',
   ),
-  ListJob(
+  ListItemBoxJob(
     checkimage:'' ,
     time: '',
     company: ' Hachinet JSC',

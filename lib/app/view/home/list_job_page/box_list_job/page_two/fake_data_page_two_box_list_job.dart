@@ -1,6 +1,8 @@
-import 'package:hatonet_hcn/app/model/list_job_page.dart';
-final FAKE_LIST_JOB = [
-  ListJob(
+
+import 'package:hatonet_hcn/app/model/list_item_box_page_two.dart';
+
+final FAKE_BOX_PAGE_TWO_LIST_JOB = [
+  ListItemPageBoxJob(
     company: ' Devwork JSC',
     status: ' Chưa nộp hồ sơ',
     money: '50 - 80',
@@ -15,7 +17,22 @@ final FAKE_LIST_JOB = [
     firtskillname: 'Icons.access_time_outlined',
     skillname: 'Fullstack',
   ),
-  ListJob(
+  ListItemPageBoxJob(
+    company: ' Devwork JSC',
+    status: ' Chưa nộp hồ sơ',
+    money: '50 - 80',
+    city: ' Hồ Chí Minh',
+    deatailjob: 'Đọc hiểu, phân tích tài liệu đặc tả yêu cầu người sử dụng và tài liệu phân tích thiết kế hệ thống. Lập kế hoạch test, xây dựng kịch bản test cho các sản phẩm Web, Mobile app, API ...',
+    day: '0',
+    time: 'Thời gian nộp đã hết',
+    checkimage:'assets/icons/ic_simple_icon_time.svg' ,
+    tittle: 'Senior Android Engineer (Java - Kotlin)',
+    date: '4',
+    image: 'assets/icons/ic_circle_tick.svg',
+    firtskillname: 'Icons.access_time_outlined',
+    skillname: 'Fullstack',
+  ),
+  ListItemPageBoxJob(
     checkimage:'' ,
     company: ' Hachinet JSC',
     status: ' Đã nộp hồ sơ',
@@ -30,7 +47,7 @@ final FAKE_LIST_JOB = [
     firtskillname: '',
     skillname: 'Fullstack',
   ),
-  ListJob(
+  ListItemPageBoxJob(
     checkimage:'' ,
     time: '',
     company: ' Devwork JSC',
@@ -45,7 +62,7 @@ final FAKE_LIST_JOB = [
     firtskillname: '',
     skillname: 'Fullstack',
   ),
-  ListJob(
+  ListItemPageBoxJob(
     checkimage:'' ,
     time: '',
     company: ' Hachinet JSC',
