@@ -3,9 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hatonet_hcn/app/provider/google_sign_in_provider.dart';
 import 'package:hatonet_hcn/app/provider/internet_provider.dart';
-import 'package:hatonet_hcn/app/view/home/help_and_support/help_and_support_page.dart';
-import 'package:hatonet_hcn/app/view/home/list_job_page/list_job_page.dart';
-import 'package:hatonet_hcn/app/view/home/upload_job/upload_job.dart';
+import 'package:hatonet_hcn/app/view/home/intro/page_intro.dart';
 import 'package:provider/provider.dart';
 import 'app/view/home/spalsh_screen/hello.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,8 +39,8 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             scaffoldBackgroundColor: Color(0xFFE65C00),
           ),
-          home: UploadJobPage(),
-        // home: OnBoarding(),
+         // home: UploadJobPage(),
+         home: OnBoarding(),
       ),
     );
   }
