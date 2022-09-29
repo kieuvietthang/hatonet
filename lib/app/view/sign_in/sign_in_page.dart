@@ -124,7 +124,7 @@ class _SignInPageState extends State<SignInPage> {
                           child: TextFormField(
                             validator: (value) {
                               if (value!.isEmpty ||
-                                  !RegExp(r'^[a-z A-Z]+$').hasMatch(value!)) {
+                                  !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
                                 return 'Enter correct name';
                               } else {
                                 return null;
@@ -159,7 +159,7 @@ class _SignInPageState extends State<SignInPage> {
                             validator: (value) {
                               if (value!.isEmpty ||
                                   !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                      .hasMatch(value!)) {
+                                      .hasMatch(value)) {
                                 return 'Enter correct phone number';
                               } else {
                                 return null;
@@ -204,10 +204,7 @@ class _SignInPageState extends State<SignInPage> {
                         Padding(
                           padding: EdgeInsets.only(left: 20, right: 20),
                           child: GestureDetector(
-                            onTap: () {
-                              signIn();
-
-                            },
+                            onTap: signIn,
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Color(0xFFFF6116),

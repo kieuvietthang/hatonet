@@ -636,16 +636,8 @@ class _DetailsPageState extends State<DetailsPage> {
                           CupertinoDialogAction(
                             isDestructiveAction: true,
                             onPressed: () {
-                              // Navigator.of(context).push(
-                              //   CustomPageRoute(
-                              //       child: SignInPage(
-                              //         showRegisterPage: () {},
-                              //       ),
-                              //       direction: AxisDirection.right),
-                              // );
-
                                FirebaseAuth.instance.signOut();
-
+                               Navigator.pop(context);
                             },
                             child: const Text('roài'),
                           ),

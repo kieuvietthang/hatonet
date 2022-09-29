@@ -56,7 +56,7 @@ class _NotificationPageState extends State<NotificationPage>
                             padding: EdgeInsets.only(left: 2, right: 10),
                             child: Tab(
                               child: Text(
-                                "Công ty",
+                                "Tất cả",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w400),
@@ -65,7 +65,7 @@ class _NotificationPageState extends State<NotificationPage>
                           ),
                           Tab(
                             child: Text(
-                              "Bảo mật",
+                              "Chưa đọc",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w400),
@@ -156,7 +156,6 @@ class _NotificationPageState extends State<NotificationPage>
                                      itemBuilder: (context, index) =>Container(
                                        //height: 40,
                                        width: double.infinity,
-                                       color: index % 2 == 0 ? Color(0xffE6E6E6) : Color(0xffF7F7F7),
                                        child: ItemCandidate(
                                          item: FAKE_CANDIDATE[index],
                                          onClickItem: () {},
@@ -184,7 +183,6 @@ class _NotificationPageState extends State<NotificationPage>
                               itemBuilder: (context, index) =>Container(
                                 //height: 40,
                                 width: double.infinity,
-                                color: index % 2 == 0 ? Color(0xffE6E6E6) : Color(0xffF7F7F7),
                                 child: ItemCandidate(
                                   item: FAKE_CANDIDATE[index],
                                   onClickItem: () {},

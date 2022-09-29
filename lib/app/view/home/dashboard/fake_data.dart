@@ -22,4 +22,12 @@ final FAKE_JOB = [
       name: 'TUYỂN DỤNG VỊ TRÍ: CHUYÊN VIÊN KIỂM THỬ (MANUAL)',
       date: '10-08-2022',
       image: 'assets/images/img_logo_hatonet.svg'),
+  Job(
+      name: 'TUYỂN DỤNG VỊ TRÍ: CHUYÊN VIÊN KIỂM THỬ (MANUAL)',
+      date: '10-08-2022',
+      image: 'assets/images/img_logo_hatonet.svg'),
+  Job(
+      name: 'TUYỂN DỤNG VỊ TRÍ: CHUYÊN VIÊN KIỂM THỬ (MANUAL)',
+      date: '10-08-2022',
+      image: 'assets/images/img_logo_hatonet.svg'),
 ];

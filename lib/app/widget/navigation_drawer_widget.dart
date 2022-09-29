@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/model/info.dart';
 import 'package:hatonet_hcn/app/view/home/accountt/account_pagee.dart';
+import 'package:hatonet_hcn/app/view/home/create_service_pack/create_ervice_pack.dart';
 import 'package:hatonet_hcn/app/view/home/dashboard/dashboard_page.dart';
 import 'package:hatonet_hcn/app/view/home/details/details_page.dart';
 import 'package:hatonet_hcn/app/view/home/service_pack/service_pack_page.dart';
@@ -19,25 +20,14 @@ class NavigationDrawerWidget extends StatefulWidget {
 class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   final padding = EdgeInsets.symmetric(horizontal: 20);
 
-  String? _selectedValue1;
-  String? _selectedVlaue2;
-  final List<String> _Job1 = ["Tin đăng tuyển", "Đã ứng tuyển", "Đã lưu"];
-  final List<String> _Job2 = ["Danh sách của tôi", "Đã ứng tuyển"];
-
   //đổi màu Dashboard
-  bool _hasBeenDashboard = false;
   bool _hasBeenTextDashboard = false;
-
-  //đổi màu việc đang tuyển
-  bool _hasBeenJob = false;
-  bool _hasBeenTextJob = false;
 
   //Gói dịch vụ
   bool _hasBeenServicePack = false;
   bool _hasBeenTextServicePack = false;
 
   //Account
-  bool _hasBeenAccount = false;
   bool _hasBeenTextAccount = false;
 
   //Ý kiến khách hàng
@@ -79,17 +69,19 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               height: 20,
             ),
             Container(
-              padding:EdgeInsets.only(left: 5),
+              padding: EdgeInsets.only(left: 5),
               height: 40,
               child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),backgroundColor: _hasBeenDashboard ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) return Color(0xFFEA530A);
+                      return Color(0xFF1F1F1F);
+                    },
+                  ),
                 ),
                 onPressed: () {
-                  setState(() {
-                    _hasBeenDashboard = !_hasBeenDashboard;
-                    _hasBeenTextDashboard = !_hasBeenTextDashboard;
-                  });
+
                   Navigator.of(context).push(
                     CustomPageRoute(
                         child: DashBoardPage(), direction: AxisDirection.left),
@@ -113,48 +105,6 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                             color: _hasBeenTextDashboard
                                 ? Colors.white.withOpacity(0.8)
                                 : Colors.white.withOpacity(0.8),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 5),
-              height: 40,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),backgroundColor: _hasBeenJob ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
-                ),
-                onPressed: () {
-                  setState(() {
-                    _hasBeenJob = !_hasBeenJob;
-                    _hasBeenTextJob = !_hasBeenTextJob;
-                  });
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_list.svg',
-                          width: 18,
-                          height: 18,
-                          color: Colors.white.withOpacity(0.3),
-                        )),
-                    Expanded(
-                      flex: 5,
-                      child: Text(
-                        'Việc đang tuyển',
-                        style: TextStyle(
-                            color: _hasBeenTextJob
-                                ? Colors.white.withOpacity(0.3)
-                                : Colors.white.withOpacity(0.3),
                             fontSize: 12,
                             fontWeight: FontWeight.w500),
                       ),
@@ -217,6 +167,11 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                     flex: 1,
                     child: PopupMenu(
                         menulist: const [
+                          PopupMenuItem(
+                            child: ListTile(
+                              title: Text('Tin đăng tuyển'),
+                            ),
+                          ),
                           PopupMenuItem(
                             child: ListTile(
                               title: Text('Đã ứng tuyển'),
@@ -284,9 +239,55 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                           color: Colors.white.withOpacity(0.3),
                           height: 18,
                           width: 18,
-                        )),
+                        ),),
                   ),
                 ],
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              height: 40,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: TextStyle(fontSize: 20),
+
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    CustomPageRoute(
+                        child: CreateServicePack(),
+                        direction: AxisDirection.left),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(left: 15),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: SvgPicture.asset(
+                            'assets/icons/ic_paperclip.svg',
+                            width: 18,
+                            height: 18,
+                            color: Colors.white.withOpacity(0.3),
+                          )),
+                      Expanded(
+                        flex: 5,
+                        child: Text(
+                          'Gói dịch vụ',
+                          style: TextStyle(
+                              color: _hasBeenTextServicePack
+                                  ? Colors.white.withOpacity(0.3)
+                                  : Colors.white.withOpacity(0.3),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
             SizedBox(
@@ -314,7 +315,10 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               height: 40,
               child: TextButton(
                 style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),backgroundColor:_hasBeenServicePack ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
+                  textStyle: TextStyle(fontSize: 20),
+                  backgroundColor: _hasBeenServicePack
+                      ? Color(0xFFFF6116).withOpacity(0.5)
+                      : Color(0xFF1F1F1F),
                 ),
                 onPressed: () {
                   setState(() {
@@ -363,20 +367,20 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               padding: EdgeInsets.only(left: 5),
               height: 40,
               child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),backgroundColor: _hasBeenAccount ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
-                ),
                 onPressed: () {
-                  setState(() {
-                    _hasBeenAccount = !_hasBeenAccount;
-                    _hasBeenTextAccount = !_hasBeenTextAccount;
-                  });
-
                   Navigator.of(context).push(
                     CustomPageRoute(
                         child: AccountPagee(), direction: AxisDirection.down),
                   );
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) return Color(0xFFEA530A);
+                      return Color(0xFF1F1F1F);
+                    },
+                  ),
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -410,14 +414,17 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               padding: EdgeInsets.only(left: 5),
               height: 40,
               child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),backgroundColor: _hasBeencustomer ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),),
                 onPressed: () {
-                  setState(() {
-                    _hasBeencustomer = !_hasBeencustomer;
-                    _hasBeenTextcustomer = !_hasBeenTextcustomer;
-                  });
+
                 },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) return Color(0xFFEA530A);
+                      return Color(0xFF1F1F1F);
+                    },
+                  ),
+                ),
                 child: Row(
                   children: [
                     Expanded(
@@ -451,14 +458,16 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               padding: EdgeInsets.only(left: 5),
               height: 40,
               child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),backgroundColor:  _hasBeencustomer ? Color(0xFFFF6116).withOpacity(0.5) : Color(0xFF1F1F1F),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) return Color(0xFFEA530A);
+                      return Color(0xFF1F1F1F);
+                    },
+                  ),
                 ),
                 onPressed: () {
-                  setState(() {
-                    _hasBeencustomer = !_hasBeencustomer;
-                    _hasBeenTextcustomer = !_hasBeenTextcustomer;
-                  });
+
 
                   // setState(() {
                   //   _hasBeencustomer = !_hasBeencustomer;
@@ -466,7 +475,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   // });
                   Navigator.of(context).push(
                     CustomPageRoute(
-                        child:  DetailsPage(
+                        child: DetailsPage(
                           info: Info(
                               tax: '',
                               email: '',
@@ -475,7 +484,8 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                               abbreviations: '',
                               phone: '',
                               companyName: ''),
-                        ), direction: AxisDirection.left),
+                        ),
+                        direction: AxisDirection.left),
                   );
 
                   setState(() {
@@ -483,12 +493,21 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                     _hasBeenTextcustomer = !_hasBeenTextcustomer;
                   });
 
-                Navigator.of(context).push(
-                  CustomPageRoute(
-                      child: DetailsPage(),
-                      direction: AxisDirection.left
-                  ),
-                );
+                  Navigator.of(context).push(
+                    CustomPageRoute(
+                        child: DetailsPage(
+                          info: Info(
+                            hotline: '',
+                            abbreviations: '',
+                            companyName: '',
+                            phone: '',
+                            tax: '',
+                            email: '',
+                            password: '',
+                          ),
+                        ),
+                        direction: AxisDirection.left),
+                  );
                 },
                 child: Row(
                   children: [

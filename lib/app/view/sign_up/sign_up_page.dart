@@ -167,7 +167,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: TextFormField(
                   validator: (value) {
                     if (value!.isEmpty ||
-                        !RegExp(r'^[a-z A-Z]+$').hasMatch(value!)) {
+                        !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
                       return 'Enter correct name';
                     } else {
                       return null;
@@ -194,7 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   validator: (value) {
                     if (value!.isEmpty ||
                         !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                            .hasMatch(value!)) {
+                            .hasMatch(value)) {
                       return 'Enter correct phone number';
                     } else {
                       return null;
@@ -219,7 +219,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     //a.aaba@aa1a_a.com
                     if (value!.isEmpty ||
                         !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                            .hasMatch(value!)) {
+                            .hasMatch(value)) {
                       return 'Enter correct email';
                     } else {
                       return null;

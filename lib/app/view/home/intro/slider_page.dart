@@ -52,15 +52,15 @@ class SliderPage extends StatelessWidget {
             width: width * 0.9,
           ),
           SizedBox(
-            height: 50,
+            height: 30,
           ),
           Text(
             title,
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold,color: Color(0xFFFF6116)),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Color(0xFFFF6116)),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 15),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 48),
+            padding: EdgeInsets.symmetric(horizontal: 40),
             child: Text(
               description,
               style: TextStyle(

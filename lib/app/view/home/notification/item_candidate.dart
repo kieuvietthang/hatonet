@@ -23,7 +23,7 @@ class _ItemCandidateState extends State<ItemCandidate> {
       child: Column(
         children: [
           Container(
-            height: 122,
+            height: 100,
             width: double.infinity,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -31,7 +31,6 @@ class _ItemCandidateState extends State<ItemCandidate> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    color: Color(0xFF66FFED).withOpacity(0.1),
                     height: 70,
                     child: Image.asset(
                       widget.item.image,
@@ -45,70 +44,87 @@ class _ItemCandidateState extends State<ItemCandidate> {
                 ),
                 Expanded(
                   flex: 4,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            widget.item.name,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 2,
-                          ),
-                          Text(
-                            'Vừa ứng tuyển vào vị trí',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.normal),
-                          ),
-                          SizedBox(
-                            width: 3,
-                          ),
-                          Text(
-                            widget.item.nominee,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            width: 3,
-                          ),
-                          Text(
-                            '+',
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.normal),
-                          ),
-                        ],
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          widget.item.job,
-                          style:
-                              TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 15),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 2,
                         ),
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(widget.item.time,style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal
-                        ),),
-                      ),
-
-                    ],
+                        Row(
+                          children: [
+                            Text(
+                              widget.item.name,
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 2,
+                            ),
+                            Text(
+                              'Vừa ứng tuyển vào vị trí',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.normal),
+                            ),
+                            SizedBox(
+                              width: 3,
+                            ),
+                            Text(
+                              widget.item.nominee,
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 3,
+                            ),
+                            Text(
+                              '+',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.normal),
+                            ),
+                          ],
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            widget.item.job,
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            widget.item.time,
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.normal),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  height: 1,
+                  color: Color(0xFFD9D0D0),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

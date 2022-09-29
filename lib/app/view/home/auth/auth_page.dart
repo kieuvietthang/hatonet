@@ -19,7 +19,7 @@ class _AuthPageState extends State<AuthPage> {
       //showLoginPage = !showLoginPage;
       Navigator.of(context).push(
         CustomPageRoute(
-            child: SignUpPage(showLoginPage: () {  },),
+            child: SignUpPage(showLoginPage: () { },),
             direction: AxisDirection.left
         ),
       );

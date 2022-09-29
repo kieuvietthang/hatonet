@@ -72,6 +72,8 @@ class _CompanyInformationState extends State<CompanyInformation>
     super.initState();
   }
 
+  var selectedItem = '';
+
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 3, vsync: this);
@@ -174,7 +176,8 @@ class _CompanyInformationState extends State<CompanyInformation>
                                     spreadRadius: 1,
                                     blurRadius: 1,
                                     offset: Offset(2.0, 1.0))
-                              ]),
+                              ],
+                          ),
                           padding:
                               EdgeInsets.symmetric(horizontal: 1, vertical: 1),
                           child: Container(
@@ -306,50 +309,56 @@ class _CompanyInformationState extends State<CompanyInformation>
                                       padding: EdgeInsets.only(
                                           left: 10, right: 10, top: 10),
                                       child: TextField(
-                                        //    controller: phoneController,
+
+                                        //controller: selectedItem.toString(),
                                         keyboardType: TextInputType.number,
                                         maxLines: 1,
                                         decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.all(13),
-                                            labelText: 'Quy mô',
-                                            labelStyle: TextStyle(fontSize: 12),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                            ),
-                                            suffixIcon: PopupMenu(
-                                                menulist: [
-                                                  PopupMenuItem(
-                                                    child: ListTile(
-                                                      title: Text('1-100'),
-                                                    ),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    child: ListTile(
-                                                      title: Text('100-300'),
-                                                    ),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    child: ListTile(
-                                                      title: Text('300-500'),
-                                                    ),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    child: ListTile(
-                                                      title: Text('500-1000'),
-                                                    ),
-                                                  ),
-                                                  PopupMenuItem(
-                                                    child: ListTile(
-                                                      title: Text('Trên 1000'),
-                                                    ),
-                                                  ),
-                                                ],
-                                                icon: SvgPicture.asset(
-                                                  'assets/icons/ic_chevron_down.svg',
-                                                  height: 18,
-                                                  width: 18,
-                                                ))),
+                                          contentPadding: EdgeInsets.all(13),
+                                          labelText: 'Quy mô',
+                                          labelStyle: TextStyle(fontSize: 12),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          suffixIcon: PopupMenuButton(
+                                            onSelected: (value){
+                                              setState((){
+                                                selectedItem = value.toString();
+                                              });
+                                              print(value);
+                                              Navigator.pushNamed(context, value.toString());
+                                            },
+                                            icon: SvgPicture.asset(
+                                              'assets/icons/ic_chevron_down.svg',
+                                              height: 18,
+                                              width: 18,
+                                            ), itemBuilder: (BuildContext context) {
+                                            return [
+                                              PopupMenuItem(
+                                                child: Text('1-100'),
+                                                value: '1-100',
+                                              ),
+                                              PopupMenuItem(
+                                                child: Text('100-300'),
+                                                value: '100-300',
+                                              ),
+                                              PopupMenuItem(
+                                                child: Text('300-500'),
+                                                value: '300-500',
+                                              ),
+                                              PopupMenuItem(
+                                                child: Text('500-1000'),
+                                                value: '500-1000',
+                                              ),
+                                              PopupMenuItem(
+                                                child: Text('trên 1000'),
+                                                value: 'trên 1000',
+                                              ),
+                                            ];
+                                          },
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),

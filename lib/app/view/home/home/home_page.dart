@@ -4,14 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:hatonet_hcn/app/model/job.dart';
 import 'package:hatonet_hcn/app/view/home/dashboard/fake_data.dart';
-import 'package:hatonet_hcn/app/view/home/dashboard/item_job.dart';
 import 'package:hatonet_hcn/app/view/home/home_google_sign_in/home_google_sign_in.dart';
-import 'package:hatonet_hcn/app/view/home/read_data/get_user_name.dart';
 import 'package:hatonet_hcn/app/widget/shimmer_widget.dart';
-import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -118,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                             color: Color(0xFF117BBF),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(4)),
                         height: 80,
                         child: Column(
                           children: [
@@ -127,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  '75',
+                                  '0',
                                   style: TextStyle(
                                       fontSize: 22, color: Colors.white),
                                 ),
@@ -179,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                             color: Color(0xFF26AE60),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(4)),
                         height: 80,
                         child: Column(
                           children: [
@@ -188,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  '75',
+                                  '0',
                                   style: TextStyle(
                                       fontSize: 22, color: Colors.white),
                                 ),
@@ -203,7 +199,7 @@ class _HomePageState extends State<HomePage> {
                                   Expanded(
                                     flex: 2,
                                     child: Text(
-                                      'Việc đăng tuyển',
+                                      'Đã ứng tuyển',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 12,
@@ -251,7 +247,7 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                             color: Color(0xFF363841),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(4)),
                         height: 80,
                         child: Column(
                           children: [
@@ -260,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  '75',
+                                  '0',
                                   style: TextStyle(
                                       fontSize: 22, color: Colors.white),
                                 ),
@@ -275,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                                   Expanded(
                                     flex: 2,
                                     child: Text(
-                                      'Việc đăng tuyển',
+                                      'Đã lưu',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 12,
@@ -312,7 +308,7 @@ class _HomePageState extends State<HomePage> {
                       child: Container(
                         decoration: BoxDecoration(
                             color: Color(0xFFFFC850),
-                            borderRadius: BorderRadius.circular(15)),
+                            borderRadius: BorderRadius.circular(4)),
                         height: 80,
                         child: Column(
                           children: [
@@ -321,7 +317,7 @@ class _HomePageState extends State<HomePage> {
                               child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  '75',
+                                  '0',
                                   style: TextStyle(
                                       fontSize: 22, color: Colors.white),
                                 ),
@@ -336,7 +332,7 @@ class _HomePageState extends State<HomePage> {
                                   Expanded(
                                     flex: 2,
                                     child: Text(
-                                      'Việc đăng tuyển',
+                                      'Đã trúng tuyển',
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 12,
@@ -398,12 +394,11 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 color: Colors.white,
                 child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
                   child: Column(
                     children: [
                       ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: isLoading ? 5 : FAKE_JOB.length,
+                          itemCount: FAKE_JOB.length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             if (isLoading) {
@@ -425,27 +420,35 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildJob(Job job) => ListTile(
-        leading: SvgPicture.asset(
-          job.image,
-          fit: BoxFit.fill,
-          height: 30,
-          width: 30,
-        ),
-        title: Text(
-          job.name,
-          style: TextStyle(
-              fontSize: 12, color: Colors.black, fontWeight: FontWeight.normal),
-        ),
-        subtitle: Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: Text(
-            job.date,
-            style: TextStyle(
-                fontSize: 12, color: Colors.black, fontWeight: FontWeight.normal),
+  Widget buildJob(Job job) => Column(
+    children: [
+          ListTile(
+            leading: SvgPicture.asset(
+              job.image,
+              fit: BoxFit.fill,
+              height: 50,
+              width: 50,
+            ),
+            title: Text(
+              job.name,
+              style: TextStyle(
+                  fontSize: 12, color: Colors.black, fontWeight: FontWeight.normal),
+            ),
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text(
+                job.date,
+                style: TextStyle(
+                    fontSize: 12, color: Colors.black, fontWeight: FontWeight.normal),
+              ),
+            ),
           ),
-        ),
-      );
+      Container(
+        height: 1,
+        color: Color(0xFFD9D0D0),
+      )
+        ],
+  );
 
   Widget buildFoodShimmer() => ListTile(
 
@@ -466,5 +469,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
+
       );
 }

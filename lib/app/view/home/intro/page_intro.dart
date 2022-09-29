@@ -85,7 +85,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: AnimatedContainer(
                     duration: Duration(milliseconds: 300),
-                    height: 60,
+                    height: 50,
                     alignment: Alignment.center,
                     width: (_currentPage == (_pages.length - 1))
                         ? double.infinity
@@ -108,7 +108,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 5,
               )
             ],
           )
