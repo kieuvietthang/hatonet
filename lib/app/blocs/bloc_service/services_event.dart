@@ -32,6 +32,17 @@ class UpdateService extends ServicesEvent {
   List<Object?> get props => [services];
 }
 
+class RemoveService extends ServicesEvent {
+  final Service services;
+
+  RemoveService({
+    required this.services,
+  });
+
+  @override
+  List<Object?> get props => [services];
+}
+
 class DeleteService extends ServicesEvent {
   final Service services;
 

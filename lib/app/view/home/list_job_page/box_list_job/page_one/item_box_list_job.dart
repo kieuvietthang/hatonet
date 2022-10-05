@@ -133,6 +133,7 @@ class _ItemBoxListJobState extends State<ItemBoxListJob> {
                     padding: EdgeInsets.only(left: 10,right: 10),
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
+                        physics: BouncingScrollPhysics(),
                         itemCount: FAKE_SKILL_LIST_JOB.length,
                         shrinkWrap: true,
                         itemBuilder: (BuildContext context, int index) => SkillItemListJob(item: FAKE_SKILL_LIST_JOB[index], onClickItem: (){})),
@@ -254,5 +255,3 @@ class _ItemBoxListJobState extends State<ItemBoxListJob> {
     );;
   }
 }
-
-

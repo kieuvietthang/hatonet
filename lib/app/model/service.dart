@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Service extends Equatable {
+  final String id;
   final String name;
   final String describe;
   final String status;
@@ -13,6 +14,7 @@ class Service extends Equatable {
 
   Service({
     required this.name,
+    required this.id,
     required this.describe,
     required this.status,
     required this.support,
@@ -28,6 +30,7 @@ class Service extends Equatable {
 
   Service copyWith({
     String? name,
+    String? id,
     String? describe,
     String? status,
     String? support,
@@ -39,6 +42,7 @@ class Service extends Equatable {
   }) {
     return Service(
       name: name ?? this.name,
+      id: id ?? this.id,
       describe: describe ?? this.describe,
       status: status ?? this.status,
       support: support ?? this.support,
@@ -53,6 +57,7 @@ class Service extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
+      'id': id,
       'describe': describe,
       'status': status,
       'support': support,
@@ -68,6 +73,7 @@ class Service extends Equatable {
   factory Service.fromMap(Map<String, dynamic> map) {
     return Service(
       name: map['name'] ?? '',
+      id: map['id'] ?? '',
       describe: map['describe'] ?? '',
       status: map['status'] ?? '',
       support: map['support'] ?? '',
@@ -81,5 +87,5 @@ class Service extends Equatable {
 
   @override
   List<Object?> get props =>
-      [name, describe, status, support, cost,promotional,usedtime, isDone, isDeleted];
+      [name,id, describe, status, support, cost,promotional,usedtime, isDone, isDeleted];
 }

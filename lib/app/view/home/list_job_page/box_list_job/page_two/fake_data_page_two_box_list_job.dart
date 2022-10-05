@@ -1,4 +1,3 @@
-
 import 'package:hatonet_hcn/app/model/list_item_box_page_two.dart';
 
 final FAKE_BOX_PAGE_TWO_LIST_JOB = [

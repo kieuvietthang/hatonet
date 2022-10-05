@@ -1,4 +1,3 @@
-
 import 'package:hatonet_hcn/app/model/list_job_page.dart';
 final FAKE_LIST_JOB = [
   ListJob(

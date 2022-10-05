@@ -33,5 +33,3 @@ class _SkillItemListJobState extends State<SkillItemListJob> {
     );
   }
 }
-
-

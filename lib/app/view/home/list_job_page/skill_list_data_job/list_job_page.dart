@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hatonet_hcn/app/view/home/list_job_page/fake_data_list_job.dart';
+import 'package:hatonet_hcn/app/view/home/list_job_page/box_list_job/box_list_job_page.dart';
 import 'package:hatonet_hcn/app/view/home/list_job_page/skill_list_data_job/item_list_job.dart';
 
 class ListJobPage extends StatefulWidget {
@@ -18,6 +19,7 @@ int toggle = 0;
 class _ListJobPageState extends State<ListJobPage> with SingleTickerProviderStateMixin {
   late AnimationController _con;
   bool isLoading = false;
+  final yourTheme = ThemeData.light();
 
   late List<String> autoCompleteData;
 
@@ -207,7 +209,7 @@ class _ListJobPageState extends State<ListJobPage> with SingleTickerProviderStat
                       icon: Icon(FontAwesomeIcons.boxArchive),
                       iconSize: 18,
                       onPressed: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => CustomSwitchState()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => BoxListJobPage()));
                       },
                       splashRadius: 19,
                       splashColor: Color(0xFFFF5400),
@@ -219,6 +221,7 @@ class _ListJobPageState extends State<ListJobPage> with SingleTickerProviderStat
               Expanded(
                 flex: 2,
                 child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
                   child: ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: FAKE_LIST_JOB.length,

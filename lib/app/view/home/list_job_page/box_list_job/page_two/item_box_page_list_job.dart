@@ -242,5 +242,3 @@ class _ItemBoxListPageJobState extends State<ItemBoxListPageJob> {
     );;
   }
 }
-
-

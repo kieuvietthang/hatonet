@@ -130,7 +130,7 @@ class _NotificationPageState extends State<NotificationPage>
                                  child: Align(
                                    alignment: Alignment.topLeft,
                                    child: Text(
-                                     'Chưa đọc',
+                                     'Trước đó',
                                      style: TextStyle(
                                          fontSize: 16,
                                          color: Colors.black,

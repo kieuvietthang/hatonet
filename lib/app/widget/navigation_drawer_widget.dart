@@ -3,14 +3,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/model/info.dart';
+import 'package:hatonet_hcn/app/module/res/dimens.dart';
 import 'package:hatonet_hcn/app/view/home/accountt/account_pagee.dart';
 import 'package:hatonet_hcn/app/view/home/create_service_pack/create_ervice_pack.dart';
 import 'package:hatonet_hcn/app/view/home/dashboard/dashboard_page.dart';
+import 'package:hatonet_hcn/app/view/home/delete_history_pack/delete_history_pack.dart';
 import 'package:hatonet_hcn/app/view/home/details/details_page.dart';
+import 'package:hatonet_hcn/app/view/home/job_postings_page/job_postings_page.dart';
 import 'package:hatonet_hcn/app/view/home/service_pack/service_pack_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 
 class NavigationDrawerWidget extends StatefulWidget {
+  final appBarSize = AppBar().preferredSize.height;
+  double heightButton = 50.0;
+
+  double statusBarHeight = 0.0;
+
   NavigationDrawerWidget({Key? key}) : super(key: key);
 
   @override
@@ -34,99 +42,39 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   bool _hasBeencustomer = false;
   bool _hasBeenTextcustomer = false;
 
+  double statusBarHeight = 0.0;
+
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Material(
-        color: Color(0xFF1F1F1F),
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Image.asset(
-                'assets/images/logo hatonet-07 (2).png',
-                height: 70,
-                width: 220,
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Align(
+    var paddingBottom = widget.statusBarHeight == 0.0
+        ? appBarSize * 1.0
+        : appBarSize + widget.statusBarHeight;
+    final double statusbarHeight = MediaQuery.of(context).padding.bottom;
+    return Container(
+      padding: EdgeInsets.only(bottom: statusbarHeight),
+      margin: EdgeInsets.only(bottom: paddingBottom),
+      child: Drawer(
+        child: Material(
+          color: Color(0xFF1F1F1F),
+          child: Column(
+            children: [
+              Align(
                 alignment: Alignment.topLeft,
-                child: Text(
-                  'TỔNG QUAN',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white.withOpacity(0.3),
-                  ),
+                child: Image.asset(
+                  'assets/images/logo hatonet-07 (2).png',
+                  height: 70,
+                  width: 220,
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 5),
-              height: 40,
-              child: TextButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) return Color(0xFFEA530A);
-                      return Color(0xFF1F1F1F);
-                    },
-                  ),
-                ),
-                onPressed: () {
-
-                  Navigator.of(context).push(
-                    CustomPageRoute(
-                        child: DashBoardPage(), direction: AxisDirection.left),
-                  );
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_grid_add.svg',
-                          width: 18,
-                          height: 18,
-                          color: Colors.white.withOpacity(0.8),
-                        )),
-                    Expanded(
-                      flex: 5,
-                      child: Text(
-                        'Dashboard',
-                        style: TextStyle(
-                            color: _hasBeenTextDashboard
-                                ? Colors.white.withOpacity(0.8)
-                                : Colors.white.withOpacity(0.8),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
+              SizedBox(
+                height: 30,
               ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AccountPagee()));
-              },
-              child: Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'QUẢN LÝ CÔNG VIỆC',
+                    'TỔNG QUAN',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.white.withOpacity(0.3),
@@ -134,94 +82,172 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                left: 15,
+              SizedBox(
+                height: 20,
               ),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: SvgPicture.asset(
-                      'assets/icons/ic_assignment.svg',
-                      width: 18,
-                      height: 18,
-                      color: Colors.white.withOpacity(0.3),
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                height: 40,
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return Color(0xFFEA530A);
+                        return Color(0xFF1F1F1F);
+                      },
                     ),
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Text(
-                      'Quản lý việc làm',
-                      style: TextStyle(
-                          color: Colors.white.withOpacity(0.3),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: PopupMenu(
-                        menulist: const [
-                          PopupMenuItem(
-                            child: ListTile(
-                              title: Text('Tin đăng tuyển'),
-                            ),
-                          ),
-                          PopupMenuItem(
-                            child: ListTile(
-                              title: Text('Đã ứng tuyển'),
-                            ),
-                          ),
-                          PopupMenuItem(
-                            child: ListTile(
-                              title: Text('Đã lưu'),
-                            ),
-                          ),
-                        ],
-                        icon: SvgPicture.asset(
-                          'assets/icons/ic_chevron_down.svg',
-                          color: Colors.white.withOpacity(0.3),
-                          height: 18,
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      CustomPageRoute(
+                          child: DashBoardPage(),
+                          direction: AxisDirection.left),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: SvgPicture.asset(
+                          'assets/icons/ic_grid_add.svg',
                           width: 18,
-                        )),
+                          height: 18,
+                          color: Colors.white.withOpacity(0.8),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Text(
+                          'Dashboard',
+                          style: TextStyle(
+                              color: _hasBeenTextDashboard
+                                  ? Colors.white.withOpacity(0.8)
+                                  : Colors.white.withOpacity(0.8),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 15, top: 5),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: SvgPicture.asset(
-                      'assets/icons/ic_users.svg',
-                      width: 18,
-                      height: 18,
-                      color: Colors.white.withOpacity(0.3),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
+              SizedBox(
+                height: 25,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AccountPagee()));
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Align(
+                    alignment: Alignment.topLeft,
                     child: Text(
-                      'Hồ sơ ứng viên',
+                      'QUẢN LÝ CÔNG VIỆC',
                       style: TextStyle(
-                          color: Colors.white.withOpacity(0.3),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500),
+                        fontSize: 14,
+                        color: Colors.white.withOpacity(0.3),
+                      ),
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: PopupMenu(
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 15,
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: SvgPicture.asset(
+                        'assets/icons/ic_assignment.svg',
+                        width: 18,
+                        height: 18,
+                        color: Colors.white.withOpacity(0.3),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        'Quản lý việc làm',
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.3),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: PopupMenu(
+                          menulist: [
+                            PopupMenuItem(
+                              child: ListTile(
+                                onTap: (){
+                                  Navigator.of(context).push(
+                                    CustomPageRoute(
+                                        child: JobPostingsPage(),
+                                        direction: AxisDirection.left),
+                                  );
+                                },
+                                title: Text('Tin đăng tuyển'),
+                              ),
+                            ),
+                            PopupMenuItem(
+                              child: ListTile(
+                                title: Text('Đã ứng tuyển'),
+                              ),
+                            ),
+                            PopupMenuItem(
+                              child: ListTile(
+                                title: Text('Đã lưu'),
+                              ),
+                            ),
+                          ],
+                          icon: SvgPicture.asset(
+                            'assets/icons/ic_chevron_down.svg',
+                            color: Colors.white.withOpacity(0.3),
+                            height: 18,
+                            width: 18,
+                          )),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 15, top: 5),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: SvgPicture.asset(
+                        'assets/icons/ic_users.svg',
+                        width: 18,
+                        height: 18,
+                        color: Colors.white.withOpacity(0.3),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        'Hồ sơ ứng viên',
+                        style: TextStyle(
+                            color: Colors.white.withOpacity(0.3),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: PopupMenu(
                         menulist: const [
                           PopupMenuItem(
                             child: ListTile(
@@ -239,36 +265,123 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                           color: Colors.white.withOpacity(0.3),
                           height: 18,
                           width: 18,
-                        ),),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Container(
-              height: 40,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),
-
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                onPressed: () {
-                  Navigator.of(context).push(
-                    CustomPageRoute(
-                        child: CreateServicePack(),
-                        direction: AxisDirection.left),
-                  );
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(left: 15),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 50,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      CustomPageRoute(
+                          child: CreateServicePack(),
+                          direction: AxisDirection.left),
+                    );
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            flex: 1,
+                            child: SvgPicture.asset(
+                              'assets/icons/ic_paperclip.svg',
+                              width: 18,
+                              height: 18,
+                              color: Colors.white.withOpacity(0.3),
+                            )),
+                        Expanded(
+                          flex: 4,
+                          child: Text(
+                            'Gói dịch vụ',
+                            style: TextStyle(
+                                color: _hasBeenTextServicePack
+                                    ? Colors.white.withOpacity(0.3)
+                                    : Colors.white.withOpacity(0.3),
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: PopupMenu(
+                              menulist:  [
+                                PopupMenuItem(
+                                  child: ListTile(
+                                    onTap: () => Navigator.of(context).push(
+                                      CustomPageRoute(
+                                          child: DeleteHistoryPack(), direction: AxisDirection.left),
+                                    ),
+                                    title: Text('Lịch sử xóa'),
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  child: ListTile(
+                                    title: Text('Gói yêu thích'),
+                                  ),
+                                ),
+                              ],
+                              icon: SvgPicture.asset(
+                                'assets/icons/ic_chevron_down.svg',
+                                color: Colors.white.withOpacity(0.3),
+                                height: 24,
+                                width: 24,
+                              )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'CÀI ĐẶT',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white.withOpacity(0.3),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              // Gói dịch vụ
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                height: 40,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      CustomPageRoute(
+                          child: ServicePackPage(),
+                          direction: AxisDirection.down),
+                    );
+                  },
                   child: Row(
                     children: [
                       Expanded(
                           flex: 1,
                           child: SvgPicture.asset(
-                            'assets/icons/ic_paperclip.svg',
+                            'assets/icons/ic_package.svg',
                             width: 18,
                             height: 18,
                             color: Colors.white.withOpacity(0.3),
@@ -289,253 +402,184 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'CÀI ĐẶT',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white.withOpacity(0.3),
+              SizedBox(
+                height: 10,
+              ),
+
+              //Tài khoản
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                height: 40,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      CustomPageRoute(
+                          child: AccountPagee(), direction: AxisDirection.down),
+                    );
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return Color(0xFFEA530A);
+                        return Color(0xFF1F1F1F);
+                      },
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: SvgPicture.asset(
+                            'assets/icons/ic_users.svg',
+                            width: 18,
+                            height: 18,
+                            color: Colors.white.withOpacity(0.3),
+                          )),
+                      Expanded(
+                        flex: 5,
+                        child: Text(
+                          'Tài Khoản',
+                          style: TextStyle(
+                              color: _hasBeenTextAccount
+                                  ? Colors.white.withOpacity(0.3)
+                                  : Colors.white.withOpacity(0.3),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            // Gói dịch vụ
-            Container(
-              padding: EdgeInsets.only(left: 5),
-              height: 40,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 20),
-                  backgroundColor: _hasBeenServicePack
-                      ? Color(0xFFFF6116).withOpacity(0.5)
-                      : Color(0xFF1F1F1F),
-                ),
-                onPressed: () {
-                  setState(() {
-                    _hasBeenServicePack = !_hasBeenServicePack;
-                    _hasBeenTextServicePack = !_hasBeenTextServicePack;
-                  });
-
-                  Navigator.of(context).push(
-                    CustomPageRoute(
-                        child: ServicePackPage(),
-                        direction: AxisDirection.down),
-                  );
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_package.svg',
-                          width: 18,
-                          height: 18,
-                          color: Colors.white.withOpacity(0.3),
-                        )),
-                    Expanded(
-                      flex: 5,
-                      child: Text(
-                        'Gói dịch vụ',
-                        style: TextStyle(
-                            color: _hasBeenTextServicePack
-                                ? Colors.white.withOpacity(0.3)
-                                : Colors.white.withOpacity(0.3),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
+              SizedBox(
+                height: 10,
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-
-            //Tài khoản
-            Container(
-              padding: EdgeInsets.only(left: 5),
-              height: 40,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    CustomPageRoute(
-                        child: AccountPagee(), direction: AxisDirection.down),
-                  );
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) return Color(0xFFEA530A);
-                      return Color(0xFF1F1F1F);
-                    },
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                height: 40,
+                child: TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return Color(0xFFEA530A);
+                        return Color(0xFF1F1F1F);
+                      },
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: SvgPicture.asset(
+                            'assets/icons/ic_message.svg',
+                            width: 18,
+                            height: 18,
+                            color: Colors.white.withOpacity(0.3),
+                          )),
+                      Expanded(
+                        flex: 5,
+                        child: Text(
+                          'Ý kiến khách hàng',
+                          style: TextStyle(
+                              color: _hasBeenTextcustomer
+                                  ? Colors.white.withOpacity(0.3)
+                                  : Colors.white.withOpacity(0.3),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      )
+                    ],
                   ),
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_users.svg',
-                          width: 18,
-                          height: 18,
-                          color: Colors.white.withOpacity(0.3),
-                        )),
-                    Expanded(
-                      flex: 5,
-                      child: Text(
-                        'Tài Khoản',
-                        style: TextStyle(
-                            color: _hasBeenTextAccount
-                                ? Colors.white.withOpacity(0.3)
-                                : Colors.white.withOpacity(0.3),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 5),
-              height: 40,
-              child: TextButton(
-                onPressed: () {
-
-                },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) return Color(0xFFEA530A);
-                      return Color(0xFF1F1F1F);
-                    },
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_message.svg',
-                          width: 18,
-                          height: 18,
-                          color: Colors.white.withOpacity(0.3),
-                        )),
-                    Expanded(
-                      flex: 5,
-                      child: Text(
-                        'Ý kiến khách hàng',
-                        style: TextStyle(
-                            color: _hasBeenTextcustomer
-                                ? Colors.white.withOpacity(0.3)
-                                : Colors.white.withOpacity(0.3),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
+              SizedBox(
+                height: 10,
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 5),
-              height: 40,
-              child: TextButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) return Color(0xFFEA530A);
-                      return Color(0xFF1F1F1F);
-                    },
+              Container(
+                padding: EdgeInsets.only(left: 5),
+                height: 40,
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed))
+                          return Color(0xFFEA530A);
+                        return Color(0xFF1F1F1F);
+                      },
+                    ),
                   ),
-                ),
-                onPressed: () {
+                  onPressed: () {
+                    // setState(() {
+                    //   _hasBeencustomer = !_hasBeencustomer;
+                    //   _hasBeenTextcustomer = !_hasBeenTextcustomer;
+                    // });
+                    Navigator.of(context).push(
+                      CustomPageRoute(
+                          child: DetailsPage(
+                            info: Info(
+                                tax: '',
+                                email: '',
+                                password: '',
+                                hotline: '',
+                                abbreviations: '',
+                                phone: '',
+                                companyName: ''),
+                          ),
+                          direction: AxisDirection.left),
+                    );
 
+                    setState(() {
+                      _hasBeencustomer = !_hasBeencustomer;
+                      _hasBeenTextcustomer = !_hasBeenTextcustomer;
+                    });
 
-                  // setState(() {
-                  //   _hasBeencustomer = !_hasBeencustomer;
-                  //   _hasBeenTextcustomer = !_hasBeenTextcustomer;
-                  // });
-                  Navigator.of(context).push(
-                    CustomPageRoute(
-                        child: DetailsPage(
-                          info: Info(
+                    Navigator.of(context).push(
+                      CustomPageRoute(
+                          child: DetailsPage(
+                            info: Info(
+                              hotline: '',
+                              abbreviations: '',
+                              companyName: '',
+                              phone: '',
                               tax: '',
                               email: '',
                               password: '',
-                              hotline: '',
-                              abbreviations: '',
-                              phone: '',
-                              companyName: ''),
-                        ),
-                        direction: AxisDirection.left),
-                  );
-
-                  setState(() {
-                    _hasBeencustomer = !_hasBeencustomer;
-                    _hasBeenTextcustomer = !_hasBeenTextcustomer;
-                  });
-
-                  Navigator.of(context).push(
-                    CustomPageRoute(
-                        child: DetailsPage(
-                          info: Info(
-                            hotline: '',
-                            abbreviations: '',
-                            companyName: '',
-                            phone: '',
-                            tax: '',
-                            email: '',
-                            password: '',
+                            ),
                           ),
+                          direction: AxisDirection.left),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: SvgPicture.asset(
+                            'assets/icons/ic_users.svg',
+                            width: 18,
+                            height: 18,
+                            color: Colors.white.withOpacity(0.3),
+                          )),
+                      Expanded(
+                        flex: 5,
+                        child: Text(
+                          'Thông tin chi tiết',
+                          style: TextStyle(
+                              color: _hasBeenTextcustomer
+                                  ? Colors.white.withOpacity(0.3)
+                                  : Colors.white.withOpacity(0.3),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500),
                         ),
-                        direction: AxisDirection.left),
-                  );
-                },
-                child: Row(
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_users.svg',
-                          width: 18,
-                          height: 18,
-                          color: Colors.white.withOpacity(0.3),
-                        )),
-                    Expanded(
-                      flex: 5,
-                      child: Text(
-                        'Thông tin chi tiết',
-                        style: TextStyle(
-                            color: _hasBeenTextcustomer
-                                ? Colors.white.withOpacity(0.3)
-                                : Colors.white.withOpacity(0.3),
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -6,12 +6,12 @@ import 'package:hatonet_hcn/app/view/home/list_job_page/box_list_job/page_two/it
 
 const double borderRadius = 25.0;
 
-class CustomSwitchState extends StatefulWidget {
+class BoxListJobPage extends StatefulWidget {
   @override
-  _CustomSwitchStateState createState() => _CustomSwitchStateState();
+  _BoxListJobPageState createState() => _BoxListJobPageState();
 }
 
-class _CustomSwitchStateState extends State<CustomSwitchState>
+class _BoxListJobPageState extends State<BoxListJobPage>
     with SingleTickerProviderStateMixin {
   late PageController _pageController;
   int activePageIndex = 0;
@@ -56,7 +56,7 @@ class _CustomSwitchStateState extends State<CustomSwitchState>
                           decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius:
-                                BorderRadius.all(Radius.circular(borderRadius)),
+                            BorderRadius.all(Radius.circular(borderRadius)),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -72,10 +72,10 @@ class _CustomSwitchStateState extends State<CustomSwitchState>
                                     alignment: Alignment.center,
                                     decoration: (activePageIndex == 0)
                                         ? BoxDecoration(
-                                            color: Colors.amber,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(borderRadius)),
-                                          )
+                                      color: Colors.amber,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(borderRadius)),
+                                    )
                                         : null,
                                     child: Text(
                                       "Lịch sử lưu",
@@ -97,10 +97,10 @@ class _CustomSwitchStateState extends State<CustomSwitchState>
                                     alignment: Alignment.center,
                                     decoration: (activePageIndex == 1)
                                         ? const BoxDecoration(
-                                            color: Colors.amber,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(borderRadius)),
-                                          )
+                                      color: Colors.amber,
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(borderRadius)),
+                                    )
                                         : null,
                                     child: Text(
                                       "Đã lưu", style: (activePageIndex == 1) ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
@@ -145,7 +145,7 @@ class _CustomSwitchStateState extends State<CustomSwitchState>
                     flex: 2,
                     child: PageView(
                       controller: _pageController,
-                      physics: const ClampingScrollPhysics(),
+                      physics: BouncingScrollPhysics(),
                       onPageChanged: (int i) {
                         FocusScope.of(context).requestFocus(FocusNode());
                         setState(() {activePageIndex = i;});
@@ -159,7 +159,7 @@ class _CustomSwitchStateState extends State<CustomSwitchState>
                                 Column(
                                   children: [
                                     Expanded(
-                                      child: SingleChildScrollView(
+                                      child: SingleChildScrollView(physics: BouncingScrollPhysics(),
                                         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Padding(
@@ -193,17 +193,17 @@ class _CustomSwitchStateState extends State<CustomSwitchState>
                                                 itemBuilder: (BuildContextcontext, int index) =>
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsets.all(8.0),
+                                                      const EdgeInsets.all(8.0),
                                                       child: ItemBoxListJob(
                                                           item: FAKE_BOX_LIST_JOB[index],
                                                           onClickItem: () {}),
                                                     )),
                                             Center(
                                                 child: Text('...',
-                                              style: TextStyle(
-                                                  fontSize: 20.0,
-                                                  color: Colors.black),
-                                            )),
+                                                  style: TextStyle(
+                                                      fontSize: 20.0,
+                                                      color: Colors.black),
+                                                )),
                                             SizedBox(
                                               height: 20,
                                             ),
@@ -239,17 +239,18 @@ class _CustomSwitchStateState extends State<CustomSwitchState>
                                         children: [
                                           Expanded(
                                             child: SingleChildScrollView(
+                                              physics: BouncingScrollPhysics(),
                                               child: ListView.builder(
                                                   physics: NeverScrollableScrollPhysics(),
                                                   itemCount:FAKE_BOX_PAGE_TWO_LIST_JOB.length,
                                                   shrinkWrap: true,
                                                   itemBuilder:
                                                       (BuildContext context,
-                                                              int index) =>
-                                                          Padding(padding: const EdgeInsets.all(8.0),
-                                                            child: ItemBoxListPageJob(
-                                                                item: FAKE_BOX_PAGE_TWO_LIST_JOB[index],
-                                                                onClickItem: () {}),)),
+                                                      int index) =>
+                                                      Padding(padding: const EdgeInsets.all(8.0),
+                                                        child: ItemBoxListPageJob(
+                                                            item: FAKE_BOX_PAGE_TWO_LIST_JOB[index],
+                                                            onClickItem: () {}),)),
                                             ),
                                           ),
                                         ],

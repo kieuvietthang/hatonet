@@ -209,7 +209,7 @@ class _UploadJobPageState extends State<UploadJobPage> with SingleTickerProvider
                       icon: Icon(FontAwesomeIcons.plus),
                       iconSize: 18,
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => CustomSwitchState()));
+                       // Navigator.push(context, MaterialPageRoute(builder: (context) => CustomSwitchState()));
                       },
                       splashRadius: 19,
                       splashColor: Color(0xFFFF5400),

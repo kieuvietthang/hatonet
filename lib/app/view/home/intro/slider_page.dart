@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/view/sign_in/main_page.dart';
+import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 
 class SliderPage extends StatelessWidget {
   final String title;
@@ -35,7 +36,10 @@ class SliderPage extends StatelessWidget {
               padding: EdgeInsets.only(right: 15,bottom: 20),
               child: InkWell(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPage()));
+                  Navigator.of(context).push(
+                    CustomPageRoute(
+                        child: MainPage(), direction: AxisDirection.left),
+                  );
                 },
                 child: Text(
                   'Bỏ qua',

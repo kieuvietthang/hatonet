@@ -10,6 +10,7 @@ class ServicesBloc extends HydratedBloc<ServicesEvent, ServicesState> {
     on<UpdateService>(_onUpdateService);
     on<DeleteService>(_onDeleteService);
     on<EditService>(_onEditService);
+    on<RemoveService>(_onRemoveTask);
   }
 
   void _onAddService(AddService event, Emitter<ServicesState> emit) {
@@ -17,6 +18,7 @@ class ServicesBloc extends HydratedBloc<ServicesEvent, ServicesState> {
     emit(
       ServicesState(
         allServices: List.from(state.allServices)..add(event.services),
+        removedServices: state.removedServices,
       ),
     );
   }
@@ -28,7 +30,17 @@ class ServicesBloc extends HydratedBloc<ServicesEvent, ServicesState> {
   void _onDeleteService(DeleteService event, Emitter<ServicesState> emit){
     final state = this.state;
     emit(ServicesState(
+      allServices: state.allServices,
+      removedServices: List.from(state.removedServices)..remove(event.services)
+    ));
+  }
+
+  void _onRemoveTask(RemoveService event, Emitter<ServicesState> emit) {
+    final state = this.state;
+    emit(ServicesState(
       allServices: List.from(state.allServices)..remove(event.services),
+      removedServices: List.from(state.removedServices)
+        ..add(event.services.copyWith(isDeleted: true)),
     ));
   }
 

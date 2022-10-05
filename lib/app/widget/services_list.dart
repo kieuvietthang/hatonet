@@ -6,18 +6,31 @@ import 'package:hatonet_hcn/app/blocs/bloc_exports.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_service/services_event.dart';
 import 'package:hatonet_hcn/app/model/service.dart';
 
-class ServicesList extends StatelessWidget {
+class ServicesList extends StatefulWidget {
   const ServicesList({Key? key, required this.servicesList}) : super(key: key);
 
   final List<Service> servicesList;
 
   @override
+  State<ServicesList> createState() => _ServicesListState();
+}
+
+class _ServicesListState extends State<ServicesList> {
+
+  void _removeOrDeleteTask(BuildContext ctx, Service services) {
+    services.isDeleted!
+        ? ctx.read<ServicesBloc>().add(DeleteService(services: services))
+        : ctx.read<ServicesBloc>().add(RemoveService(services: services));
+  }
+  bool isFavourite = false;
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: servicesList.length,
+        itemCount: widget.servicesList.length,
         itemBuilder: (context, index) {
-          var services = servicesList[index];
+          var services = widget.servicesList[index];
           return Padding(
             padding: EdgeInsets.only(left: 50, right: 50, top: 15, bottom: 5),
             child: Container(
@@ -52,9 +65,7 @@ class ServicesList extends StatelessWidget {
                         ),
                         Spacer(),
                         InkWell(
-                          onTap: () => context.read<ServicesBloc>().add(
-                                DeleteService(services: services),
-                              ),
+                          onTap: () => _removeOrDeleteTask(context, services),
                           child: Padding(
                             padding: EdgeInsets.only(right: 5),
                             child: Align(
@@ -282,15 +293,44 @@ class ServicesList extends StatelessWidget {
                       padding: EdgeInsets.only(left: 5),
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            'assets/icons/ic_clock_hour.svg',
-                            height: 16,
-                            width: 16,
+                          Expanded(
+                            flex: 1,
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/icons/ic_clock_hour.svg',
+                                  height: 16,
+                                  width: 16,
+                                ),
+                                SizedBox(
+                                  width: 2,
+                                ),
+                                Text(services.usedtime),
+                              ],
+                            ),
                           ),
-                          SizedBox(
-                            width: 2,
+                          Expanded(
+                            flex: 1,
+                            child: GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  isFavourite = !isFavourite;
+                                });
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 5),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: SvgPicture.asset(
+                                    'assets/icons/ic_heart_solid.svg',
+                                    height: 18,
+                                    width: 18,
+                                      color: isFavourite ? Colors.red : Colors.black.withOpacity(0.1),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
-                          Text(services.usedtime),
                         ],
                       ),
                     ),

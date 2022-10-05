@@ -124,7 +124,7 @@ class _CreateServicePackState extends State<CreateServicePack> with SingleTicker
                   SizedBox(
                     height: 15,
                   ),
-                  ServicesList(servicesList: servicesList),
+                  ServicesList(servicesList: servicesList,),
                 ],
               ),
             ),
