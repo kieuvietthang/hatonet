@@ -93,7 +93,7 @@ class DeleteHistoryPack extends StatelessWidget {
                   ],
                 ),
               ),
-              ServicesList(servicesList: state.removedServices)
+              ServicesList(servicesList: state.removedServices, editTaskCallback: () {  },)
             ],
           ),
         ),

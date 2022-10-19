@@ -1,14 +1,18 @@
 // ignore_for_file: prefer_const_constructors, prefer_final_fields
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/model/info.dart';
+import 'package:hatonet_hcn/app/model/services.dart';
 import 'package:hatonet_hcn/app/module/res/dimens.dart';
 import 'package:hatonet_hcn/app/view/home/accountt/account_pagee.dart';
-import 'package:hatonet_hcn/app/view/home/create_service_pack/create_ervice_pack.dart';
+import 'package:hatonet_hcn/app/view/home/create_service_pack/create_service_pack.dart';
 import 'package:hatonet_hcn/app/view/home/dashboard/dashboard_page.dart';
 import 'package:hatonet_hcn/app/view/home/delete_history_pack/delete_history_pack.dart';
 import 'package:hatonet_hcn/app/view/home/details/details_page.dart';
+import 'package:hatonet_hcn/app/view/home/favorite_page/favorite_page.dart';
 import 'package:hatonet_hcn/app/view/home/job_postings_page/job_postings_page.dart';
 import 'package:hatonet_hcn/app/view/home/service_pack/service_pack_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
@@ -51,8 +55,8 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         : appBarSize + widget.statusBarHeight;
     final double statusbarHeight = MediaQuery.of(context).padding.bottom;
     return Container(
-      padding: EdgeInsets.only(bottom: statusbarHeight),
-      margin: EdgeInsets.only(bottom: paddingBottom),
+      // padding: EdgeInsets.only(bottom: statusbarHeight),
+      // margin: EdgeInsets.only(bottom: paddingBottom),
       child: Drawer(
         child: Material(
           color: Color(0xFF1F1F1F),
@@ -188,7 +192,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                           menulist: [
                             PopupMenuItem(
                               child: ListTile(
-                                onTap: (){
+                                onTap: () {
                                   Navigator.of(context).push(
                                     CustomPageRoute(
                                         child: JobPostingsPage(),
@@ -283,7 +287,17 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   onPressed: () {
                     Navigator.of(context).push(
                       CustomPageRoute(
-                          child: CreateServicePack(),
+                          child: CreateServicePack(
+                              services: Services(
+                                  usedtime: '',
+                                  name: '',
+                                  cost: '',
+                                  support: '',
+                                  describe: '',
+                                  promotional: '',
+                                  id: '',
+                                  status: '',
+                                  isFavorite: false, isEdit: false)),
                           direction: AxisDirection.left),
                     );
                   },
@@ -314,18 +328,36 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                         Expanded(
                           flex: 1,
                           child: PopupMenu(
-                              menulist:  [
+                              menulist: [
                                 PopupMenuItem(
                                   child: ListTile(
                                     onTap: () => Navigator.of(context).push(
                                       CustomPageRoute(
-                                          child: DeleteHistoryPack(), direction: AxisDirection.left),
+                                          child: DeleteHistoryPack(),
+                                          direction: AxisDirection.left),
                                     ),
                                     title: Text('Lịch sử xóa'),
                                   ),
                                 ),
                                 PopupMenuItem(
                                   child: ListTile(
+                                    onTap: () => Navigator.of(context).push(
+                                      CustomPageRoute(
+                                          child: FavoritePage(
+                                            services: Services(
+                                              promotional: '',
+                                              describe: '',
+                                              status: '',
+                                              id: '',
+                                              cost: '',
+                                              support: '',
+                                              name: '',
+                                              usedtime: '',
+                                              isFavorite: false, isEdit: false,
+                                            ),
+                                          ),
+                                          direction: AxisDirection.left),
+                                    ),
                                     title: Text('Gói yêu thích'),
                                   ),
                                 ),

@@ -13,14 +13,16 @@ import 'package:hatonet_hcn/app/view/home/create_service_pack/create_service_pac
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 import 'package:intl/intl.dart';
 
-class CreatePackage extends StatefulWidget {
-  const CreatePackage({Key? key}) : super(key: key);
+class EditCreatePackage extends StatefulWidget {
+  final Services oldServices;
+
+  const EditCreatePackage({Key? key, required this.oldServices}) : super(key: key);
 
   @override
-  State<CreatePackage> createState() => _CreatePackageState();
+  State<EditCreatePackage> createState() => _EditCreatePackageState();
 }
 
-class _CreatePackageState extends State<CreatePackage> {
+class _EditCreatePackageState extends State<EditCreatePackage> {
   bool isChecked = false;
   bool isCheckeds = false;
 
@@ -71,12 +73,18 @@ class _CreatePackageState extends State<CreatePackage> {
 
     final _formKey = GlobalKey<FormState>();
 
-    TextEditingController nameController = TextEditingController();
-    TextEditingController describeController = TextEditingController();
-    TextEditingController statusController = TextEditingController();
-    TextEditingController supportController = TextEditingController();
-    TextEditingController costController = TextEditingController();
-    TextEditingController promotionalController = TextEditingController();
+    TextEditingController nameController =
+        TextEditingController(text: widget.oldServices.name);
+    TextEditingController describeController =
+        TextEditingController(text: widget.oldServices.describe);
+    TextEditingController statusController =
+        TextEditingController(text: widget.oldServices.status);
+    TextEditingController supportController =
+        TextEditingController(text: widget.oldServices.support);
+    TextEditingController costController =
+        TextEditingController(text: widget.oldServices.cost);
+    TextEditingController promotionalController =
+        TextEditingController(text: widget.oldServices.promotional);
 
     return SafeArea(
       child: Scaffold(
@@ -615,6 +623,12 @@ class _CreatePackageState extends State<CreatePackage> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
@@ -643,16 +657,18 @@ class _CreatePackageState extends State<CreatePackage> {
                                 promotional: promotionalController.text,
                                 describe: describeController.text,
                                 usedtime: dateinputusedtime.text,
-                                id: GUIDGen.generate(), isFavorite: false, isEdit: false,
+                                id: widget.oldServices.id,
+                                isFavorite: false,
+                                isEdit: widget.oldServices.isEdit,
                               );
                               context.read<ServicesBloc>().add(
-                                    AddService(services: services),
-                                  );
+                                EditServices(oldServices: widget.oldServices, newServices: services),
+                              );
                               showSnackbar(context);
                             }
                           },
                           child: Text(
-                            'Tạo gói',
+                            'Save',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
@@ -682,7 +698,9 @@ class _CreatePackageState extends State<CreatePackage> {
                                       cost: '',
                                       id: '',
                                       name: '',
-                                      usedtime: '', isFavorite: false, isEdit: false,
+                                      usedtime: '',
+                                      isFavorite: false,
+                                      isEdit: false,
                                     ),
                                   ),
                                   direction: AxisDirection.right),

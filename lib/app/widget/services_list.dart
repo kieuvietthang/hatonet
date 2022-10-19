@@ -4,25 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_exports.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_service/services_event.dart';
-import 'package:hatonet_hcn/app/model/service.dart';
+import 'package:hatonet_hcn/app/model/services.dart';
 
 class ServicesList extends StatefulWidget {
-  const ServicesList({Key? key, required this.servicesList}) : super(key: key);
+  final VoidCallback editTaskCallback;
 
-  final List<Service> servicesList;
+  const ServicesList({
+    Key? key,
+    required this.servicesList,
+    required this.editTaskCallback,
+  }) : super(key: key);
+
+  final List<Services> servicesList;
 
   @override
   State<ServicesList> createState() => _ServicesListState();
 }
 
 class _ServicesListState extends State<ServicesList> {
-
-  void _removeOrDeleteTask(BuildContext ctx, Service services) {
+  void _removeOrDeleteTask(BuildContext ctx, Services services) {
     services.isDeleted!
         ? ctx.read<ServicesBloc>().add(DeleteService(services: services))
         : ctx.read<ServicesBloc>().add(RemoveService(services: services));
   }
-  bool isFavourite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +60,14 @@ class _ServicesListState extends State<ServicesList> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(left: 5),
-                          child: SvgPicture.asset(
-                            'assets/icons/ic_highlight.svg',
-                            height: 20,
-                            width: 20,
-                            color: Colors.black.withOpacity(0.5),
+                          child: GestureDetector(
+                            onTap: widget.editTaskCallback,
+                            child: SvgPicture.asset(
+                              'assets/icons/ic_highlight.svg',
+                              height: 20,
+                              width: 20,
+                              color: Colors.black.withOpacity(0.5),
+                            ),
                           ),
                         ),
                         Spacer(),
@@ -107,13 +114,18 @@ class _ServicesListState extends State<ServicesList> {
                         SizedBox(
                           width: 2,
                         ),
-                        Text(
-                          'VND',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            decoration: TextDecoration.lineThrough,
+                        GestureDetector(
+                          onTap: () {
+                            print(services.isFavorite);
+                          },
+                          child: Text(
+                            'VND',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              decoration: TextDecoration.lineThrough,
+                            ),
                           ),
                         ),
                       ],
@@ -312,21 +324,28 @@ class _ServicesListState extends State<ServicesList> {
                           Expanded(
                             flex: 1,
                             child: GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 setState(() {
-                                  isFavourite = !isFavourite;
+                                  services.isFavorite = !services.isFavorite;
                                 });
                               },
                               child: Padding(
                                 padding: EdgeInsets.only(right: 5),
                                 child: Align(
                                   alignment: Alignment.topRight,
-                                  child: SvgPicture.asset(
-                                    'assets/icons/ic_heart_solid.svg',
-                                    height: 18,
-                                    width: 18,
-                                      color: isFavourite ? Colors.red : Colors.black.withOpacity(0.1),
-                                  ),
+                                  child: services.isFavorite == false
+                                      ? SvgPicture.asset(
+                                          'assets/icons/ic_heart_solid.svg',
+                                          height: 18,
+                                          width: 18,
+                                          color: Colors.black.withOpacity(0.1),
+                                        )
+                                      : SvgPicture.asset(
+                                          'assets/icons/ic_heart_solid.svg',
+                                          height: 18,
+                                          width: 18,
+                                          color: Colors.red,
+                                        ),
                                 ),
                               ),
                             ),

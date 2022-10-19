@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Service extends Equatable {
+class Services extends Equatable {
   final String id;
   final String name;
   final String describe;
@@ -11,8 +11,10 @@ class Service extends Equatable {
   final String usedtime;
   bool? isDone;
   bool? isDeleted;
+  bool isFavorite = false;
+  bool isEdit = false;
 
-  Service({
+  Services({
     required this.name,
     required this.id,
     required this.describe,
@@ -23,24 +25,30 @@ class Service extends Equatable {
     required this.usedtime,
     this.isDone,
     this.isDeleted,
-  }){
+    required this.isFavorite,
+    required this.isEdit,
+  }) {
     isDone = isDone ?? false;
     isDeleted = isDeleted ?? false;
+    isEdit = false;
+    isFavorite = false;
+
   }
 
-  Service copyWith({
-    String? name,
-    String? id,
-    String? describe,
-    String? status,
-    String? support,
-    String? cost,
-    String? promotional,
-    String? usedtime,
-    bool? isDone,
-    bool? isDeleted,
-  }) {
-    return Service(
+  Services copyWith(
+      {String? name,
+      String? id,
+      String? describe,
+      String? status,
+      String? support,
+      String? cost,
+      String? promotional,
+      String? usedtime,
+      bool? isDone,
+      bool? isDeleted,
+      bool? isFavorite,
+      bool? isEdit}) {
+    return Services(
       name: name ?? this.name,
       id: id ?? this.id,
       describe: describe ?? this.describe,
@@ -51,6 +59,8 @@ class Service extends Equatable {
       usedtime: usedtime ?? this.usedtime,
       isDone: isDone ?? this.isDone,
       isDeleted: isDeleted ?? this.isDeleted,
+      isFavorite: isFavorite ?? this.isFavorite,
+      isEdit: isEdit ?? this.isEdit,
     );
   }
 
@@ -66,12 +76,13 @@ class Service extends Equatable {
       'usedtime': usedtime,
       'isDone': isDone,
       'isDeleted': isDeleted,
+      'isFavorite': isFavorite,
+      'isEdit': isEdit,
     };
   }
 
-
-  factory Service.fromMap(Map<String, dynamic> map) {
-    return Service(
+  factory Services.fromMap(Map<String, dynamic> map) {
+    return Services(
       name: map['name'] ?? '',
       id: map['id'] ?? '',
       describe: map['describe'] ?? '',
@@ -82,10 +93,24 @@ class Service extends Equatable {
       usedtime: map['usedtime'] ?? '',
       isDone: map['isDone'],
       isDeleted: map['isDeleted'],
+      isFavorite: map['isFavorite'] ?? '',
+      isEdit: map['isEdit'] ?? '',
     );
   }
 
   @override
-  List<Object?> get props =>
-      [name,id, describe, status, support, cost,promotional,usedtime, isDone, isDeleted];
+  List<Object?> get props => [
+        name,
+        id,
+        describe,
+        status,
+        support,
+        cost,
+        promotional,
+        usedtime,
+        isDone,
+        isDeleted,
+        isFavorite,
+        isEdit,
+      ];
 }

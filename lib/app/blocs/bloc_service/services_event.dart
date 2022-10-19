@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:hatonet_hcn/app/model/service.dart';
+import 'package:hatonet_hcn/app/blocs/bloc_service/services_state.dart';
+import 'package:hatonet_hcn/app/model/services.dart';
 
 abstract class ServicesEvent extends Equatable {
   const ServicesEvent();
@@ -11,7 +12,7 @@ abstract class ServicesEvent extends Equatable {
 
 
 class AddService extends ServicesEvent {
-  final Service services;
+  final Services services;
 
   AddService({
     required this.services,
@@ -22,7 +23,7 @@ class AddService extends ServicesEvent {
 }
 
 class UpdateService extends ServicesEvent {
-  final Service services;
+  final Services services;
 
   UpdateService({
     required this.services,
@@ -33,7 +34,7 @@ class UpdateService extends ServicesEvent {
 }
 
 class RemoveService extends ServicesEvent {
-  final Service services;
+  final Services services;
 
   RemoveService({
     required this.services,
@@ -44,7 +45,7 @@ class RemoveService extends ServicesEvent {
 }
 
 class DeleteService extends ServicesEvent {
-  final Service services;
+  final Services services;
 
   DeleteService({
     required this.services,
@@ -54,13 +55,27 @@ class DeleteService extends ServicesEvent {
   List<Object?> get props => [services];
 }
 
-class EditService extends ServicesEvent {
-  final Service services;
 
-  EditService({
+class MarkFavoriteOrUnfavoriteTask extends ServicesEvent {
+  final Services services;
+
+  const MarkFavoriteOrUnfavoriteTask({
     required this.services,
   });
 
   @override
-  List<Object?> get props => [services];
+  List<Object?> get props => [];
+}
+
+class EditServices extends ServicesEvent {
+  final Services oldServices;
+  final Services newServices;
+
+  const EditServices({
+    required this.oldServices,
+    required this.newServices,
+  });
+
+  @override
+  List<Object> get props => [oldServices, newServices];
 }
