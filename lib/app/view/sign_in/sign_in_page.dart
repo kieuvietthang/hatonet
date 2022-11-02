@@ -57,8 +57,6 @@ class _SignInPageState extends State<SignInPage> {
             );
           });
 
-
-
       try {
         UserCredential userCredential =
         await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -73,7 +71,7 @@ class _SignInPageState extends State<SignInPage> {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => BottomBarPage()));
         }
-        errorMessage = 'tài khoản mật khẩu không chính xác';
+        errorMessage = 'tài khoản hoặc mật khẩu không chính xác';
       } on FirebaseAuthException catch (e) {
         Fluttertoast.showToast(msg: errorMessage, gravity: ToastGravity.TOP);
         if (e.code == 'weak-password') {

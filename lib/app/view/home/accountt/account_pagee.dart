@@ -609,10 +609,15 @@ class _CompanyInformationState extends State<CompanyInformation>
                                     padding: EdgeInsets.only(
                                         left: 10, right: 10, top: 10),
                                     child: TextFormField(
-                                      validator: (value) =>
-                                          value != null && value.length < 12
-                                              ? 'Không đúng định dạng'
-                                              : null,
+                                      validator: (value) {
+                                        if (value!.isEmpty ||
+                                            !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                                .hasMatch(value!)) {
+                                          return 'Enter correct phone number';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
                                       controller: _hotlineController,
                                       keyboardType: TextInputType.number,
                                       maxLines: 1,
@@ -909,10 +914,15 @@ class _CompanyInformationState extends State<CompanyInformation>
                                     padding: EdgeInsets.only(
                                         left: 10, right: 10, top: 10),
                                     child: TextFormField(
-                                      validator: (value) =>
-                                          value != null && value.length < 12
-                                              ? 'Không đúng định dạng'
-                                              : null,
+                                      validator: (value) {
+                                        if (value!.isEmpty ||
+                                            !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                                .hasMatch(value!)) {
+                                          return 'Không đúng định dạng';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
                                       controller: _phoneController,
                                       keyboardType: TextInputType.number,
                                       maxLines: 1,

@@ -199,10 +199,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: TextFormField(
-                    validator: (value) =>
-                    value != null && value.length < 11
-                        ? 'Số điện thoại phải trên 11 số'
-                        : null,
+                    validator: (value) {
+                      if (value!.isEmpty ||
+                          !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                              .hasMatch(value!)) {
+                        return 'Enter correct phone number';
+                      } else {
+                        return null;
+                      }
+                    },
                     controller: _phoneController,
                     keyboardType: TextInputType.text,
                     maxLines: 1,
