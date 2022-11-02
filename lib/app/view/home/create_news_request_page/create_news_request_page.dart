@@ -7,6 +7,7 @@ import 'package:hatonet_hcn/app/blocs/bloc_job_postings/job_postings_bloc.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_job_postings/job_postings_event.dart';
 import 'package:hatonet_hcn/app/blocs/job_postings_exports.dart';
 import 'package:hatonet_hcn/app/model/job_postings.dart';
+import 'package:hatonet_hcn/app/services/guid_gen.dart';
 import 'package:hatonet_hcn/app/view/home/job_postings_page/job_postings_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 
@@ -18,7 +19,6 @@ class createNewsRequestPage extends StatefulWidget {
 }
 
 class _createNewsRequestPageState extends State<createNewsRequestPage> {
-  var selectedItem = '';
 
   @override
   void initState() {
@@ -120,6 +120,26 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
   TextEditingController skillController = TextEditingController();
   TextEditingController areaController = TextEditingController();
 
+  void showSnackbar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Row(
+        children: [
+          Text('Tạo gói thành công'),
+          SizedBox(
+            width: 5,
+          ),
+          SvgPicture.asset(
+            'assets/icons/ic_circle_check_solid.svg',
+            height: 18,
+            width: 18,
+            color: Colors.green,
+          ),
+        ],
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -197,6 +217,7 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                           child: Column(
                             children: [
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Expanded(
                                     flex: 1,
@@ -252,13 +273,14 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                             new Radius.circular(4),
                                           ),
                                         ),
-                                        child: DropdownButtonFormField(
+                                        child: DropdownButtonFormField<String>(
+                                          hint: Text('thắng'),
                                           value: _workFormatValue,
                                           items: _workFormatList
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -274,9 +296,12 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'Hình thức làm việc',
                                             enabledBorder: InputBorder.none,
-
+                                           // floatingLabelBehavior: FloatingLabelBehavior.auto,
                                           ),
                                         ),
                                       ),
@@ -417,7 +442,7 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -433,6 +458,9 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'Thời hạn thanh toán',
                                             enabledBorder: InputBorder.none,
 
@@ -463,7 +491,7 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -479,6 +507,9 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'Thời hạn hợp đồng',
                                             enabledBorder: InputBorder.none,
 
@@ -513,7 +544,7 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -529,6 +560,9 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'kinh nghiệm',
                                             enabledBorder: InputBorder.none,
 
@@ -559,7 +593,7 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -575,7 +609,11 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'Đơn giá',
+
                                             enabledBorder: InputBorder.none,
 
                                           ),
@@ -587,11 +625,10 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                               ),
                               Row(
                                 children: [
-
                                   //Cấp bậc
                                   Expanded(
                                     flex: 1,
-                                    child: Padding(
+                                    child: Padding( 
                                       padding: EdgeInsets.only(
                                           left: 5, right: 10, top: 10),
                                       child: Container(
@@ -603,13 +640,13 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                             Radius.circular(4),
                                           ),
                                         ),
-                                        child:  DropdownButtonFormField(
+                                        child:DropdownButtonFormField(
                                           value: _rankValue,
                                           items: _rankList
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -625,6 +662,9 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'Cấp bậc',
                                             enabledBorder: InputBorder.none,
 
@@ -655,7 +695,7 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -671,6 +711,9 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'Trình độ học vấn',
                                             enabledBorder: InputBorder.none,
 
@@ -705,7 +748,7 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -721,6 +764,9 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'Kỹ năng',
                                             enabledBorder: InputBorder.none,
 
@@ -751,7 +797,7 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                               .map((e) =>
                                               DropdownMenuItem(
                                                 child: Text(e, style: TextStyle(
-                                                    fontSize: 16),),
+                                                    fontSize: 14),),
                                                 value: e,
                                               ))
                                               .toList(),
@@ -767,6 +813,9 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                                           ),
                                           dropdownColor: Colors.white,
                                           decoration: InputDecoration(
+                                            fillColor: Colors.white,
+                                            contentPadding: EdgeInsets.all(
+                                                13),
                                             hintText: 'Khu vực',
                                             enabledBorder: InputBorder.none,
 
@@ -886,21 +935,24 @@ class _createNewsRequestPageState extends State<createNewsRequestPage> {
                             applicationDeadline: applicationDeadlineController
                                 .text,
                             experience: experienceController.text,
-                            workingForm: _workFormatValue!,
+                            workingForm: _workFormatValue ?? '',
                             academicLevel: academicLevelController.text,
-                            contractTerm: _contractTermValue!,
-                            unitPrice: _unitPricevalue!,
+                            contractTerm: _contractTermValue,
+                            unitPrice: _unitPricevalue ?? '',
                             rank: rankController.text,
-                            skill: _skillValue!,
+                            skill: _skillValue ?? '',
                             amount: amountController.text,
-                            paymentTerm: _paymentTermValue!,
-                            area: _areaValue!,
+                            paymentTerm: _paymentTermValue ?? '',
+                            area: _areaValue,
+                            id: GUIDGen.generate(),
+                            isFavorite: false,
                           );
                           context.read<JobPostingsBloc>().add(
                             AddJobPostings(
                               jobPostings: jobPostings,
                             ),
                           );
+                          showSnackbar(context);
                         }
                       },
                       child: Container(

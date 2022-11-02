@@ -7,12 +7,15 @@ import 'package:hatonet_hcn/app/blocs/bloc_service/services_event.dart';
 import 'package:hatonet_hcn/app/model/services.dart';
 
 class ServicesList extends StatefulWidget {
-  final VoidCallback editTaskCallback;
+
+  final Services services;
+  final Function editTaskCallback;
 
   const ServicesList({
     Key? key,
     required this.servicesList,
     required this.editTaskCallback,
+    required this.services,
   }) : super(key: key);
 
   final List<Services> servicesList;
@@ -22,6 +25,7 @@ class ServicesList extends StatefulWidget {
 }
 
 class _ServicesListState extends State<ServicesList> {
+
   void _removeOrDeleteTask(BuildContext ctx, Services services) {
     services.isDeleted!
         ? ctx.read<ServicesBloc>().add(DeleteService(services: services))
@@ -61,7 +65,7 @@ class _ServicesListState extends State<ServicesList> {
                         Padding(
                           padding: EdgeInsets.only(left: 5),
                           child: GestureDetector(
-                            onTap: widget.editTaskCallback,
+                            onTap: () => widget.editTaskCallback(index),
                             child: SvgPicture.asset(
                               'assets/icons/ic_highlight.svg',
                               height: 20,

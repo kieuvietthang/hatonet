@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hatonet_hcn/app/blocs/bloc/infos_bloc.dart';
-import 'package:hatonet_hcn/app/blocs/bloc/infos_event.dart';
 import 'package:hatonet_hcn/app/model/info.dart';
 
 
@@ -113,7 +111,7 @@ class InformationListPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                onLongPress: ()=>context.read<InfosBloc>().add(DeleteInfo(info: info)),
+
               ),
             ),
           );

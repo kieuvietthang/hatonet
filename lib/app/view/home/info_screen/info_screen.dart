@@ -3,10 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hatonet_hcn/app/blocs/bloc/infos_bloc.dart';
-import 'package:hatonet_hcn/app/blocs/bloc/infos_state.dart';
-import 'package:hatonet_hcn/app/model/info.dart';
-import 'package:hatonet_hcn/app/view/home/information_list/information_list_page.dart';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({Key? key}) : super(key: key);
@@ -19,8 +15,7 @@ class _InfoScreenState extends State<InfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InfosBloc, InfosState>(builder: (context, state) {
-      List<Info> inforsList = state.allInfos;
+    return BlocBuilder(builder: (context, state) {
       return SafeArea(
         child: Scaffold(
           backgroundColor: Colors.white,
@@ -74,7 +69,6 @@ class _InfoScreenState extends State<InfoScreen> {
               SizedBox(
                 height: 40,
               ),
-              InformationListPage(inforsList: inforsList),
               Padding(
                 padding: EdgeInsets.only(right: 20),
                 child: Align(

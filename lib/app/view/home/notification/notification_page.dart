@@ -95,9 +95,9 @@ class _NotificationPageState extends State<NotificationPage>
                             child: Text(
                               'Mới',
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.normal),
+                                  fontWeight: FontWeight.bold),
                             ),
 
                           ),
@@ -132,9 +132,9 @@ class _NotificationPageState extends State<NotificationPage>
                                    child: Text(
                                      'Trước đó',
                                      style: TextStyle(
-                                         fontSize: 16,
+                                         fontSize: 18,
                                          color: Colors.black,
-                                         fontWeight: FontWeight.normal),
+                                         fontWeight: FontWeight.bold),
                                    ),
 
                                  ),

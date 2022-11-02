@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_exports.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_service/services_state.dart';
+import 'package:hatonet_hcn/app/model/services.dart';
 import 'package:hatonet_hcn/app/view/home/bottom/bottom_bar.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 import 'package:hatonet_hcn/app/widget/services_list.dart';
@@ -93,7 +96,7 @@ class DeleteHistoryPack extends StatelessWidget {
                   ],
                 ),
               ),
-              ServicesList(servicesList: state.removedServices, editTaskCallback: () {  },)
+              ServicesList(servicesList: state.removedServices, editTaskCallback: () {  }, services: Services(usedtime: '', name: '', support: '', describe: '', promotional: '', cost: '', id: '', isEdit: false, isFavorite: false, status: ''),)
             ],
           ),
         ),

@@ -1246,6 +1246,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0-nullsafety.0"
+  snippet_coder_utils:
+    dependency: "direct main"
+    description:
+      name: snippet_coder_utils
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.12"
   source_gen:
     dependency: transitive
     description:

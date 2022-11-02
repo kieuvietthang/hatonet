@@ -199,15 +199,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: TextFormField(
-                    validator: (value) {
-                      if (value!.isEmpty ||
-                          !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                              .hasMatch(value)) {
-                        return 'Không được bỏ trống';
-                      } else {
-                        return null;
-                      }
-                    },
+                    validator: (value) =>
+                    value != null && value.length < 11
+                        ? 'Số điện thoại phải trên 11 số'
+                        : null,
                     controller: _phoneController,
                     keyboardType: TextInputType.text,
                     maxLines: 1,
@@ -227,7 +222,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       if (value!.isEmpty ||
                           !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
                               .hasMatch(value)) {
-                        return 'Không được bỏ trống';
+                        return 'Không đúng định dạng';
                       } else {
                         return null;
                       }
@@ -246,9 +241,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20, top: 20),
                   child: TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => value != null && value.length < 6
-                        ? 'Không được bỏ trống'
+                        ? 'Mật khẩu phải trên 6 kí tự'
                         : null,
                     controller: _passwordController,
                     keyboardType: TextInputType.multiline,
@@ -277,9 +271,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: TextFormField(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) => value != null && value.length < 6
-                        ? 'Không được bỏ trống'
+                        ? 'Mật khẩu phải trên 6 kí tự'
                         : null,
                     controller: _confirmpasswordController,
                     keyboardType: TextInputType.multiline,

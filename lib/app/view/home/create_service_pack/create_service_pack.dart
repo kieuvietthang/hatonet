@@ -30,7 +30,6 @@ class _CreateServicePackState extends State<CreateServicePack>
   AnimationController? _animationController;
   Animation? _colorTween;
 
-
   @override
   void initState() {
     _animationController =
@@ -47,10 +46,15 @@ class _CreateServicePackState extends State<CreateServicePack>
     _animationController!.dispose();
   }
 
-  SafeArea _editTask(BuildContext context) {
+  SafeArea _editTask(BuildContext context, int index) {
+
+  //  print();
     return SafeArea(
       child: Scaffold(
-        body: EditCreatePackage(oldServices: widget.services,),
+        body: EditCreatePackage(
+          oldServices: widget.services,
+          index: index,
+        ),
       ),
     );
   }
@@ -140,10 +144,14 @@ class _CreateServicePackState extends State<CreateServicePack>
                   height: 15,
                 ),
                 ServicesList(
-                  servicesList: servicesList, editTaskCallback: (){
-                  Navigator.of(context).pop();
-                  _editTask(context);
-                },
+                  servicesList: servicesList,
+                  editTaskCallback: (index) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => _editTask(context, index)));
+                  },
+                  services: widget.services,
                 ),
               ],
             ),

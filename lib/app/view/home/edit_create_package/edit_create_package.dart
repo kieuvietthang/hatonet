@@ -15,14 +15,16 @@ import 'package:intl/intl.dart';
 
 class EditCreatePackage extends StatefulWidget {
   final Services oldServices;
+    int index;
 
-  const EditCreatePackage({Key? key, required this.oldServices}) : super(key: key);
+   EditCreatePackage({Key? key, required this.oldServices, required this.index}) : super(key: key);
 
   @override
   State<EditCreatePackage> createState() => _EditCreatePackageState();
 }
 
 class _EditCreatePackageState extends State<EditCreatePackage> {
+
   bool isChecked = false;
   bool isCheckeds = false;
 
@@ -30,12 +32,35 @@ class _EditCreatePackageState extends State<EditCreatePackage> {
   TextEditingController dateinputenddate = TextEditingController();
   TextEditingController dateinputusedtime = TextEditingController();
 
+
   @override
   void initState() {
     dateinputstartday.text = ""; //set the initial value of text field
     dateinputenddate.text = ""; //set the initial value of text field
     super.initState();
+
+    nameController = TextEditingController(text: widget.oldServices.name);
+    describeController = TextEditingController(text: widget.oldServices.describe);
+    statusController = TextEditingController(text: widget.oldServices.status);
+    supportController = TextEditingController(text: widget.oldServices.support);
+    costController = TextEditingController(text: widget.oldServices.cost);
+    promotionalController = TextEditingController(text: widget.oldServices.promotional);
   }
+
+  TextEditingController nameController =
+  TextEditingController();
+  TextEditingController describeController =
+  TextEditingController();
+  TextEditingController statusController =
+  TextEditingController();
+  TextEditingController supportController =
+  TextEditingController();
+  TextEditingController costController =
+  TextEditingController();
+  TextEditingController promotionalController =
+  TextEditingController();
+
+
 
   void showSnackbar(BuildContext context) {
     final snackBar = SnackBar(
@@ -73,18 +98,6 @@ class _EditCreatePackageState extends State<EditCreatePackage> {
 
     final _formKey = GlobalKey<FormState>();
 
-    TextEditingController nameController =
-        TextEditingController(text: widget.oldServices.name);
-    TextEditingController describeController =
-        TextEditingController(text: widget.oldServices.describe);
-    TextEditingController statusController =
-        TextEditingController(text: widget.oldServices.status);
-    TextEditingController supportController =
-        TextEditingController(text: widget.oldServices.support);
-    TextEditingController costController =
-        TextEditingController(text: widget.oldServices.cost);
-    TextEditingController promotionalController =
-        TextEditingController(text: widget.oldServices.promotional);
 
     return SafeArea(
       child: Scaffold(
@@ -160,6 +173,7 @@ class _EditCreatePackageState extends State<EditCreatePackage> {
                                       } else
                                         null;
                                     },
+                                    autofocus: true,
                                     controller: nameController,
                                     cursorColor: Color(0xFFFF6116),
                                     keyboardType: TextInputType.text,
@@ -193,6 +207,7 @@ class _EditCreatePackageState extends State<EditCreatePackage> {
                                       } else
                                         null;
                                     },
+                                    autofocus: true,
                                     controller: describeController,
                                     cursorColor: Color(0xFFFF6116),
                                     keyboardType: TextInputType.text,
@@ -649,7 +664,7 @@ class _EditCreatePackageState extends State<EditCreatePackage> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              var services = Services(
+                              var editservices = Services(
                                 name: nameController.text,
                                 cost: costController.text,
                                 support: supportController.text,
@@ -661,8 +676,9 @@ class _EditCreatePackageState extends State<EditCreatePackage> {
                                 isFavorite: false,
                                 isEdit: widget.oldServices.isEdit,
                               );
+                              print(widget.oldServices.name + "\n"+ editservices.name);
                               context.read<ServicesBloc>().add(
-                                EditServices(oldServices: widget.oldServices, newServices: services),
+                                EditServices(oldServices: widget.oldServices, newServices: editservices, index: widget.index),
                               );
                               showSnackbar(context);
                             }

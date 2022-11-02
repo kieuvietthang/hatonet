@@ -20,17 +20,17 @@ class _OnBoardingState extends State<OnBoarding> {
     SliderPage(
         title: 'TỐC ĐỘ',
         description:
-            'Tối ưu thời gian tuyển dụng. Kết nối 1.0000 Doanh nghiệp IT cung ứng & tuyển dụng trên toàn quốc. Thao tác đơn giản. Tận dụng nguồn lực của nhiều doanh nghiệp CNTT.',
+            '- Tối ưu thời gian tuyển dụng.\n- Kết nối 1.0000 Doanh nghiệp IT cung ứng & tuyển dụng trên toàn quốc.\n- Thao tác đơn giản.\n- Tận dụng nguồn lực của nhiều doanh nghiệp CNTT.',
         image: 'assets/icons/ic_fastboy.svg'),
     SliderPage(
         title: 'TỐI ƯU',
         description:
-            'Tối ưu được chi phí cơ hội khi có nhu cầu lớn về nhân sự onsite. Hỗ trợ kết nối thông qua hệ sinh thái của Hatonet đến các doanh nghiệp CNTT trên toàn quốc.',
+            '- Tối ưu được chi phí cơ hội khi có nhu cầu lớn về nhân sự onsite.\n- Hỗ trợ kết nối thông qua hệ sinh thái của Hatonet đến các doanh nghiệp CNTT trên toàn quốc.',
         image: 'assets/icons/ic_oclock.svg'),
     SliderPage(
         title: 'TIN CẬY',
         description:
-            'Mức phí tối ưu nhất trên thị trường. Hệ thống CMS được cập nhật và phát triển liên tục. Luôn phát triển và đồng hành cùng doanh nghiệp CNTT Việt Nam',
+            '- Mức phí tối ưu nhất trên thị trường.\n- Hệ thống CMS được cập nhật và phát triển liên tục.\n- Luôn phát triển và đồng hành cùng doanh nghiệp CNTT Việt Nam',
         image: 'assets/icons/ic_trust.svg'),
   ];
 
@@ -46,7 +46,7 @@ class _OnBoardingState extends State<OnBoarding> {
       body: Stack(
         children: [
           PageView.builder(
-            scrollDirection: Axis.horizontal,
+           // scrollDirection: Axis.horizontal,
             controller: _controller,
             itemCount: _pages.length,
             onPageChanged: _onChanged,

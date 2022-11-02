@@ -53,3 +53,27 @@ class DeleteJobPostings extends JobPostingsEvent {
   @override
   List<Object?> get props => [jobPostings];
 }
+
+class MarkFavoriteOrUnfavoriteJobPostings extends JobPostingsEvent {
+  final JobPostings jobPostings;
+
+  const MarkFavoriteOrUnfavoriteJobPostings({
+    required this.jobPostings,
+  });
+
+  @override
+  List<Object?> get props => [jobPostings];
+}
+
+class EditJobPostings extends JobPostingsEvent {
+  final JobPostings oldJobPostings;
+  final JobPostings newJobPostings;
+
+  const EditJobPostings({
+    required this.oldJobPostings,
+    required this.newJobPostings,
+  });
+
+  @override
+  List<Object> get props => [oldJobPostings, newJobPostings];
+}

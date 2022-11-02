@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/model/info.dart';
+import 'package:hatonet_hcn/app/model/job_postings.dart';
 import 'package:hatonet_hcn/app/model/services.dart';
 import 'package:hatonet_hcn/app/module/res/dimens.dart';
 import 'package:hatonet_hcn/app/view/home/accountt/account_pagee.dart';
@@ -12,6 +13,7 @@ import 'package:hatonet_hcn/app/view/home/create_service_pack/create_service_pac
 import 'package:hatonet_hcn/app/view/home/dashboard/dashboard_page.dart';
 import 'package:hatonet_hcn/app/view/home/delete_history_pack/delete_history_pack.dart';
 import 'package:hatonet_hcn/app/view/home/details/details_page.dart';
+import 'package:hatonet_hcn/app/view/home/favorite_job_postings_page/favorite_job_postings_page.dart';
 import 'package:hatonet_hcn/app/view/home/favorite_page/favorite_page.dart';
 import 'package:hatonet_hcn/app/view/home/job_postings_page/job_postings_page.dart';
 import 'package:hatonet_hcn/app/view/home/service_pack/service_pack_page.dart';
@@ -209,6 +211,29 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                             ),
                             PopupMenuItem(
                               child: ListTile(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    CustomPageRoute(
+                                        child: FavoriteJobPostingsPage(
+                                          jobPostings: JobPostings(
+                                              id: '',
+                                              isFavorite: false,
+                                              academicLevel: '',
+                                              contractTerm: '',
+                                              title: '',
+                                              paymentTerm: '',
+                                              skill: '',
+                                              area: '',
+                                              amount: '',
+                                              rank: '',
+                                              workingForm: '',
+                                              applicationDeadline: '',
+                                              unitPrice: '',
+                                              experience: ''),
+                                        ),
+                                        direction: AxisDirection.left),
+                                  );
+                                },
                                 title: Text('Đã lưu'),
                               ),
                             ),
@@ -297,7 +322,8 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                                   promotional: '',
                                   id: '',
                                   status: '',
-                                  isFavorite: false, isEdit: false)),
+                                  isFavorite: false,
+                                  isEdit: false)),
                           direction: AxisDirection.left),
                     );
                   },
@@ -353,7 +379,8 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                                               support: '',
                                               name: '',
                                               usedtime: '',
-                                              isFavorite: false, isEdit: false,
+                                              isFavorite: false,
+                                              isEdit: false,
                                             ),
                                           ),
                                           direction: AxisDirection.left),
@@ -552,13 +579,22 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                       CustomPageRoute(
                           child: DetailsPage(
                             info: Info(
-                                tax: '',
-                                email: '',
-                                password: '',
-                                hotline: '',
-                                abbreviations: '',
-                                phone: '',
-                                companyName: ''),
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                            ),
+                            onClick: () {
+                              Navigator.pop(context);
+                            },
                           ),
                           direction: AxisDirection.left),
                     );
@@ -572,14 +608,22 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                       CustomPageRoute(
                           child: DetailsPage(
                             info: Info(
-                              hotline: '',
-                              abbreviations: '',
-                              companyName: '',
-                              phone: '',
-                              tax: '',
-                              email: '',
-                              password: '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
+                              '',
                             ),
+                            onClick: () {
+                              Navigator.pop(context);
+                            },
                           ),
                           direction: AxisDirection.left),
                     );

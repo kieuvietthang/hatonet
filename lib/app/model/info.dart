@@ -1,84 +1,58 @@
-import 'package:equatable/equatable.dart';
 
-class Info extends Equatable {
+class Info {
   final String phone;
   final String companyName;
   final String abbreviations;
   final String tax;
+  final String website;
+  final String detail;
+  final String introduce;
   final String email;
   final String hotline;
   final String password;
-  bool? isDone;
-  bool? isDeleted;
+  final String contact;
+  final String contactEmail;
 
-  Info(
-      {
-        required this.phone,
-      required this.companyName,
-      required this.abbreviations,
-      required this.tax,
-      required this.hotline,
-      required this.email,
-      required this.password,
-      this.isDone,
-      this.isDeleted}) {
-    isDone = isDone ?? false;
-    isDeleted = isDeleted ?? false;
-  }
+  Info(this.phone,
+      this.companyName,
+      this.abbreviations,
+      this.tax,
+      this.hotline,
+      this.email,
+      this.password,
+      this.website,
+      this.detail,
+      this.introduce,
+      this.contact,
+      this.contactEmail,);
 
-  Info copyWith({
-    String? phone,
-    String? companyName,
-    String? abbreviations,
-    String? tax,
-    String? hotline,
-    String? email,
-    String? password,
-    bool? isDone,
-    bool? isDeleted,
-  }) {
-    return Info(
-      phone: phone ?? this.phone,
-      companyName: companyName ?? this.companyName,
-      abbreviations: abbreviations ?? this.abbreviations,
-      tax: tax ?? this.tax,
-      hotline: hotline ?? this.hotline,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      isDone: isDone ?? this.isDone,
-      isDeleted: isDeleted ?? this.isDeleted,
-    );
-  }
+  Info.fromJson(Map<String, dynamic> json)
+      : phone = json['phone'],
+        companyName = json['companyName'],
+        abbreviations = json['abbreviations'],
+        tax = json['tax'],
+        hotline = json['hotline'],
+        email = json['email'],
+        password = json['password'],
+        website = json['website'],
+        detail = json['detail'],
+        introduce = json['introduce'],
+        contact = json['contact'],
+        contactEmail = json['contactEmail'];
 
-  Map<String, dynamic> toMap() {
-    return {
-      'phone': phone,
-      'companyName': companyName,
-      'abbreviations': abbreviations,
-      'tax': tax,
-      'hotline': hotline,
-      'email': email,
-      'password': password,
-      'isDone': isDone,
-      'isDeleted': isDeleted,
-    };
-  }
+  Map<String, dynamic> toJson() => {
+    'phone':phone,
+    'companyName':companyName,
+    'abbreviations':abbreviations,
+    'tax':tax,
+    'hotline':hotline,
+    'email':email,
+    'password':password,
+    'website':website,
+    'detail':detail,
+    'introduce':introduce,
+    'contact':contact,
+    'contactEmail':contactEmail,
+  };
 
-  factory Info.fromMap(Map<String, dynamic> map) {
-    return Info(
-      phone: map['phone'] ?? '',
-      companyName: map['companyName'] ?? '',
-      abbreviations: map['abbreviations'] ?? '',
-      tax: map['tax'] ?? '',
-      hotline: map['hotline'] ?? '',
-      email: map['email'] ?? '',
-      password: map['password'] ?? '',
-      isDone: map['isDone'],
-      isDeleted: map['isDeleted'],
-    );
-  }
-
-  @override
-  List<Object?> get props =>
-      [phone, companyName, abbreviations, tax, hotline,email,password, isDone, isDeleted];
 }

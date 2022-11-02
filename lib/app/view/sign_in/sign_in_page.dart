@@ -4,50 +4,94 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hatonet_hcn/app/model/errors.dart';
 import 'package:hatonet_hcn/app/provider/google_sign_in_provider.dart';
 import 'package:hatonet_hcn/app/provider/internet_provider.dart';
 import 'package:hatonet_hcn/app/utils/next_screen.dart';
 import 'package:hatonet_hcn/app/utils/snack_bar.dart';
 import 'package:hatonet_hcn/app/view/home/bottom/bottom_bar.dart';
 import 'package:hatonet_hcn/app/view/home/forgot_password/forgot_password_page.dart';
+import 'package:hatonet_hcn/app/view/sign_up/sign_up_page.dart';
+import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:email_validator/email_validator.dart';
+
+
+
 
 class SignInPage extends StatefulWidget {
+
+
   final VoidCallback showRegisterPage;
 
-  const SignInPage({Key? key, required this.showRegisterPage})
+   SignInPage({Key? key, required this.showRegisterPage,})
       : super(key: key);
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
+
 class _SignInPageState extends State<SignInPage> {
-  final _emailController = TextEditingController();
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  String errorMessage = 'Tài khoản mật khẩu không chính xác';
+  final _emailController =
+      TextEditingController();
   final _passwordController = TextEditingController();
 
 
-
   Future signIn() async {
-    final isValid = formKey.currentState!.validate();
-    if(!isValid) return;
+   // final isValid = formKey.currentState!.validate();
+    if (formKey.currentState!.validate()) {
 
-    showDialog(
-        context: context,
-        builder: (context) {
-          return Center(
-            child: CircularProgressIndicator(
-              color: Color(0xFFFF6116),
-            ),
-          );
-        });
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim());
-    Navigator.of(context).pop();
+      showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: Color(0xFFFF6116),
+              ),
+
+            );
+          });
+
+
+
+      try {
+        UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        print(userCredential.toString());
+        Navigator.of(context).pop();
+        Navigator.of(context).pop();
+
+        if (userCredential.user != null) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => BottomBarPage()));
+        }
+        errorMessage = 'tài khoản mật khẩu không chính xác';
+      } on FirebaseAuthException catch (e) {
+        Fluttertoast.showToast(msg: errorMessage, gravity: ToastGravity.TOP);
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+        }
+      } catch (e) {
+        print(e);
+      }
+    }
+
+    // await FirebaseAuth.instance.signInWithEmailAndPassword(
+    //       email: _emailController.text.trim(),
+    //     password: _passwordController.text.trim());
   }
+
+
 
   @override
   void dispose() {
@@ -58,7 +102,6 @@ class _SignInPageState extends State<SignInPage> {
 
   bool _secureText = true;
 
-  final GlobalKey _scaffoldkey = GlobalKey<ScaffoldState>();
   final RoundedLoadingButtonController googleController =
       RoundedLoadingButtonController();
   final RoundedLoadingButtonController facebookController =
@@ -67,13 +110,11 @@ class _SignInPageState extends State<SignInPage> {
   final formKey = GlobalKey<FormState>();
   String name = '';
 
-
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
-        key: _scaffoldkey,
+        key: _scaffoldKey,
         body: Container(
             color: Colors.white,
             height: double.infinity,
@@ -128,7 +169,7 @@ class _SignInPageState extends State<SignInPage> {
                           Padding(
                             padding: EdgeInsets.only(left: 20, right: 20),
                             child: TextFormField(
-                              textInputAction: TextInputAction.next,
+                              //textInputAction: TextInputAction.next,
                               cursorColor: Color(0xFFFF6116),
                               controller: _emailController,
                               keyboardType: TextInputType.text,
@@ -138,7 +179,7 @@ class _SignInPageState extends State<SignInPage> {
                                     borderSide: BorderSide(
                                         color: Color(0xFFFF6116), width: 2),
                                   ),
-                                  //   errorText: _emailInvalid ? _emailErr : null,
+
                                   contentPadding: EdgeInsets.all(13),
                                   labelText: 'Email',
                                   labelStyle: TextStyle(
@@ -147,11 +188,17 @@ class _SignInPageState extends State<SignInPage> {
                                       fontWeight: FontWeight.w300),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(4))),
-                              autovalidateMode: AutovalidateMode.onUserInteraction,
-                              validator: (email) =>
-                              email != null && !EmailValidator.validate(email)
-                                  ? 'Không được bỏ trống'
-                                  : null,
+
+                               validator: (value) {
+                                //a.aaba@aa1a_a.com
+                                if (value!.isEmpty ||
+                                    !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                                        .hasMatch(value)) {
+                                  return 'Không đúng định dạng';
+                                } else {
+                                  return null;
+                                }
+                              },
                             ),
                           ),
                           SizedBox(
@@ -160,10 +207,11 @@ class _SignInPageState extends State<SignInPage> {
                           Padding(
                             padding: EdgeInsets.only(left: 20, right: 20),
                             child: TextFormField(
-                              autovalidateMode: AutovalidateMode.onUserInteraction,
-                              validator: (value) => value != null && value.length < 6
-                                  ? 'Không được bỏ trống'
-                                  : null,
+
+                              validator: (value) =>
+                                  value != null && value.length < 6
+                                      ? 'Mật khẩu phải trên 6 kí tự'
+                                      : null,
                               cursorColor: Color(0xFFFF6116),
                               controller: _passwordController,
                               keyboardType: TextInputType.multiline,
@@ -297,7 +345,12 @@ class _SignInPageState extends State<SignInPage> {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: widget.showRegisterPage,
+                            onTap: () =>  Navigator.of(context).push(
+                              CustomPageRoute(
+                                  child: SignUpPage(showLoginPage: () {  },
+                                  ),
+                                  direction: AxisDirection.left),
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -399,7 +452,6 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                       );
                 }
-
               },
             );
           }

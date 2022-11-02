@@ -1,21 +1,25 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_exports.dart';
 import 'package:hatonet_hcn/app/model/info.dart';
 import 'package:hatonet_hcn/app/services/firebase_auth_methods.dart';
 import 'package:hatonet_hcn/app/view/home/bottom/bottom_bar.dart';
 import 'package:hatonet_hcn/app/view/sign_in/sign_in_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DetailsPage extends StatefulWidget {
+  Function onClick;
   Info info;
 
-  DetailsPage({Key? key, required this.info}) : super(key: key);
+  DetailsPage({Key? key, required this.info, required this.onClick}) : super(key: key);
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -23,8 +27,6 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   final user = FirebaseAuth.instance.currentUser!;
-
-
 
   List<String> docIDs = [];
 
@@ -47,6 +49,15 @@ class _DetailsPageState extends State<DetailsPage> {
             },
           ),
         );
+  }
+  Future<void> signOut() async {
+      await FirebaseAuth.instance.signOut();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context){
+      return SignInPage(showRegisterPage: (){});
+    }), (route) => false);
+    prefs.clear();
+    Get.offAll(SignInPage(showRegisterPage: (){}));
   }
 
   bool isEmailVerified = false;
@@ -72,7 +83,11 @@ class _DetailsPageState extends State<DetailsPage> {
                           padding: EdgeInsets.only(left: 10, top: 5),
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.pop(context);
+                              Navigator.of(context).push(
+                                CustomPageRoute(
+                                    child: BottomBarPage(),
+                                    direction: AxisDirection.right),
+                              );
                             },
                             child: SvgPicture.asset(
                               'assets/icons/ic_angle_left.svg',
@@ -517,7 +532,6 @@ class _DetailsPageState extends State<DetailsPage> {
                 SizedBox(
                   height: 15,
                 ),
-
                 Padding(
                   padding: EdgeInsets.only(left: 15),
                   child: Align(
@@ -611,7 +625,6 @@ class _DetailsPageState extends State<DetailsPage> {
                     ],
                   ),
                 ),
-
                 SizedBox(
                   height: 30,
                 ),
@@ -645,9 +658,9 @@ class _DetailsPageState extends State<DetailsPage> {
                               ),
                               CupertinoDialogAction(
                                 isDestructiveAction: true,
-                                onPressed: () {
-                                  FirebaseAuth.instance.signOut();
-                                 Navigator.pop(context);
+                                onPressed: ()async{
+                                  Navigator.pop(context);
+                                await signOut();
 
                                 },
                                 child: const Text('đồng ý',style: TextStyle(fontWeight: FontWeight.normal)),

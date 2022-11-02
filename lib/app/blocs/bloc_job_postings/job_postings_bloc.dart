@@ -9,6 +9,7 @@ class JobPostingsBloc extends HydratedBloc<JobPostingsEvent, JobPostingsState> {
     on<UpdateJobPostings>(_onUpdateJobPostings);
     on<DeleteJobPostings>(_onDeleteJobPostings);
     on<RemoveJobPostings>(_onRemoveJobPostings);
+   // on<EditJobPostings>(_onEditJobPostings);
   }
 
   void _onAddJobPostings(AddJobPostings event, Emitter<JobPostingsState> emit) {
@@ -49,6 +50,24 @@ class JobPostingsBloc extends HydratedBloc<JobPostingsEvent, JobPostingsState> {
         ..add(event.jobPostings.copyWith(isDeleted: true)),
     ));
   }
+
+  // void _onEditJobPostings(EditJobPostings event, Emitter<JobPostingsState> emit) {
+  //   final state = this.state;
+  //   List<JobPostings> allJobPostings = state.allJobPostings;
+  //   if (event.oldTask.isFavorite == true) {
+  //     favouriteTasks
+  //       ..remove(event.oldTask)
+  //       ..insert(0, event.newTask);
+  //   }
+  //   emit(TasksState(
+  //     pendingTasks: List.from(state.pendingTasks)
+  //       ..remove(event.oldTask)
+  //       ..insert(0, event.newTask),
+  //     completedTasks: state.completedTasks..remove(event.oldTask),
+  //     favoriteTasks: favouriteTasks,
+  //     removedTasks: state.removedTasks,
+  //   ));
+  // }
 
   @override
   JobPostingsState? fromJson(Map<String, dynamic> json) {

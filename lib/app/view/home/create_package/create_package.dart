@@ -14,6 +14,8 @@ import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 import 'package:intl/intl.dart';
 
 class CreatePackage extends StatefulWidget {
+
+
   const CreatePackage({Key? key}) : super(key: key);
 
   @override
@@ -643,7 +645,9 @@ class _CreatePackageState extends State<CreatePackage> {
                                 promotional: promotionalController.text,
                                 describe: describeController.text,
                                 usedtime: dateinputusedtime.text,
-                                id: GUIDGen.generate(), isFavorite: false, isEdit: false,
+                                id: GUIDGen.generate(),
+                                isFavorite: false,
+                                isEdit: false,
                               );
                               context.read<ServicesBloc>().add(
                                     AddService(services: services),

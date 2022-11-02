@@ -64,16 +64,18 @@ class MarkFavoriteOrUnfavoriteTask extends ServicesEvent {
   });
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [services];
 }
 
 class EditServices extends ServicesEvent {
-  final Services oldServices;
-  final Services newServices;
+   Services oldServices;
+   Services newServices;
+   int index;
 
-  const EditServices({
-    required this.oldServices,
-    required this.newServices,
+   EditServices({
+     required this.oldServices,
+     required this.newServices,
+     required this.index,
   });
 
   @override

@@ -1,4 +1,5 @@
 class JobPostings {
+  final String id;
   final String title;
   final String workingForm;
   final String amount;
@@ -13,8 +14,10 @@ class JobPostings {
   final String area;
   bool? isDone;
   bool? isDeleted;
+  bool isFavorite = false;
 
   JobPostings({
+    required this.id,
     required this.title,
     required this.workingForm,
     required this.amount,
@@ -29,12 +32,15 @@ class JobPostings {
     required this.area,
     this.isDone,
     this.isDeleted,
+    required this.isFavorite,
   }) {
     isDone = isDone ?? false;
     isDeleted = isDeleted ?? false;
+    isFavorite = false;
   }
 
   JobPostings copyWith({
+    String? id,
     String? title,
     String? workingForm,
     String? amount,
@@ -49,8 +55,10 @@ class JobPostings {
     String? area,
     bool? isDone,
     bool? isDeleted,
+    bool? isFavorite,
   }) {
     return JobPostings(
+      id: id ?? this.id,
       title: title ?? this.title,
       workingForm: workingForm ?? this.workingForm,
       amount: amount ?? this.amount,
@@ -65,11 +73,13 @@ class JobPostings {
       area: area ?? this.area,
       isDone: isDone ?? this.isDone,
       isDeleted: isDeleted ?? this.isDeleted,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'title': title,
       'workingForm': workingForm,
       'amount': amount,
@@ -84,11 +94,13 @@ class JobPostings {
       'area': area,
       'isDone': isDone,
       'isDeleted': isDeleted,
+      'isFavorite': isFavorite,
     };
   }
 
   factory JobPostings.fromMap(Map<String, dynamic> map) {
     return JobPostings(
+      id: map['id'] ?? '',
       title: map['title'] ?? '',
       workingForm: map['workingForm'] ?? '',
       amount: map['amount'] ?? '',
@@ -103,11 +115,13 @@ class JobPostings {
       area: map['area'] ?? '',
       isDone: map['isDone'] ?? '',
       isDeleted: map['isDeleted'] ?? '',
+      isFavorite: map['isFavorite'] ?? '',
     );
   }
 
   @override
   List<Object?> get props => [
+    id,
         title,
         workingForm,
         amount,
@@ -122,5 +136,6 @@ class JobPostings {
         area,
         isDone,
         isDeleted,
+        isFavorite,
       ];
 }

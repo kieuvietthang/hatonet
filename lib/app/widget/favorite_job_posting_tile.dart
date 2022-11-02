@@ -7,26 +7,26 @@ import 'package:hatonet_hcn/app/blocs/bloc_job_postings/job_postings_event.dart'
 import 'package:hatonet_hcn/app/blocs/job_postings_exports.dart';
 import 'package:hatonet_hcn/app/model/job_postings.dart';
 
-class JobPostingsTile extends StatefulWidget {
+class FavoriteJobPostingTile extends StatefulWidget {
   final JobPostings jobPostings;
 
-  const JobPostingsTile({Key? key, required this.jobPostings})
+  const FavoriteJobPostingTile({Key? key, required this.jobPostings})
       : super(key: key);
 
   @override
-  State<JobPostingsTile> createState() => _JobPostingsTileState();
+  State<FavoriteJobPostingTile> createState() => _FavoriteJobPostingTileState();
 }
 
-class _JobPostingsTileState extends State<JobPostingsTile> {
+class _FavoriteJobPostingTileState extends State<FavoriteJobPostingTile> {
 
   void _removeOrDeleteJobPostings(BuildContext ctx, JobPostings jobPostings) {
     jobPostings.isDeleted!
         ? ctx
-            .read<JobPostingsBloc>()
-            .add(DeleteJobPostings(jobPostings: jobPostings))
+        .read<JobPostingsBloc>()
+        .add(DeleteJobPostings(jobPostings: jobPostings))
         : ctx
-            .read<JobPostingsBloc>()
-            .add(RemoveJobPostings(jobPostings: jobPostings));
+        .read<JobPostingsBloc>()
+        .add(RemoveJobPostings(jobPostings: jobPostings));
   }
 
   @override
@@ -90,29 +90,29 @@ class _JobPostingsTileState extends State<JobPostingsTile> {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => _removeOrDeleteJobPostings(context, widget.jobPostings),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: SvgPicture.asset(
-                            'assets/icons/ic_xmark.svg',
-                            height: 20,
-                            width: 20,
-                            color: Colors.black.withOpacity(0.5)
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () => _removeOrDeleteJobPostings(context, widget.jobPostings),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: SvgPicture.asset(
+                                'assets/icons/ic_xmark.svg',
+                                height: 20,
+                                width: 20,
+                                color: Colors.black.withOpacity(0.5)
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        child: Text(''),
-                      )
-                    ],
-                  )
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Container(
+                          child: Text(''),
+                        )
+                      ],
+                    )
                 ),
               ],
             ),
@@ -263,29 +263,26 @@ class _JobPostingsTileState extends State<JobPostingsTile> {
               children: [
                 Expanded(
                   flex: 1,
-                  child: Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/icons/ic_time.svg',
-                          height: 18,
-                          width: 18,
-                          color: Colors.black.withOpacity(0.5),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/ic_time.svg',
+                        height: 18,
+                        width: 18,
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        widget.jobPostings.applicationDeadline,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFFFF5400),
                         ),
-                        SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          widget.jobPostings.applicationDeadline,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xFFFF5400),
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
                 Expanded(

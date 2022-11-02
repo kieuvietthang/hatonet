@@ -17,17 +17,9 @@ class _DashBoardPageState extends State<DashBoardPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Material(
-        color: Colors.white,
+        color: Colors.white, 
         child: Column(
           children: [
-            SizedBox(
-              height: 10,
-            ),
-            SvgPicture.asset(
-              'assets/images/logo hatonet-05 (1).svg',
-              height: 55,
-              width: 250,
-            ),
             SizedBox(
               height: 25,
             ),

@@ -104,7 +104,6 @@ class _JobPostingsPageState extends State<JobPostingsPage> {
                 ),
               ),
               JobPostingsList(jobPostingsList: jobPostingsList),
-
             ],
           ),
         ),

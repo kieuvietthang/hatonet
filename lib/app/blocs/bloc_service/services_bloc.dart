@@ -73,13 +73,13 @@ class ServicesBloc extends HydratedBloc<ServicesEvent, ServicesState> {
     final state = this.state;
     List<Services> allServices = state.allServices;
     if (event.oldServices.isEdit == true) {
-      allServices
-        ..remove(event.oldServices)
-        ..insert(0, event.newServices);
+      event.oldServices = event.newServices;
+      allServices[event.index] = event.newServices;
     }
     emit(ServicesState(
-      allServices: List.from(state.allServices)
-        ..insert(0, event.newServices),
+      allServices: allServices,
+      favoriteServices: state.allServices..remove(event.oldServices),
+      removedServices: state.removedServices,
     ));
   }
 

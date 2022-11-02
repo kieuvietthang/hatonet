@@ -26,7 +26,11 @@ class MainPage extends StatelessWidget {
               child: Text('Something went wrong'),
             );
           } else if (snapshot.hasData) {
-            return BottomBarPage();
+            if(snapshot.data != null){
+              return BottomBarPage();
+            } else {
+              return AuthPage();
+            }
           }else{
             return AuthPage();
           }
