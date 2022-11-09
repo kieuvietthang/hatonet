@@ -12,6 +12,9 @@ class JobPostings {
   final String academicLevel;
   final String skill;
   final String area;
+  final String jobDescription;
+  final String skillRequirements;
+  final String culturalEnvironment;
   bool? isDone;
   bool? isDeleted;
   bool isFavorite = false;
@@ -30,6 +33,9 @@ class JobPostings {
     required this.academicLevel,
     required this.skill,
     required this.area,
+    required this.jobDescription,
+    required this.skillRequirements,
+    required this.culturalEnvironment,
     this.isDone,
     this.isDeleted,
     required this.isFavorite,
@@ -53,6 +59,9 @@ class JobPostings {
     String? academicLevel,
     String? skill,
     String? area,
+    String? jobDescription,
+    String? skillRequirements,
+    String? culturalEnvironment,
     bool? isDone,
     bool? isDeleted,
     bool? isFavorite,
@@ -71,6 +80,9 @@ class JobPostings {
       academicLevel: academicLevel ?? this.academicLevel,
       skill: skill ?? this.skill,
       area: area ?? this.area,
+      jobDescription: jobDescription ?? this.jobDescription,
+      skillRequirements: skillRequirements ?? this.skillRequirements,
+      culturalEnvironment: culturalEnvironment ?? this.culturalEnvironment,
       isDone: isDone ?? this.isDone,
       isDeleted: isDeleted ?? this.isDeleted,
       isFavorite: isFavorite ?? this.isFavorite,
@@ -92,6 +104,9 @@ class JobPostings {
       'academicLevel': academicLevel,
       'skill': skill,
       'area': area,
+      'jobDescription': jobDescription,
+      'skillRequirements': skillRequirements,
+      'culturalEnvironment': culturalEnvironment,
       'isDone': isDone,
       'isDeleted': isDeleted,
       'isFavorite': isFavorite,
@@ -113,6 +128,9 @@ class JobPostings {
       academicLevel: map['academicLevel'] ?? '',
       skill: map['skill'] ?? '',
       area: map['area'] ?? '',
+      jobDescription: map['jobDescription'] ?? '',
+      skillRequirements: map['skillRequirements'] ?? '',
+      culturalEnvironment: map['culturalEnvironment'] ?? '',
       isDone: map['isDone'] ?? '',
       isDeleted: map['isDeleted'] ?? '',
       isFavorite: map['isFavorite'] ?? '',
@@ -134,6 +152,9 @@ class JobPostings {
         academicLevel,
         skill,
         area,
+    jobDescription,
+    skillRequirements,
+    culturalEnvironment,
         isDone,
         isDeleted,
         isFavorite,

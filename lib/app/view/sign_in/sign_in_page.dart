@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hatonet_hcn/app/model/errors.dart';
 import 'package:hatonet_hcn/app/provider/google_sign_in_provider.dart';
 import 'package:hatonet_hcn/app/provider/internet_provider.dart';
 import 'package:hatonet_hcn/app/utils/next_screen.dart';

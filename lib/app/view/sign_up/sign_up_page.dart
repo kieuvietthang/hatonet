@@ -202,7 +202,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     validator: (value) {
                       if (value!.isEmpty ||
                           !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                              .hasMatch(value!)) {
+                              .hasMatch(value)) {
                         return 'Enter correct phone number';
                       } else {
                         return null;

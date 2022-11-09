@@ -31,7 +31,7 @@ dependencies:
     sdk: flutter
 
   snippet_coder_utils: ^1.0.12
-
+  fa_stepper: ^0.0.2
   email_validator: ^2.0.1
 
 
@@ -109,7 +109,6 @@ dependencies:
 
   #For File Picker:
   file_picker: ^4.4.0
-
 
   #launch browser
   url_launcher: ^6.0.18
@@ -224,6 +223,7 @@ flutter:
     - assets/images/logo hatonet-02 (1).svg
     - assets/images/logo hatonet-03 (1).png
     - assets/images/logo_hatonet_small.png
+    - assets/images/imge_hatonet_home.PNG
     - assets/translations/
     - assets/animations/
     - assets/animations/onboarding/

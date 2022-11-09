@@ -17,6 +17,7 @@ import 'package:hatonet_hcn/app/view/home/favorite_job_postings_page/favorite_jo
 import 'package:hatonet_hcn/app/view/home/favorite_page/favorite_page.dart';
 import 'package:hatonet_hcn/app/view/home/job_postings_page/job_postings_page.dart';
 import 'package:hatonet_hcn/app/view/home/service_pack/service_pack_page.dart';
+import 'package:hatonet_hcn/app/view/home/step_page/step_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 
 class NavigationDrawerWidget extends StatefulWidget {
@@ -229,7 +230,10 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                                               workingForm: '',
                                               applicationDeadline: '',
                                               unitPrice: '',
-                                              experience: ''),
+                                              experience: '',
+                                              skillRequirements: '',
+                                              culturalEnvironment: '',
+                                              jobDescription: ''),
                                         ),
                                         direction: AxisDirection.left),
                                   );

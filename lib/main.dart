@@ -25,7 +25,6 @@ main() async {
   try {} catch (e) {
     print('Init failed' + e.toString());
   }
-  //await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
   HydratedBlocOverrides.runZoned(
     () => runApp(
       MyApp(),

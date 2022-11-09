@@ -290,15 +290,19 @@ class _JobPostingsTileState extends State<JobPostingsTile> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Text(
-                    'Thời hạn thanh toán: ${widget.jobPostings.paymentTerm}',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black.withOpacity(0.5),
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 12),
+                    child: Text(
+                      'Thời hạn: ${widget.jobPostings.paymentTerm}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black.withOpacity(0.5),
+                      ),
                     ),
                   ),
                 ),
+
               ],
             ),
             Align(
@@ -330,7 +334,6 @@ class _JobPostingsTileState extends State<JobPostingsTile> {
                 ),
               ),
             ),
-
           ],
         ),
       ),
