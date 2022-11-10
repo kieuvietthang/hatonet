@@ -203,7 +203,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       if (value!.isEmpty ||
                           !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
                               .hasMatch(value)) {
-                        return 'Enter correct phone number';
+                        return 'Không đúng định dạng';
                       } else {
                         return null;
                       }

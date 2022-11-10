@@ -424,50 +424,6 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               SizedBox(
                 height: 20,
               ),
-              // Gói dịch vụ
-              Container(
-                padding: EdgeInsets.only(left: 5),
-                height: 40,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    textStyle: TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      CustomPageRoute(
-                          child: ServicePackPage(),
-                          direction: AxisDirection.down),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Expanded(
-                          flex: 1,
-                          child: SvgPicture.asset(
-                            'assets/icons/ic_package.svg',
-                            width: 18,
-                            height: 18,
-                            color: Colors.white.withOpacity(0.3),
-                          )),
-                      Expanded(
-                        flex: 5,
-                        child: Text(
-                          'Gói dịch vụ',
-                          style: TextStyle(
-                              color: _hasBeenTextServicePack
-                                  ? Colors.white.withOpacity(0.3)
-                                  : Colors.white.withOpacity(0.3),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
 
               //Tài khoản
               Container(
