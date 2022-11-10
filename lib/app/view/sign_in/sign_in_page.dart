@@ -16,35 +16,27 @@ import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 import 'package:provider/provider.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
-
-
-
 class SignInPage extends StatefulWidget {
-
-
   final VoidCallback showRegisterPage;
 
-   SignInPage({Key? key, required this.showRegisterPage,})
-      : super(key: key);
+  SignInPage({
+    Key? key,
+    required this.showRegisterPage,
+  }) : super(key: key);
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
-
 class _SignInPageState extends State<SignInPage> {
-
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String errorMessage = 'Tài khoản mật khẩu không chính xác';
-  final _emailController =
-      TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-
   Future signIn() async {
-   // final isValid = formKey.currentState!.validate();
+    // final isValid = formKey.currentState!.validate();
     if (formKey.currentState!.validate()) {
-
       showDialog(
           context: context,
           builder: (context) {
@@ -52,13 +44,12 @@ class _SignInPageState extends State<SignInPage> {
               child: CircularProgressIndicator(
                 color: Color(0xFFFF6116),
               ),
-
             );
           });
 
       try {
         UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
           password: _passwordController.text.trim(),
         );
@@ -87,8 +78,6 @@ class _SignInPageState extends State<SignInPage> {
     //       email: _emailController.text.trim(),
     //     password: _passwordController.text.trim());
   }
-
-
 
   @override
   void dispose() {
@@ -172,21 +161,22 @@ class _SignInPageState extends State<SignInPage> {
                               keyboardType: TextInputType.text,
                               maxLines: 1,
                               decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Color(0xFFFF6116), width: 2),
-                                  ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color(0xFFFF6116), width: 2),
+                                ),
+                                contentPadding: EdgeInsets.all(13),
+                                labelText: 'Email',
+                                labelStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Color(0xFFFF6116),
+                                    fontWeight: FontWeight.w300),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
 
-                                  contentPadding: EdgeInsets.all(13),
-                                  labelText: 'Email',
-                                  labelStyle: TextStyle(
-                                      fontSize: 14,
-                                      color: Color(0xFFFF6116),
-                                      fontWeight: FontWeight.w300),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(4))),
-
-                               validator: (value) {
+                              validator: (value) {
                                 //a.aaba@aa1a_a.com
                                 if (value!.isEmpty ||
                                     !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
@@ -204,7 +194,6 @@ class _SignInPageState extends State<SignInPage> {
                           Padding(
                             padding: EdgeInsets.only(left: 20, right: 20),
                             child: TextFormField(
-
                               validator: (value) =>
                                   value != null && value.length < 6
                                       ? 'Mật khẩu phải trên 6 kí tự'
@@ -342,9 +331,10 @@ class _SignInPageState extends State<SignInPage> {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: () =>  Navigator.of(context).push(
+                            onTap: () => Navigator.of(context).push(
                               CustomPageRoute(
-                                  child: SignUpPage(showLoginPage: () {  },
+                                  child: SignUpPage(
+                                    showLoginPage: () {},
                                   ),
                                   direction: AxisDirection.left),
                             ),

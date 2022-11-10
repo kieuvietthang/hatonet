@@ -162,14 +162,16 @@ class _JobInformationPageState extends State<JobInformationPage>
                       background: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/images/imge_hatonet_home.PNG'),
+                            image: AssetImage(
+                                'assets/images/imge_hatonet_home.PNG'),
                             fit: BoxFit.cover,
-                            colorFilter:
-                                ColorFilter.mode(Colors.white, BlendMode.darken),
+                            colorFilter: ColorFilter.mode(
+                                Colors.white, BlendMode.darken),
                           ),
                         ),
                         child: new BackdropFilter(
-                          filter: new ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
+                          filter:
+                              new ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
                           child: new Container(
                             decoration: new BoxDecoration(
                                 color: Colors.white.withOpacity(0.0)),
@@ -185,7 +187,7 @@ class _JobInformationPageState extends State<JobInformationPage>
                           child: GestureDetector(
                             onTap: () {},
                             child: SvgPicture.asset(
-                              'assets/icons/ic_pen.svg',
+                              'assets/icons/ic_download-solid.svg',
                               height: 24,
                               width: 24,
                             ),
@@ -226,7 +228,8 @@ class _JobInformationPageState extends State<JobInformationPage>
                             child: Text(
                               "Công ty",
                               style: TextStyle(
-                                  color: Colors.black, fontWeight: FontWeight.w400),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w400),
                             ),
                           ),
                         ],
@@ -244,15 +247,16 @@ class _JobInformationPageState extends State<JobInformationPage>
                           children: [
                             SingleChildScrollView(
                               physics: BouncingScrollPhysics(),
-                              child: BlocBuilder<JobPostingsBloc, JobPostingsState>(
-                                  builder: (context, state) {
+                              child: BlocBuilder<JobPostingsBloc,
+                                  JobPostingsState>(builder: (context, state) {
                                 List<JobPostings> jobPostingsList =
                                     state.allJobPostings;
                                 return Padding(
                                   padding: EdgeInsets.only(left: 10, right: 10),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Tuyển dụng',
@@ -269,50 +273,63 @@ class _JobInformationPageState extends State<JobInformationPage>
                                         children: [
                                           Expanded(
                                             flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              child: Text(
+                                                'Thưởng giới thiệu',
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10.0),
+                                              child: Text(
+                                                'Thời hạn thanh toán',
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Thưởng giới thiệu',
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      '12.000.000đ',
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Color(0xffFF4C4C),
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  '12.000.000đ',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Color(0xffFF4C4C),
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -324,47 +341,22 @@ class _JobInformationPageState extends State<JobInformationPage>
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Thời hạn thanh toán',
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.paymentTerm,
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget
+                                                      .jobPostings.paymentTerm,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -396,50 +388,79 @@ class _JobInformationPageState extends State<JobInformationPage>
                                         children: [
                                           Expanded(
                                             flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              child: Text(
+                                                'Kinh nghiệm',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              child: Text(
+                                                'Học vấn',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10.0),
+                                              child: Text(
+                                                'Vị trí',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Kinh nghiệm',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.experience,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget.jobPostings.experience,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -451,47 +472,22 @@ class _JobInformationPageState extends State<JobInformationPage>
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Học vấn',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.academicLevel,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget.jobPostings
+                                                      .academicLevel,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -503,47 +499,22 @@ class _JobInformationPageState extends State<JobInformationPage>
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Vị trí',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.workingForm,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget
+                                                      .jobPostings.workingForm,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -556,50 +527,79 @@ class _JobInformationPageState extends State<JobInformationPage>
                                         children: [
                                           Expanded(
                                             flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              child: Text(
+                                                'Loại công việc',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              child: Text(
+                                                'Hình thức',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10.0),
+                                              child: Text(
+                                                'Đơn giá',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Loại công việc',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      'Mobile Apps',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  'Mobile Apps',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -611,47 +611,22 @@ class _JobInformationPageState extends State<JobInformationPage>
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Hình thức',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.workingForm,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget
+                                                      .jobPostings.workingForm,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -663,47 +638,21 @@ class _JobInformationPageState extends State<JobInformationPage>
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Đơn giá',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.unitPrice,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget.jobPostings.unitPrice,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -716,50 +665,79 @@ class _JobInformationPageState extends State<JobInformationPage>
                                         children: [
                                           Expanded(
                                             flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              child: Text(
+                                                'Số lượng',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10),
+                                              child: Text(
+                                                'Hạn ứng tuyển',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(left: 10.0),
+                                              child: Text(
+                                                'Thời hạn hợp đồng',
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black
+                                                        .withOpacity(0.5),
+                                                    fontWeight:
+                                                        FontWeight.normal),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 1,
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Số lượng',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.amount,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget.jobPostings.amount,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -771,47 +749,22 @@ class _JobInformationPageState extends State<JobInformationPage>
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Hạn ứng tuyển',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.applicationDeadline,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget.jobPostings
+                                                      .applicationDeadline,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -823,47 +776,22 @@ class _JobInformationPageState extends State<JobInformationPage>
                                             child: Container(
                                               height: 60,
                                               decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: Colors.black12),
+                                                border: Border.all(
+                                                    color: Colors.black12),
                                                 color: Colors.white,
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 10, top: 10),
-                                                    child: Text(
-                                                      'Thời hạn hợp đồng',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black
-                                                              .withOpacity(0.5),
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsets.only(left: 10),
-                                                    child: Text(
-                                                      widget.jobPostings.contractTerm,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.normal),
-                                                    ),
-                                                  ),
-                                                ],
+                                              child: Center(
+                                                child: Text(
+                                                  widget
+                                                      .jobPostings.contractTerm,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.normal),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -962,15 +890,17 @@ class _JobInformationPageState extends State<JobInformationPage>
                             ),
                             SingleChildScrollView(
                               physics: BouncingScrollPhysics(),
-                              child: BlocBuilder<JobPostingsBloc, JobPostingsState>(
-                                  builder: (context, state) {
+                              child: BlocBuilder<JobPostingsBloc,
+                                  JobPostingsState>(builder: (context, state) {
                                 List<JobPostings> jobPostingsList =
                                     state.allJobPostings;
                                 return Padding(
                                   padding: EdgeInsets.only(left: 10, right: 10),
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Tìm việc làm IT- Đăng tin tuyển dụng miễn phí_trang tìm việc làm hiệu quả và uy tín, cập nhật hàng nghìn việc làm mới mỗi ngày',
@@ -1103,7 +1033,8 @@ class _JobInformationPageState extends State<JobInformationPage>
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors.black,
-                                                  fontWeight: FontWeight.normal),
+                                                  fontWeight:
+                                                      FontWeight.normal),
                                             ),
                                           ),
                                         ],
@@ -1150,21 +1081,45 @@ class _JobInformationPageState extends State<JobInformationPage>
                       padding: EdgeInsets.only(left: 10, right: 10, bottom: 20),
                       child: GestureDetector(
                         onTap: () async {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Color(0xFFFF6116),
-                              borderRadius: BorderRadius.circular(4)),
-                          height: 45,
-                          width: double.infinity,
-                          child: Center(
-                            child: Text(
-                              'Cập nhật',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Color(0xFFFF6116),
+                                    borderRadius: BorderRadius.circular(4)),
+                                height: 45,
+                                width: double.infinity,
+                                child: Center(
+                                  child: Text(
+                                    'Cập nhật',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black12),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(4)),
+                                height: 45,
+                                width: double.infinity,
+                                child: Center(
+                                  child: SvgPicture.asset('assets/icons/ic_heart-regular.svg',width: 24,height: 24,)
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),

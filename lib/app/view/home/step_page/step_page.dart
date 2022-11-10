@@ -211,37 +211,34 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                            top: 10),
-                        child: Container(
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(4),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null ||
+                                value.isEmpty) {
+                              return 'Không được bỏ trống';
+                            } else
+                              null;
+                          },
+                          controller: titleController,
+                          keyboardType: TextInputType.text,
+                          maxLines: 1,
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
                             ),
-                          ),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value == null ||
-                                  value.isEmpty) {
-                                return 'Không được bỏ trống';
-                              } else
-                                null;
-                            },
-                            controller: titleController,
-                            keyboardType: TextInputType.text,
-                            maxLines: 1,
-                            decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                contentPadding: EdgeInsets.all(
-                                    13),
-                                hintText: 'Tiêu đề',
-                                hintStyle: TextStyle(
-                                    fontSize: 12),
-                                labelStyle: TextStyle(
-                                    fontSize: 12),
-                                border: InputBorder.none),
-                          ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                              fillColor: Colors.white,
+                              contentPadding: EdgeInsets.all(
+                                  13),
+                              labelText: 'Tiêu đề',
+                              hintStyle: TextStyle(
+                                  fontSize: 12),
+                              labelStyle: TextStyle(
+                                  fontSize: 12),
+                              ),
                         ),
                       ),
                     ),
@@ -254,46 +251,41 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                              top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration:  BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius:  BorderRadius.all(
-                               Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField<String>(
+                          value: _workFormatValue,
+                          items: _workFormatList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 14),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _workFormatValue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child: DropdownButtonFormField<String>(
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
+                            ),
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'Hình thức làm việc',
 
-                            value: _workFormatValue,
-                            items: _workFormatList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 14),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _workFormatValue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
-                            ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'Hình thức làm việc',
-                              enabledBorder: InputBorder.none,
-                              // floatingLabelBehavior: FloatingLabelBehavior.auto,
-                            ),
+                            // floatingLabelBehavior: FloatingLabelBehavior.auto,
                           ),
                         ),
                       ),
@@ -308,33 +300,29 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                             top: 10),
-                        child: Container(
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(4),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null ||
+                                value.isEmpty) {
+                              return 'Không được bỏ trống';
+                            } else
+                              null;
+                          },
+                          controller: amountController,
+                          keyboardType: TextInputType.number,
+                          maxLines: 1,
+                          decoration: InputDecoration(
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
                             ),
-                          ),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value == null ||
-                                  value.isEmpty) {
-                                return 'Không được bỏ trống';
-                              } else
-                                null;
-                            },
-                            controller: amountController,
-                            keyboardType: TextInputType.number,
-                            maxLines: 1,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(13),
-                              hintText: 'Số lượng',
-                              hintStyle: TextStyle(fontSize: 12),
-                              labelStyle: TextStyle(fontSize: 12),
-                              border: InputBorder.none,
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(13),
+                            labelText: 'Số lượng',
+                            hintStyle: TextStyle(fontSize: 12),
+                            labelStyle: TextStyle(fontSize: 12),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
                             ),
                           ),
                         ),
@@ -349,65 +337,61 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                            top: 10),
-                        child: Container(
-                          height: 50.0,
-                          decoration:  BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius:  BorderRadius.all(
-                               Radius.circular(4),
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value == null ||
+                                value.isEmpty) {
+                              return 'Không được bỏ trống';
+                            } else
+                              null;
+                          },
+
+                          controller: applicationDeadlineController,
+                          keyboardType: TextInputType.text,
+                          maxLines: 1,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
                             ),
-                          ),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value == null ||
-                                  value.isEmpty) {
-                                return 'Không được bỏ trống';
-                              } else
-                                null;
-                            },
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.only(left: 15, top: 15),
+                            labelText: 'Hạn ứng tuyển',
+                            hintStyle: TextStyle(fontSize: 12),
+                            labelStyle: TextStyle(fontSize: 12),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.calendar_month),
+                              onPressed: () async {
+                                DateTime? pickedDate =
+                                await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    //DateTime.now() - not to allow to choose before today.
+                                    lastDate: DateTime(2101));
 
-                            controller: applicationDeadlineController,
-                            keyboardType: TextInputType.text,
-                            maxLines: 2,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.only(left: 15, top: 15),
-                              hintText: 'Hạn ứng tuyển',
-                              hintStyle: TextStyle(fontSize: 12),
-                              labelStyle: TextStyle(fontSize: 12),
-                              border: InputBorder.none,
-                              suffixIcon: IconButton(
-                                icon: Icon(Icons.calendar_month),
-                                onPressed: () async {
-                                  DateTime? pickedDate =
-                                  await showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(2000),
-                                      //DateTime.now() - not to allow to choose before today.
-                                      lastDate: DateTime(2101));
+                                if (pickedDate != null) {
+                                  print(
+                                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                                  String formattedDate =
+                                  DateFormat('yyyy-MM-dd')
+                                      .format(pickedDate);
+                                  print(
+                                      formattedDate); //formatted date output using intl package =>  2021-03-16
+                                  //you can implement different kind of Date Format here according to your requirement
 
-                                  if (pickedDate != null) {
-                                    print(
-                                        pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                                    String formattedDate =
-                                    DateFormat('yyyy-MM-dd')
-                                        .format(pickedDate);
-                                    print(
-                                        formattedDate); //formatted date output using intl package =>  2021-03-16
-                                    //you can implement different kind of Date Format here according to your requirement
-
-                                    setState(() {
-                                      applicationDeadlineController
-                                          .text =
-                                          formattedDate; //set output date to TextField value.
-                                    });
-                                  } else {
-                                    print("Date is not selected");
-                                  }
-                                },
-                              ),
+                                  setState(() {
+                                    applicationDeadlineController
+                                        .text =
+                                        formattedDate; //set output date to TextField value.
+                                  });
+                                } else {
+                                  print("Date is not selected");
+                                }
+                              },
                             ),
                           ),
                         ),
@@ -424,45 +408,40 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                             top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField(
+                          value: _paymentTermValue,
+                          items: _paymentTermList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 12),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _paymentTermValue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child: DropdownButtonFormField(
-                            value: _paymentTermValue,
-                            items: _paymentTermList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 12),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _paymentTermValue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'Thời hạn thanh toán',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
                             ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'Thời hạn thanh toán',
-                              enabledBorder: InputBorder.none,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
 
-                            ),
                           ),
                         ),
                       ),
@@ -476,45 +455,40 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                             top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration:  BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius:  BorderRadius.all(
-                               Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField(
+                          value: _contractTermValue,
+                          items: _contractTermList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 12),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _contractTermValue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child: DropdownButtonFormField(
-                            value: _contractTermValue,
-                            items: _contractTermList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 12),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _contractTermValue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'Thời hạn hợp đồng',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
                             ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'Thời hạn hợp đồng',
-                              enabledBorder: InputBorder.none,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
+                            ),
 
-                            ),
                           ),
                         ),
                       ),
@@ -530,45 +504,40 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                            top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField(
+                          value: _experienceValue,
+                          items: _experienceList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 12),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _experienceValue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child: DropdownButtonFormField(
-                            value: _experienceValue,
-                            items: _experienceList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 12),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _experienceValue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'kinh nghiệm',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
                             ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'kinh nghiệm',
-                              enabledBorder: InputBorder.none,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
 
-                            ),
                           ),
                         ),
                       ),
@@ -582,46 +551,40 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                              top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration:  BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius:  BorderRadius.all(
-                               Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField(
+                          value: _unitPricevalue,
+                          items: _unitPriceList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 12),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _unitPricevalue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child: DropdownButtonFormField(
-                            value: _unitPricevalue,
-                            items: _unitPriceList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 12),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _unitPricevalue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'Đơn giá',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
                             ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'Đơn giá',
-
-                              enabledBorder: InputBorder.none,
-
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
                             ),
+
                           ),
                         ),
                       ),
@@ -636,45 +599,40 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                           top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField(
+                          value: _rankValue,
+                          items: _rankList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 12),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _rankValue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child:DropdownButtonFormField(
-                            value: _rankValue,
-                            items: _rankList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 12),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _rankValue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'Cấp bậc',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
                             ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'Cấp bậc',
-                              enabledBorder: InputBorder.none,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
 
-                            ),
                           ),
                         ),
                       ),
@@ -688,45 +646,40 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                            top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration:  BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius:  BorderRadius.all(
-                               Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField(
+                          value: _academicLevelValue,
+                          items: _academicLevelList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 12),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _academicLevelValue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child: DropdownButtonFormField(
-                            value: _academicLevelValue,
-                            items: _academicLevelList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 12),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _academicLevelValue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'Trình độ học vấn',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
                             ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'Trình độ học vấn',
-                              enabledBorder: InputBorder.none,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
+                            ),
 
-                            ),
                           ),
                         ),
                       ),
@@ -741,45 +694,40 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                          top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius:  BorderRadius.all(
-                               Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField(
+                          value: _skillValue,
+                          items: _skillList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 12),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _skillValue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child: DropdownButtonFormField(
-                            value: _skillValue,
-                            items: _skillList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 12),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _skillValue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'Kỹ năng',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
                             ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'Kỹ năng',
-                              enabledBorder: InputBorder.none,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
 
-                            ),
                           ),
                         ),
                       ),
@@ -793,45 +741,40 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Padding(
                         padding: EdgeInsets.only(
                          top: 10),
-                        child: Container(
-                          padding: EdgeInsets.only(left: 2),
-                          height: 50.0,
-                          decoration:  BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: Colors.white,
-                            borderRadius:  BorderRadius.all(
-                               Radius.circular(4),
-                            ),
+                        child: DropdownButtonFormField(
+                          value: _areaValue,
+                          items: _areaList
+                              .map((e) =>
+                              DropdownMenuItem(
+                                child: Text(e, style: TextStyle(
+                                    fontSize: 12),),
+                                value: e,
+                              ))
+                              .toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              _areaValue = val as String;
+                            });
+                          },
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.black.withOpacity(
+                                0.5),
                           ),
-                          child: DropdownButtonFormField(
-                            value: _areaValue,
-                            items: _areaList
-                                .map((e) =>
-                                DropdownMenuItem(
-                                  child: Text(e, style: TextStyle(
-                                      fontSize: 12),),
-                                  value: e,
-                                ))
-                                .toList(),
-                            onChanged: (val) {
-                              setState(() {
-                                _areaValue = val as String;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black.withOpacity(
-                                  0.5),
+                          dropdownColor: Colors.white,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(
+                                13),
+                            labelText: 'Khu vực',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(4),
                             ),
-                            dropdownColor: Colors.white,
-                            decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(
-                                  13),
-                              hintText: 'Khu vực',
-                              enabledBorder: InputBorder.none,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFF6116), width: 2),
+                            ),
 
-                            ),
                           ),
                         ),
                       ),
@@ -841,96 +784,88 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                 Padding(
                   padding:
                   EdgeInsets.only( top: 10),
-                  child: Container(
-                    height: 80.0,
-                    decoration:  BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      color: Colors.white,
-                      borderRadius:  BorderRadius.all(
-                         Radius.circular(4),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Không được bỏ trống';
+                      } else
+                        null;
+                    },
+                    keyboardType: TextInputType.text,
+                    maxLines: 1,
+                    controller: jobDescriptionController,
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        contentPadding: EdgeInsets.all(13),
+                        labelText: 'Mô tả công việc',
+                        hintStyle: TextStyle(fontSize: 12),
+                        labelStyle: TextStyle(fontSize: 12),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Không được bỏ trống';
-                        } else
-                          null;
-                      },
-                      keyboardType: TextInputType.text,
-                      maxLines: 1,
-                      controller: jobDescriptionController,
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(13),
-                          hintText: 'Mô tả công việc',
-                          hintStyle: TextStyle(fontSize: 12),
-                          labelStyle: TextStyle(fontSize: 12),
-                          border: InputBorder.none),
+
+                  ),
+                ),
+                Padding(
+                  padding:
+                  EdgeInsets.only( top: 10),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Không được bỏ trống';
+                      } else
+                        null;
+                    },
+                    keyboardType: TextInputType.text,
+                    maxLines: 1,
+                    controller: skillRequirementsController,
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        contentPadding: EdgeInsets.all(13),
+                        labelText: 'Kỹ năng yêu cầu',
+                        hintStyle: TextStyle(fontSize: 12),
+                        labelStyle: TextStyle(fontSize: 12),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
+                      ),
                     ),
                   ),
                 ),
                 Padding(
                   padding:
                   EdgeInsets.only( top: 10),
-                  child: Container(
-                    height: 80.0,
-                    decoration:  BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      color: Colors.white,
-                      borderRadius:  BorderRadius.all(
-                         Radius.circular(4),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Không được bỏ trống';
+                      } else
+                        null;
+                    },
+                    keyboardType: TextInputType.text,
+                    maxLines: 1,
+                    controller: culturalEnvironmentController,
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        contentPadding: EdgeInsets.all(13),
+                        labelText: 'Môi trường văn hóa',
+                        hintStyle: TextStyle(fontSize: 12),
+                        labelStyle: TextStyle(fontSize: 12),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
                       ),
-                    ),
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Không được bỏ trống';
-                        } else
-                          null;
-                      },
-                      keyboardType: TextInputType.text,
-                      maxLines: 1,
-                      controller: skillRequirementsController,
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(13),
-                          hintText: 'Kỹ năng yêu cầu',
-                          hintStyle: TextStyle(fontSize: 12),
-                          labelStyle: TextStyle(fontSize: 12),
-                          border: InputBorder.none),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                  EdgeInsets.only( top: 10),
-                  child: Container(
-                    height: 80.0,
-                    decoration:  BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      color: Colors.white,
-                      borderRadius:  BorderRadius.all(
-                         Radius.circular(4),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
                       ),
-                    ),
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Không được bỏ trống';
-                        } else
-                          null;
-                      },
-                      keyboardType: TextInputType.text,
-                      maxLines: 1,
-                      controller: culturalEnvironmentController,
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(13),
-                          hintText: 'Môi trường văn hóa',
-                          hintStyle: TextStyle(fontSize: 12),
-                          labelStyle: TextStyle(fontSize: 12),
-                          border: InputBorder.none),
                     ),
                   ),
                 ),
@@ -975,111 +910,99 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                 Padding(
                   padding: EdgeInsets.only(
                       left: 5, right: 5, top: 10),
-                  child: Container(
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty) {
+                        return 'Không được bỏ trống';
+                      } else
+                        null;
+                    },
+                    controller: companyController,
+                    keyboardType: TextInputType.text,
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        contentPadding: EdgeInsets.all(
+                            13),
+                        labelText: 'Tên liên hệ',
+                        hintStyle: TextStyle(
+                            fontSize: 12),
+                        labelStyle: TextStyle(
+                            fontSize: 12),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
                       ),
-                    ),
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty) {
-                          return 'Không được bỏ trống';
-                        } else
-                          null;
-                      },
-                      controller: companyController,
-                      keyboardType: TextInputType.text,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(
-                              13),
-                          hintText: 'Tên liên hệ',
-                          hintStyle: TextStyle(
-                              fontSize: 12),
-                          labelStyle: TextStyle(
-                              fontSize: 12),
-                          border: InputBorder.none),
-                    ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
+                      ),
+                        ),
                   ),
                 ),
                 //Số điện thoại
                 Padding(
                   padding: EdgeInsets.only(
                       left: 5, right: 5, top: 10),
-                  child: Container(
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty) {
+                        return 'Không được bỏ trống';
+                      } else
+                        null;
+                    },
+                    controller: phoneController,
+                    keyboardType: TextInputType.text,
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        contentPadding: EdgeInsets.all(
+                            13),
+                        labelText: 'Số điện thoại',
+                        hintStyle: TextStyle(
+                            fontSize: 12),
+                        labelStyle: TextStyle(
+                            fontSize: 12),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
                       ),
-                    ),
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty) {
-                          return 'Không được bỏ trống';
-                        } else
-                          null;
-                      },
-                      controller: phoneController,
-                      keyboardType: TextInputType.text,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(
-                              13),
-                          hintText: 'Số điện thoại',
-                          hintStyle: TextStyle(
-                              fontSize: 12),
-                          labelStyle: TextStyle(
-                              fontSize: 12),
-                          border: InputBorder.none),
-                    ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),),
                   ),
                 ),
                 //Email
                 Padding(
                   padding: EdgeInsets.only(
                       left: 5, right: 5, top: 10),
-                  child: Container(
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4),
-                      ),
-                    ),
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty) {
-                          return 'Không được bỏ trống';
-                        } else
-                          null;
-                      },
-                      controller: emailController,
-                      keyboardType: TextInputType.text,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(
-                              13),
-                          hintText: 'Email',
-                          hintStyle: TextStyle(
-                              fontSize: 12),
-                          labelStyle: TextStyle(
-                              fontSize: 12),
-                          border: InputBorder.none),
-                    ),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty) {
+                        return 'Không được bỏ trống';
+                      } else
+                        null;
+                    },
+                    controller: emailController,
+                    keyboardType: TextInputType.text,
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        contentPadding: EdgeInsets.all(
+                            13),
+                        labelText: 'Email',
+                        hintStyle: TextStyle(
+                            fontSize: 12),
+                        labelStyle: TextStyle(
+                            fontSize: 12),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color(0xFFFF6116), width: 2),
+                    ),),
                   ),
                 ),
                 // Tỉnh/thành phố
@@ -1160,36 +1083,33 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                 Padding(
                   padding: EdgeInsets.only(
                       left: 5, right: 5, top: 10),
-                  child: Container(
-                    height: 50.0,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(4),
+                  child: TextFormField(
+                    validator: (value) {
+                      if (value == null ||
+                          value.isEmpty) {
+                        return 'Không được bỏ trống';
+                      } else
+                        null;
+                    },
+                    controller: addressController,
+                    keyboardType: TextInputType.text,
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        contentPadding: EdgeInsets.all(
+                            13),
+                        labelText: 'Địa chỉ chi tiết',
+                        hintStyle: TextStyle(
+                            fontSize: 12),
+                        labelStyle: TextStyle(
+                            fontSize: 12),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
                       ),
-                    ),
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty) {
-                          return 'Không được bỏ trống';
-                        } else
-                          null;
-                      },
-                      controller: addressController,
-                      keyboardType: TextInputType.text,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(
-                              13),
-                          hintText: 'Địa chỉ chi tiết',
-                          hintStyle: TextStyle(
-                              fontSize: 12),
-                          labelStyle: TextStyle(
-                              fontSize: 12),
-                          border: InputBorder.none),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
                     ),
                   ),
                 ),
@@ -1317,6 +1237,24 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
             controlsBuilder: (context, _) {
               return Row(
                 children: [
+
+                  TextButton(
+                    onPressed: () {
+                      if (_activeStepIndex == 0) {
+                        return;
+                      }
+                      _activeStepIndex -= 1;
+                      setState(() {
+                        //
+                      });
+                    },
+                    child: Text(
+                      'Quay lại',
+                      style: TextStyle(
+                        color: Color(0xFFFF6116),
+                      ),
+                    ),
+                  ),
                   Container(
                     height: 40,
                     width: 80,
@@ -1339,23 +1277,6 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                       child: Text(
                         'Tiếp tục',
                         style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      if (_activeStepIndex == 0) {
-                        return;
-                      }
-                      _activeStepIndex -= 1;
-                      setState(() {
-                        //
-                      });
-                    },
-                    child: Text(
-                      'Quay lại',
-                      style: TextStyle(
-                        color: Color(0xFFFF6116),
                       ),
                     ),
                   ),
