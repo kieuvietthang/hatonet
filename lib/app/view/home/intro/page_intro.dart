@@ -1,8 +1,13 @@
-// ignore_for_file: prefer_final_fields, prefer_const_constructors
+// ignore_for_file: prefer_final_fields, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:hatonet_hcn/app/view/home/intro/Intro_optimal_page.dart';
+import 'package:hatonet_hcn/app/view/home/intro/Intro_speed_page.dart';
+import 'package:hatonet_hcn/app/view/home/intro/Intro_trust_page.dart';
 import 'package:hatonet_hcn/app/view/home/intro/slider_page.dart';
-import 'package:hatonet_hcn/app/view/sign_in/main_page.dart';
+import 'package:hatonet_hcn/app/view/sign_in/sign_in_page.dart';
+import 'package:hatonet_hcn/app/view/sign_up/sign_up_page.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({Key? key}) : super(key: key);
@@ -12,106 +17,127 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-  int _currentPage = 0;
-
   PageController _controller = PageController();
-
-  List<Widget> _pages = [
-    SliderPage(
-        title: 'TỐC ĐỘ',
-        description:
-            '- Tối ưu thời gian tuyển dụng.\n- Kết nối 1.0000 Doanh nghiệp IT cung ứng & tuyển dụng trên toàn quốc.\n- Thao tác đơn giản.\n- Tận dụng nguồn lực của nhiều doanh nghiệp CNTT.',
-        image: 'assets/icons/ic_fastboy.svg'),
-    SliderPage(
-        title: 'TỐI ƯU',
-        description:
-            '- Tối ưu được chi phí cơ hội khi có nhu cầu lớn về nhân sự onsite.\n- Hỗ trợ kết nối thông qua hệ sinh thái của Hatonet đến các doanh nghiệp CNTT trên toàn quốc.',
-        image: 'assets/icons/ic_oclock.svg'),
-    SliderPage(
-        title: 'TIN CẬY',
-        description:
-            '- Mức phí tối ưu nhất trên thị trường.\n- Hệ thống CMS được cập nhật và phát triển liên tục.\n- Luôn phát triển và đồng hành cùng doanh nghiệp CNTT Việt Nam',
-        image: 'assets/icons/ic_trust.svg'),
-  ];
-
-  _onChanged(int index) {
-    setState(() {
-      _currentPage = index;
-    });
-  }
+  bool onLastPage = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          PageView.builder(
-           // scrollDirection: Axis.horizontal,
+          PageView(
             controller: _controller,
-            itemCount: _pages.length,
-            onPageChanged: _onChanged,
-            itemBuilder: (context, int index) {
-              return _pages[index];
+            onPageChanged: (index) {
+              setState(() {
+                onLastPage = (index == 2);
+              });
             },
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List<Widget>.generate(_pages.length, (int index) {
-                    return AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
-                      height: 10,
-                      width: (index == _currentPage) ? 30 : 10,
-                      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 30),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: (index == _currentPage)
-                              ? Color(0xFFE65C00)
-                              : Color(0xFFC9DCED)),
-                    );
-                  })),
-              InkWell(
-                onTap: () {
-                  if(_currentPage == 2){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> MainPage()));
-                  }
-                  _controller.nextPage(
-                      duration: Duration(milliseconds: 800),
-                      curve: Curves.easeInOutQuint);
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(left: 20, right: 20),
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    height: 50,
-                    alignment: Alignment.center,
-                    width: (_currentPage == (_pages.length - 1))
-                        ? double.infinity
-                        : double.infinity,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFF6116),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: (_currentPage == (_pages.length - 1))
-                        ? Text(
-                          'Bắt đầu',
-                          style:
-                              TextStyle(color: Colors.white, fontSize: 22,fontWeight: FontWeight.bold),
-                        )
-                        : Text(
-                            'Tiếp tục',
-                            style: TextStyle(color: Colors.white, fontSize: 22,fontWeight: FontWeight.bold),
-                          ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              )
+              IntroSpeedPage(),
+              IntroOptimalPage(),
+              IntroTrustPage(),
             ],
-          )
+          ),
+          Container(
+            padding: EdgeInsets.only(bottom: 10),
+            alignment: Alignment(0, 0.75),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SmoothPageIndicator(
+
+                  controller: _controller,
+                  count: 3,
+                  axisDirection: Axis.horizontal,
+                  effect:  WormEffect(
+                      dotHeight: 16,
+                      dotWidth: 16,
+                      dotColor:  Colors.grey,
+                      activeDotColor:  Color(0xFFFF6116)
+                  ),
+                  // effect: SwapEffect(
+                  //     activeDotColor: Color(0xFFE65C00)
+                  // ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                onLastPage
+                    ? GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SignUpPage(
+                                  showLoginPage: () {},
+                                );
+                              },
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return SignInPage(showRegisterPage: () {});
+                                  },
+                                ),
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFFF6116),
+                                  borderRadius: BorderRadius.circular(5)),
+                              height: 45,
+                              width: double.infinity,
+                              child: Center(
+                                child: Text(
+                                  'Bắt đầu',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.only(left: 20, right: 20),
+                        child: GestureDetector(
+                          onTap: () {
+                            _controller.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeIn,
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Color(0xFFFF6116),
+                                borderRadius: BorderRadius.circular(5)),
+                            height: 45,
+                            width: double.infinity,
+                            child: Center(
+                              child: Text(
+                                'Tiếp tục',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+              ],
+            ),
+          ),
         ],
       ),
     );

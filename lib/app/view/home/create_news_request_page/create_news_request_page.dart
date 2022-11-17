@@ -8,17 +8,31 @@ import 'package:hatonet_hcn/app/blocs/bloc_job_postings/job_postings_event.dart'
 import 'package:hatonet_hcn/app/blocs/job_postings_exports.dart';
 import 'package:hatonet_hcn/app/model/job_postings.dart';
 import 'package:hatonet_hcn/app/services/guid_gen.dart';
+import 'package:hatonet_hcn/app/view/home/create_news_request_page/customer_phone_list_viewmodel.dart';
 import 'package:hatonet_hcn/app/view/home/job_postings_page/job_postings_page.dart';
+import 'package:hatonet_hcn/app/viewmodel/base_viewmodel.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 
+class CustomerPhoneListPage extends PageProvideNode<CustomerPhoneListViewModel> {
+  CustomerPhoneListPage({Key? key}) : super(key: key, params: []);
+
+  @override
+  Widget buildContent(BuildContext context) {
+    return createNewsRequestPage(viewModel);
+  }
+}
 class createNewsRequestPage extends StatefulWidget {
-  const createNewsRequestPage({Key? key}) : super(key: key);
+  CustomerPhoneListViewModel _customerListViewModel;
+
+  createNewsRequestPage(this._customerListViewModel);
 
   @override
   State<createNewsRequestPage> createState() => _createNewsRequestPageState();
 }
 
 class _createNewsRequestPageState extends State<createNewsRequestPage> {
+  CustomerPhoneListViewModel get customerListViewModel => widget._customerListViewModel;
+
   @override
   void initState() {
     applicationDeadlineController.text = "";

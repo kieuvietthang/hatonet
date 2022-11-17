@@ -96,22 +96,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                 padding: EdgeInsets.only(left: 5),
                 height: 40,
                 child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.pressed))
-                          return Color(0xFFEA530A);
-                        return Color(0xFF1F1F1F);
-                      },
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      CustomPageRoute(
-                          child: DashBoardPage(),
-                          direction: AxisDirection.left),
-                    );
-                  },
+                  onPressed: () {  },
                   child: Row(
                     children: [
                       Expanded(

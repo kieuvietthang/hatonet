@@ -33,7 +33,7 @@ dependencies:
   snippet_coder_utils: ^1.0.12
   fa_stepper: ^0.0.2
   email_validator: ^2.0.1
-
+  wc_form_validators: ^1.0.0
 
   flutter_slidable: ^1.2.0
   # shimmer
@@ -228,3 +228,9 @@ flutter:
     - assets/animations/
     - assets/animations/onboarding/
     - assets/animations/onboarding/images/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: fonts/Inter-VariableFont_slnt,wght.ttf
+

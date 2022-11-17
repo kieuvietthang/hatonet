@@ -84,6 +84,7 @@ abstract class  LocaleKeys {
   static const order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order = 'order_000041530017_has_a_total_amount_of_33_00_are_you_want_to_delete_this_order';
   static const quantity = 'quantity';
   static const name = 'name';
+  static const bat_dau = 'Bắt đầu';
   static const please_select_the_customer = 'please_select_the_customer';
   static const you_need_to_select_the_customer_before_you_can_invoice_or_ship_an_order = 'you_need_to_select_the_customer_before_you_can_invoice_or_ship_an_order';
   static const error_finalized_order_cannot_be_modified = 'error_finalized_order_cannot_be_modified';

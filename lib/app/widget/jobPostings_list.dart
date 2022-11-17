@@ -8,12 +8,14 @@ import 'package:hatonet_hcn/app/view/home/step_page/step_page.dart';
 import 'package:hatonet_hcn/app/widget/job_postings_tile.dart';
 
 class JobPostingsList extends StatelessWidget {
-  const JobPostingsList({Key? key, required this.jobPostingsList})
+   JobPostingsList({Key? key, required this.jobPostingsList})
       : super(key: key);
 
   final List<JobPostings> jobPostingsList;
 
-  @override
+
+
+   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(

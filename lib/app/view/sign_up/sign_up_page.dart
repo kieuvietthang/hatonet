@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hatonet_hcn/app/module/res/colors.dart';
 
 class SignUpPage extends StatefulWidget {
   final VoidCallback showLoginPage;
@@ -134,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 20, right: 20),
                     child: Text(
-                      'Tiếp cận hàng ngàn nhân sự chất lượng từ các doanh nghiệp ở khắp mọi nơi',
+                      'Tiếp cận hàng ngàn nhân sự chất lượng từ các \ndoanh nghiệp ở khắp mọi nơi',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 14,
@@ -160,12 +161,19 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: _companyController,
                     keyboardType: TextInputType.text,
                     maxLines: 1,
+                    cursorColor: Color(0xFFFF6116),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(13),
                         labelText: 'Tên công ty',
-                        labelStyle: TextStyle(fontSize: 14),
+                        labelStyle: TextStyle(fontSize: 14,color: Color(0xFFFF6116),
+                            fontWeight: FontWeight.w300,),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4))),
+
+                            borderRadius: BorderRadius.circular(4)),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
+                      ),),
                   ),
                 ),
                 SizedBox(
@@ -185,12 +193,19 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: _contactnameController,
                     keyboardType: TextInputType.text,
                     maxLines: 1,
+                    cursorColor: Color(0xFFFF6116),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(13),
                         labelText: 'Tên liên hệ',
-                        labelStyle: TextStyle(fontSize: 14),
+                        labelStyle: TextStyle(fontSize: 14,color: Color(0xFFFF6116),
+                          fontWeight: FontWeight.w300,),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4))),
+
+                            borderRadius: BorderRadius.circular(4)),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
+                      ),),
                   ),
                 ),
                 SizedBox(
@@ -199,24 +214,32 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: TextFormField(
-                    validator: (value) {
-                      if (value!.isEmpty ||
-                          !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                              .hasMatch(value)) {
-                        return 'Không đúng định dạng';
+                    validator: (value)  {
+                      //a.aaba@aa1a_a.com
+                      if (value!.isEmpty) {
+                        return 'Không được để trống';
+                      } else if (!RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                        return 'Sai định dạng. Vui lòng thử lại.';
                       } else {
                         return null;
                       }
                     },
                     controller: _phoneController,
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
                     maxLines: 1,
+                    cursorColor: Color(0xFFFF6116),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(13),
                         labelText: 'Số điện thoại',
-                        labelStyle: TextStyle(fontSize: 14),
+                        labelStyle: TextStyle(fontSize: 14,color: Color(0xFFFF6116),
+                          fontWeight: FontWeight.w300,),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4))),
+                            borderRadius: BorderRadius.circular(4)),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
+                      ),),
                   ),
                 ),
                 Padding(
@@ -224,10 +247,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: TextFormField(
                     validator: (value) {
                       //a.aaba@aa1a_a.com
-                      if (value!.isEmpty ||
-                          !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                              .hasMatch(value)) {
-                        return 'Không đúng định dạng';
+                      if (value!.isEmpty) {
+                        return 'Không được để trống';
+                      } else if (!RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                          .hasMatch(value)) {
+                        return 'Sai định dạng. Vui lòng thử lại.';
                       } else {
                         return null;
                       }
@@ -235,31 +259,49 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: _emailController,
                     keyboardType: TextInputType.text,
                     maxLines: 1,
+                    cursorColor: Color(0xFFFF6116),
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(13),
                         labelText: 'Email',
-                        labelStyle: TextStyle(fontSize: 14),
+                        labelStyle: TextStyle(fontSize: 14,color: Color(0xFFFF6116),
+                          fontWeight: FontWeight.w300,),
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4))),
+                            borderRadius: BorderRadius.circular(4)),focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color(0xFFFF6116), width: 2),
+                    ),),
+
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20, top: 20),
                   child: TextFormField(
-                    validator: (value) => value != null && value.length < 6
-                        ? 'Mật khẩu phải trên 6 kí tự'
-                        : null,
+                    validator: (value)  {
+                      if (value!.isEmpty) {
+                        return 'Không được để trống';
+                      } else if (value.length < 6) {
+                        return 'Mật khẩu phải trên 6 kí tự';
+                      } else {
+                        return null;
+                      }
+                    },
                     controller: _passwordController,
                     keyboardType: TextInputType.multiline,
                     maxLines: 1,
+                    cursorColor: Color(0xFFFF6116),
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(13),
                       labelText: 'Mật khẩu',
-                      labelStyle: TextStyle(fontSize: 14),
+                      labelStyle: TextStyle(fontSize: 14,color: Color(0xFFFF6116),
+                        fontWeight: FontWeight.w300,),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4)),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
+                      ),
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.remove_red_eye),
+                        icon: Icon(Icons.remove_red_eye,color: Color(0xFFFF6116),),
                         onPressed: () {
                           setState(() {
                             _secureText = !_secureText;
@@ -276,20 +318,32 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: EdgeInsets.only(left: 20, right: 20),
                   child: TextFormField(
-                    validator: (value) => value != null && value.length < 6
-                        ? 'Mật khẩu phải trên 6 kí tự'
-                        : null,
+                    validator: (value)  {
+                      if (value!.isEmpty) {
+                        return 'Không được để trống';
+                      } else if (value.length < 6) {
+                        return 'Mật khẩu phải trên 6 kí tự';
+                      } else {
+                        return null;
+                      }
+                    },
+                    cursorColor: Color(0xFFFF6116),
                     controller: _confirmpasswordController,
                     keyboardType: TextInputType.multiline,
                     maxLines: 1,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(13),
                       labelText: 'Xác nhận mật khẩu',
-                      labelStyle: TextStyle(fontSize: 14),
+                      labelStyle: TextStyle(fontSize: 14,color: Color(0xFFFF6116),
+                        fontWeight: FontWeight.w300,),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4)),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color(0xFFFF6116), width: 2),
+                      ),
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.remove_red_eye),
+                        icon: Icon(Icons.remove_red_eye,color: Color(0xFFFF6116),),
                         onPressed: () {
                           setState(() {
                             _secureText1 = !_secureText1;
@@ -309,7 +363,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     onTap: signUp,
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xFFFF6116),
+                          color: kColorFF6116,
                           borderRadius: BorderRadius.circular(4)),
                       height: 45,
                       width: double.infinity,
@@ -324,6 +378,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
               ]),
             ),

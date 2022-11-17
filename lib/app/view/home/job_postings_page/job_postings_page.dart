@@ -5,9 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_job_postings/job_postings_bloc.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_job_postings/job_postings_state.dart';
+import 'package:hatonet_hcn/app/di/injection.dart';
 import 'package:hatonet_hcn/app/model/job_postings.dart';
 import 'package:hatonet_hcn/app/model/services.dart';
+import 'package:hatonet_hcn/app/module/common/navigator_screen.dart';
 import 'package:hatonet_hcn/app/view/home/bottom/bottom_bar.dart';
+import 'package:hatonet_hcn/app/view/home/create_news_request_page/create_news_request_page.dart';
 import 'package:hatonet_hcn/app/view/home/step_page/step_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 import 'package:hatonet_hcn/app/widget/jobPostings_list.dart';
@@ -95,23 +98,28 @@ class _JobPostingsPageState extends State<JobPostingsPage> {
                                       describe: '',
                                       usedtime: ''),
                                   jobPostings: JobPostings(
-                                      workingForm: '',
-                                      rank: '',
-                                      experience: '',
-                                      unitPrice: '',
-                                      applicationDeadline: '',
-                                      contractTerm: '',
-                                      title: '',
-                                      paymentTerm: '',
-                                      id: '',
-                                      isFavorite: false,
-                                      academicLevel: '',
-                                      skill: '',
-                                      area: '',
-                                      amount: '', culturalEnvironment: '', skillRequirements: '', jobDescription: ''),
+                                    workingForm: '',
+                                    rank: '',
+                                    experience: '',
+                                    unitPrice: '',
+                                    applicationDeadline: '',
+                                    contractTerm: '',
+                                    title: '',
+                                    paymentTerm: '',
+                                    id: '',
+                                    isFavorite: false,
+                                    academicLevel: '',
+                                    skill: '',
+                                    area: '',
+                                    amount: '',
+                                    culturalEnvironment: '',
+                                    skillRequirements: '',
+                                    jobDescription: '',
+                                  ),
                                 ),
                                 direction: AxisDirection.right),
                           );
+                          // getIt<NavigationService>().pushScreenWithFade(CustomerPhoneListPage());
                         },
                         child: Container(
                           height: 30,

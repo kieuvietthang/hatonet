@@ -5,9 +5,13 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_exports.dart';
 import 'package:hatonet_hcn/app/blocs/bloc_job_postings/job_postings_bloc.dart';
+import 'package:hatonet_hcn/app/di/injection.dart';
+import 'package:hatonet_hcn/app/module/common/navigator_screen.dart';
+import 'package:hatonet_hcn/app/module/common/system_utils.dart';
 import 'package:hatonet_hcn/app/provider/google_sign_in_provider.dart';
 import 'package:hatonet_hcn/app/provider/internet_provider.dart';
 import 'package:hatonet_hcn/app/view/home/bottom/bottom_bar.dart';
+import 'package:hatonet_hcn/app/view/home/widget_utils/custom/flutter_easyloading/flutter_easyloading.dart';
 import 'package:hatonet_hcn/app/view/sign_in/sign_in_page.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -47,11 +51,32 @@ _init() async {
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    SystemUtils.setPortraitScreenOrientation();
+    //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: kColor202330));
+    //SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: transparent));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void backPress(BuildContext context) {
+    Navigator.of(context).pop();
+  }
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -83,6 +108,8 @@ class MyApp extends StatelessWidget {
           routes: {
             '/SignInPage': (context) =>  SignInPage(showRegisterPage: (){}),
           },
+          // builder: EasyLoading.init(),
+          // navigatorKey: getIt<NavigationService>().navigatorKey,
         ),
       ),
     );

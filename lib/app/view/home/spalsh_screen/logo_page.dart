@@ -1,8 +1,8 @@
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
 
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hatonet_hcn/app/view/home/lottie/loading_page.dart';
-
 
 class LogoPage extends StatefulWidget {
   const LogoPage({Key? key}) : super(key: key);
@@ -12,13 +12,12 @@ class LogoPage extends StatefulWidget {
 }
 
 class _LogoPageState extends State<LogoPage> {
-
   @override
   void initState() {
-
     super.initState();
-    Timer(Duration(seconds: 3),(){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_)=>LoadingPage()));
+    Timer(Duration(seconds: 3), () {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (_) => LoadingPage()));
     });
   }
 
@@ -30,7 +29,10 @@ class _LogoPageState extends State<LogoPage> {
         children: [
           Container(
             padding: EdgeInsets.fromLTRB(30, 100, 30, 0),
-            child: Image.asset('assets/images/img_hatonet.png'),
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Image.asset('assets/images/img_hatonet.png'),
+            ),
           ),
           // Container(
           //   padding: EdgeInsets.all(30),
@@ -39,13 +41,13 @@ class _LogoPageState extends State<LogoPage> {
           Spacer(),
           Container(
             child: Padding(
-              padding: EdgeInsets.only(right: 5),
-              child: Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    'Copyright © 2021 by Hatonet.com. All Rights Reserved.',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )),
+              padding: EdgeInsets.only(bottom: 15),
+              child: Center(
+                child: Text(
+                  'Copyright © 2021 by Hatonet.com. All Rights Reserved.',
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                ),
+              ),
             ),
           ),
           SizedBox(

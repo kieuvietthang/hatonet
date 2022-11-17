@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,6 +15,7 @@ import 'package:hatonet_hcn/app/view/home/forgot_password/forgot_password_page.d
 import 'package:hatonet_hcn/app/view/sign_up/sign_up_page.dart';
 import 'package:hatonet_hcn/app/widget/custom_page_route.dart';
 import 'package:provider/provider.dart';
+import 'package:wc_form_validators/wc_form_validators.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 
 class SignInPage extends StatefulWidget {
@@ -96,6 +98,8 @@ class _SignInPageState extends State<SignInPage> {
   final formKey = GlobalKey<FormState>();
   String name = '';
 
+  String textError = '';
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -140,7 +144,7 @@ class _SignInPageState extends State<SignInPage> {
                             child: Padding(
                               padding: EdgeInsets.only(left: 20, right: 20),
                               child: Text(
-                                'Tiếp cận hàng ngàn nhân sự chất lượng từ các doanh nghiệp ở khắp mọi nơi',
+                                'Tiếp cận hàng ngàn nhân sự chất lượng từ các \ndoanh nghiệp ở khắp mọi nơi',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 14,
@@ -178,14 +182,20 @@ class _SignInPageState extends State<SignInPage> {
 
                               validator: (value) {
                                 //a.aaba@aa1a_a.com
-                                if (value!.isEmpty ||
-                                    !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                                        .hasMatch(value)) {
-                                  return 'Không đúng định dạng';
+                                if (value!.isEmpty) {
+                                  return 'Không được để trống';
+                                } else if (!RegExp(
+                                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                    .hasMatch(value)) {
+                                  return 'Sai định dạng. Vui lòng thử lại.';
                                 } else {
                                   return null;
                                 }
                               },
+                              inputFormatters: [
+                                FilteringTextInputFormatter.deny(
+                                    new RegExp(r"\s\b|\b\s"))
+                              ],
                             ),
                           ),
                           SizedBox(
@@ -194,10 +204,15 @@ class _SignInPageState extends State<SignInPage> {
                           Padding(
                             padding: EdgeInsets.only(left: 20, right: 20),
                             child: TextFormField(
-                              validator: (value) =>
-                                  value != null && value.length < 6
-                                      ? 'Mật khẩu phải trên 6 kí tự'
-                                      : null,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Không được để trống';
+                                } else if (value.length < 6) {
+                                  return 'Mật khẩu phải trên 6 kí tự';
+                                } else {
+                                  return null;
+                                }
+                              },
                               cursorColor: Color(0xFFFF6116),
                               controller: _passwordController,
                               keyboardType: TextInputType.multiline,
@@ -338,25 +353,28 @@ class _SignInPageState extends State<SignInPage> {
                                   ),
                                   direction: AxisDirection.left),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Đăng kí tài khoản mới',
-                                  style: TextStyle(
-                                      color: Color(0xFF455A64),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal),
-                                ),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_outlined,
-                                  color: Color(0xFF455A64),
-                                  size: 18,
-                                ),
-                              ],
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Đăng kí tài khoản mới',
+                                    style: TextStyle(
+                                        color: Color(0xFF455A64),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward_outlined,
+                                    color: Color(0xFF455A64),
+                                    size: 18,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(

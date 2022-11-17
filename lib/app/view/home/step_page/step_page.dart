@@ -1234,59 +1234,41 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
                 ),
           ),
           child: Stepper(
-            controlsBuilder: (context, _) {
-              return Row(
-                children: [
-
-                  TextButton(
-                    onPressed: () {
-                      if (_activeStepIndex == 0) {
-                        return;
-                      }
-                      _activeStepIndex -= 1;
-                      setState(() {
-                        //
-                      });
-                    },
-                    child: Text(
-                      'Quay lại',
-                      style: TextStyle(
-                        color: Color(0xFFFF6116),
+            controlsBuilder: (context, ControlsDetails c) {
+              final isLastStep = _activeStepIndex == stepList().length - 1;
+              return Container(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: c.onStepContinue,
+                        child: (isLastStep)
+                            ? const Text('Cập nhật')
+                            : const Text('Tiếp tục'),
                       ),
                     ),
-                  ),
-                  Container(
-                    height: 40,
-                    width: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Color(0xFFFF6116),
+                    SizedBox(
+                      width: 5,
                     ),
-                    child: TextButton(
-                      onPressed: () {
-                        if(!formKeys[_activeStepIndex].currentState!.validate()){
-                          return;
-                        }
-                        if (_activeStepIndex < (stepList().length - 1)) {
-                          _activeStepIndex += 1;
-                        }
-                        setState(() {
-                          //
-                        });
-                      },
-                      child: Text(
-                        'Tiếp tục',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
+                    if (_activeStepIndex > 0)
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: c.onStepCancel,
+                          child: const Text('Quay lại'),
+                        ),
+                      )
+                  ],
+                ),
               );
             },
             type: StepperType.horizontal,
             currentStep: _activeStepIndex,
             steps: stepList(),
             onStepContinue: () {
+              if(!formKeys[_activeStepIndex].currentState!.validate()){
+                return;
+              }
               if (_activeStepIndex < (stepList().length - 1)) {
                 _activeStepIndex += 1;
               }
@@ -1301,6 +1283,11 @@ class _StepPageState extends State<StepPage> with SingleTickerProviderStateMixin
               _activeStepIndex -= 1;
               setState(() {
                 //
+              });
+            },
+            onStepTapped: (int index) {
+              setState(() {
+                _activeStepIndex = index;
               });
             },
           ),
